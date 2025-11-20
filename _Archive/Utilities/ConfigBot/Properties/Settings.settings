@@ -1,0 +1,29 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ConfigBot.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="OldString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">(LocalDB)\v11.0</Value>
+    </Setting>
+    <Setting Name="NewString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">(LocalDB)\MSSQLLocalDB</Value>
+    </Setting>
+    <Setting Name="TargetFiles" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;C:\LPLADesktop\WOW\LifePortraits\LPESDatabase.config&lt;/string&gt;
+  &lt;string&gt;C:\LPLADesktop\WOW\LifePortraits\PlanDatabase.config&lt;/string&gt;
+  &lt;string&gt;C:\LPLADesktop\WOW\LifePortraits\SessionDatabase.config&lt;/string&gt;
+  &lt;string&gt;C:\Program Files (x86)\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ServiceNames" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;LifeManagerService - WOW&lt;/string&gt;
+  &lt;string&gt;LifePortraitsWebServer - WOW&lt;/string&gt;
+  &lt;string&gt;WoodmenIntegrationService&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

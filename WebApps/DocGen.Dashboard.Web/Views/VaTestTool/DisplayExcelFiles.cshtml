@@ -1,0 +1,37 @@
+﻿@model LPA.Dashboard.Web.ViewModels.DisplayExcelFilesViewModel
+@{
+    Layout = null;
+}
+
+@if (Model.ExcelFileInfoList.Count > 0)
+{
+    <table class="displayList">
+        <thead>
+            <tr>
+                <th style="padding-right: 15px">
+                    File Name
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var excelFile in Model.ExcelFileInfoList)
+            {
+            <tr>
+                <td style="padding-right: 20px; vertical-align: text-top;">
+                    @excelFile.FileName
+                </td>
+                <td style="white-space: nowrap; vertical-align: text-top;">
+                    <button type="button" class="btn btn-primary btn-xs" onclick="GenerateSql('@excelFile.FilePath');">Generate Sql File</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div>No Excel Files in @Model.ExcelFileDirectory</div>
+}
+

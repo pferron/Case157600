@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Create Cim";
+    ViewBag.ActiveTab = "Test Groups";
+}
+@section scripts{
+    @Scripts.Render("~/Scripts/custom/formbuilder.js")
+    @Scripts.Render("~/Scripts/objects.js")
+    @Scripts.Render("~/Scripts/alert.js")
+    @Scripts.Render("~/Scripts/custom/cimeditor.js")
+    <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script>
+        //If an error is passed into the view model display it as a notification
+            var errorMessage = "@Model.ErrorMessage";
+
+        if (errorMessage != "") {
+            console.log("literally show me something")
+            AddDismissableAlert(errorMessage, "danger");
+        }
+        cim = '';
+        var apiCreateUrl = baseUrl +"api" +"@Url.Action("CreateCimFile", "TestGroupManagement")";
+        var testGroupId = @Model.TestGroup.TestGroupId;
+        var returnUrl = '@Url.Action("Cims", "TestGroup", new { id = Model.TestGroup.TestGroupId })';
+         document.addEventListener("DOMContentLoaded", function (event) {
+           document.getElementById("return").setAttribute('href', returnUrl);
+        });
+    </script>
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/TestGroup">Test Groups</a></li>
+        <li class="breadcrumb-item active"><a id="return"> @Model.TestGroup.Name</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create New Cim</li>
+    </ol>
+</nav>
+<div class="card ">
+    <div class="card-body ">
+        <div class="container ">
+            <div class="row">
+                <div class="col-12 d-flex flex-row">
+                    <h5 class="text-muted mb-2 mt-auto mr-auto">
+                        Cim Editor
+                    </h5>
+                    <a href="#" id="Create" class="btn btn-primary mb-2">
+                        Create
+                    </a>
+                </div>
+            </div>
+            <hr class="mt-0" />
+            <div id="alert" class="alert" role="alert" style="display: none;"></div>
+            <div class="row ">
+                <div class="list">
+                    <div class="cim">
+                    </div>
+                    <div id="side-render">
+                        <div id="render" style="display:none; ">
+                            <div id="controls" style="display: flex; margin-left: auto">
+                                <a href="#" class='btn btn-danger delete ' data-toggle="tooltip" data-placement="top" title="Delete"> <i class='far fa-trash-alt'></i> </a>
+                                <div class="m-1" style="border-left: 1px solid #aaa;"></div>
+                                <a href="#" class='btn btn-primary close-edit' data-toggle="tooltip" data-placement="top" title="Close"><i class="fas fa-times"></i></a>
+                            </div>
+                        </div>
+                        <div id="sidebar-container">
+                            <div id="sidebar">
+                                <div class="drag-container draggable base" data-object="Base">
+                                    <div class="drag-body">
+                                        <i class="fas fa-home"></i>
+                                        <h6>Policy</h6>
+                                    </div>
+                                </div>
+                                <div class="drag-container draggable agent" data-object="Agent">
+                                    <div class="drag-body">
+                                        <i class="fas fa-user-friends"></i>
+                                        <h6>Agent</h6>
+                                    </div>
+                                </div>
+                                <div class="drag-container draggable client" data-object="Client">
+                                    <div class="drag-body">
+                                        <i class="fas fa-address-book "></i>
+                                        <h6>Client</h6>
+                                    </div>
+                                </div>
+                                <div class="drag-container draggable coverage-container" data-object="Coverage-Container">
+                                    <div class="drag-body">
+                                        <i class="fas fa-box-open "></i>
+                                        <h6>Coverage Container</h6>
+                                    </div>
+                                </div>
+                                <div class="drag-container draggable coverage" data-object="Coverage">
+                                    <div class="drag-body">
+                                        <i class="fas fa-user-alt"></i>
+                                        <h6>Coverage</h6>
+                                    </div>
+                                </div>
+                                <div class="drag-container draggable fund-container" data-object="Fund-Container">
+                                    <div class="drag-body">
+                                        <i class="fas fa-box-open"></i>
+                                        <h6>Fund Container</h6>
+                                    </div>
+                                </div>
+                                <div class="drag-container draggable fund" data-object="Fund">
+                                    <div class="drag-body">
+                                        <i class="fas fa-money-bill-alt"></i>
+                                        <h6>Fund</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

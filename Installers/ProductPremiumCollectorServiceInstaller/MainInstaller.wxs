@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define ProductName = "Woodmen Product Premium Collector Service" ?>
+  <?define ProductVersion = "1.8.0.0" ?>
+
+  <?if $(var.Platform) = x64 ?>
+  <?define ProductDisplayName = "$(var.ProductName)" ?>
+  <?define ProductUpgradeCode = "9d7c71af-21da-40f6-ab85-f01d6d339b9d" ?>
+  <?define Win64 = "yes" ?>
+  <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+  <?else ?>
+  <?define ProductDisplayName = "$(var.ProductName)" ?>
+  <?define ProductUpgradeCode = "f2ee8327-2a1e-449a-9345-e3b9c4a6b937" ?>
+  <?define Win64 = "no" ?>
+  <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+  <?endif ?>
+
+  <Product Id="*" Name="$(var.ProductDisplayName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="WoodmenLife" UpgradeCode="$(var.ProductUpgradeCode)">
+    <Package InstallerVersion="400" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" Platform="x64" />
+    <PropertyRef Id="WIX_ACCOUNT_LOCALSYSTEM" />
+
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED"/>
+    <Condition Message="This application requires .NET Framework 4.6.2. Please install the .NET Framework then run this installer again."><![CDATA[Installed OR WIX_IS_NETFRAMEWORK_462_OR_LATER_INSTALLED]]></Condition>
+    <Icon Id="ProgramIcon" SourceFile="$(var.ProductPremiumCollectorService.TargetDir)favicon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="ProgramIcon" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+
+    <Feature Id="ProductFeature" Title="ProductPremiumCollectorServiceWix" Level="1">
+      <ComponentRef Id="CMP_log4net"/>
+      <ComponentRef Id="CMP_Newtonsoft.Json"/>
+      <ComponentRef Id="CMP_Restsharp"/>
+      <ComponentRef Id="CMP_WOW.WoodmenIllustrationService.SharedModels"/>
+      <ComponentRef Id="CMP_ProductPremiumCollectorServiceConfig"/>
+      <ComponentRef Id="CMP_ProductPremiumCollectorService"/>
+    </Feature>
+    <UIRef Id="WoodmenWixUI"/>
+  </Product>
+
+  <Fragment>
+    <UI Id="WoodmenWixUI">
+      <UIRef Id="WixUI_InstallDir"/>
+      <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+      <!-- skip license page going forward -->
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="3">1</Publish>
+      <!-- skip license page on the way back too -->
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="3">1</Publish>
+    </UI>
+  </Fragment>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)">
+        <Directory Id="CompanyFolder" Name="WoodmenLife">
+          <Directory Id="INSTALLFOLDER" Name="Product Premium Collector Service">
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="CMP_log4net" Win64="$(var.Win64)">
+        <File Id="FILE_log4net.dll" Name="log4net.dll" KeyPath="yes" Source="$(var.ProductPremiumCollectorService.TargetDir)log4net.dll" />
+      </Component>
+
+      <Component Id="CMP_Newtonsoft.Json" Win64="$(var.Win64)">
+        <File Id="FILE_Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.ProductPremiumCollectorService.TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+
+      <Component Id="CMP_Restsharp" Win64="$(var.Win64)">
+        <File Id="FILE_Restsharp.dll" Name="Restsharp.dll" KeyPath="yes" Source="$(var.ProductPremiumCollectorService.TargetDir)Restsharp.dll" />
+      </Component>
+
+      <Component Id="CMP_WOW.WoodmenIllustrationService.SharedModels" Win64="$(var.Win64)">
+        <File Id="FILE_WOW.WoodmenIllustrationService.SharedModels.dll" Name="WOW.WoodmenIllustrationService.SharedModels.dll" KeyPath="yes" Source="$(var.ProductPremiumCollectorService.TargetDir)WOW.WoodmenIllustrationService.SharedModels.dll" />
+      </Component>
+
+      <Component Id="CMP_ProductPremiumCollectorServiceConfig" Guid="705c34f1-8a29-4a0b-8158-fad6f8bfa384" Win64="$(var.Win64)">
+        <File Id="FILE_ProductPremiumCollectorService.exe.config" Name="ProductPremiumCollectorService.exe.config" KeyPath="no" Source="$(var.ProductPremiumCollectorService.TargetDir)ProductPremiumCollectorService.exe.config" />
+      </Component>
+      <Component Id="CMP_ProductPremiumCollectorService" Win64="$(var.Win64)">
+        <File Id="FILE_ProductPremiumCollectorService.exe" Name="ProductPremiumCollectorService.exe" KeyPath="yes" Source="$(var.ProductPremiumCollectorService.TargetDir)ProductPremiumCollectorService.exe" />
+        <ServiceInstall Id="SI_ProductPremiumCollectorService" Name="ProductPremiumCollectorService" DisplayName="WoodmenLife Product Premium Collector Service" Start="auto" ErrorControl="normal" Type="ownProcess" Interactive="no" Account="[WIX_ACCOUNT_LOCALSYSTEM]" Description="Windows Service for Product Premium Collector." Vital="yes"/>
+        <ServiceControl Id="SC_ProductPremiumCollectorService" Name="ProductPremiumCollectorService" Stop="both" Remove="uninstall" Wait="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

@@ -1,0 +1,85 @@
+﻿html {
+    font-size: 100%; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body
+{
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    background-color: #1763A6;
+    color: #FFF;
+    margin: 0;
+    padding: 20px;
+}
+
+fieldset
+{
+    width: 690px;
+    border: 1px solid #FFF;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+legend {
+  padding: 0.2em 0.5em;
+  border: 1px solid #FFF;
+  background-color: #FFF;
+  color: #1763A6;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th
+{
+    text-align: left;
+    color: #1763A6;
+    background-color: #FFF;
+    padding: 5px;
+}
+
+table.results tr:nth-child(even)
+{
+    background: #125087;
+}
+
+td
+{
+    padding: 5px;
+}
+
+label
+{
+    width: 165px;
+    display: inline-block;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+a:link, a:visited {
+    background-color: #1763A6;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 0.5em 0.75em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+a:hover, a:active {
+    background-color: #fff;
+    color: #1763A6;
+    border: 2px solid #1763A6;
+}

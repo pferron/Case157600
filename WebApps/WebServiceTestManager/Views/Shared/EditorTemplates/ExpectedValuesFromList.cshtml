@@ -1,0 +1,104 @@
+﻿@{ 
+    int id = 0;
+}
+<script>
+    var id = @id;
+
+    function addRow() {
+        var table = document.getElementById('table');
+        id = table.getElementsByTagName("tr").length-1;
+
+        var row = document.createElement("tr");
+
+        var productCell = document.createElement("td");
+        var productName = document.createElement("input");
+        productName.className = "form-control";
+        productName.id = "ExpectedResults[" + id +"].PropertyName";
+        productName.name = "ExpectedResults["+ id +"].PropertyName";
+
+        var expectedCell = document.createElement("td");
+        var expectedValue = document.createElement("input");
+        expectedValue.className = "form-control";
+        expectedValue.id = "ExpectedResults[" + id +"].ExpectedValue";
+        expectedValue.name = "ExpectedResults[" + id + "].ExpectedValue";
+
+
+        productCell.appendChild(productName);
+        expectedCell.appendChild(expectedValue);
+
+        row.appendChild(productCell);
+        row.appendChild(expectedCell);
+
+        table.appendChild(row);
+        document.getElementById("ExpectedResults[" + id + "].PropertyName").focus()
+        id++;
+    }
+
+    function removeLastRow() {
+        var table = document.getElementById("table");
+        var count = table.rows.length - 1;
+
+        if (count > 1) {
+            table.deleteRow(count);
+            id--;
+            console.log(id);
+        }
+
+
+    }
+
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    document.querySelector("form").addEventListener("submit", function (e) {
+        var elem = document.getElementById('table');
+
+        var ul = document.getElementById("error");
+        while (ul.firstChild) ul.removeChild(ul.firstChild);
+        for (var i = 0; i < id; i++) {
+            var propertyName = document.querySelector("input[name='Expected["+ i +"].PropertyName']").value;
+            var expectedValue = document.querySelector("input[name='Expected[" + i + "].ExpectedValue']").value;
+            var errorList = document.getElementById("error");
+
+
+            if (propertyName.length< 3) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode("Property Name for item " + (i + 1) + " must be larger than three"));
+                errorList.appendChild(li);
+                e.preventDefault();
+            }
+
+            if (!isNumber(expectedValue)) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode("Expected Value for item " + (i + 1) + " must be a number"));
+                errorList.appendChild(li);
+                e.preventDefault();
+            }
+        }
+    });
+</script>
+<table id="table" style="margin-bottom: .25em">
+    <thead>
+        <tr>
+            <th>Product name</th>
+            <th>Expected Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><input type="text" class="form-control" data-val="true" id="ExpectedResults[0].PropertyName" name="ExpectedResults[@id].PropertyName" value="@item.PropertyName"/></td>
+                <td><input type="text" class="form-control" id="ExpectedResults[0].ExpectedValue" name="ExpectedResults[@id].ExpectedValue" value="@item.ExpectedValue"/></td>
+                <td><input type="text" hidden name="ExpectedResults[@id].Id" value="@item.Id"/></td>
+            </tr>
+            id++;
+        }
+        </tbody>
+</table>
+
+
+<input type="button" class="btn-sm btn" id="add" value="Add New Item" onclick="addRow()" />
+<input type="button" class="btn-sm btn" id="remove" value="Remove Last Item" onclick="removeLastRow()" />
+<ul id="error"></ul>

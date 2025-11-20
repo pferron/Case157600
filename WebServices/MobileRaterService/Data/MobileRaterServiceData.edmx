@@ -1,0 +1,987 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WOW.MobileRaterService.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AvailabilityTable">
+          <Key>
+            <PropertyRef Name="CombinationID" />
+          </Key>
+          <Property Name="CombinationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HeaderCode" Type="int" Nullable="false" />
+          <Property Name="StateGroupId" Type="int" Nullable="false" />
+          <Property Name="MinInsuredAge" Type="int" Nullable="false" />
+          <Property Name="MaxInsuredAge" Type="int" Nullable="false" />
+          <Property Name="IsTobaccoUser" Type="bit" />
+          <Property Name="MinRatingClass" Type="int" Nullable="false" />
+          <Property Name="MaxRatingClass" Type="int" Nullable="false" />
+          <Property Name="MinFaceAmount" Type="int" Nullable="false" />
+          <Property Name="MaxFaceAmount" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+          <Property Name="IsWorkplace" Type="bit" Nullable="false" />
+          <Property Name="BillingMethod" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="BillingMode" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IsAIO" Type="bit" />
+          <Property Name="MinAIOAmount" Type="int" />
+          <Property Name="MaxAIOAmount" Type="int" />
+          <Property Name="AWPRating" Type="int" />
+          <Property Name="MinPayorAge" Type="int" />
+          <Property Name="MaxPayorAge" Type="int" />
+          <Property Name="ADRating" Type="int" />
+          <Property Name="WPRating" Type="int" />
+          <Property Name="WMDRating" Type="int" />
+        </EntityType>
+        <EntityType Name="BaseRatings">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillingMethods">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BillingModes">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MobileRaterService.dbo.ProductQuotes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductQuotes">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Age" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="Tobacco" />
+            <PropertyRef Name="FaceAmount" />
+            <PropertyRef Name="PaymentMode" />
+            <PropertyRef Name="BillType" />
+            <PropertyRef Name="Quote" />
+            <PropertyRef Name="DateCalculated" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="AioGir" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Tobacco" Type="bit" Nullable="false" />
+          <Property Name="FaceAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PaymentMode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BillType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Quote" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DateCalculated" Type="date" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AioGir" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuoteRequests">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SalesRepCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserAgent" Type="varchar" MaxLength="400" />
+          <Property Name="AccessDateTime" Type="datetime" Nullable="false" />
+          <Property Name="RaterInputModelType" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="RatingClass" Type="varchar" MaxLength="30" />
+          <Property Name="Gender" Type="varchar" MaxLength="1" />
+          <Property Name="Dues" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PaymentMode" Type="varchar" MaxLength="20" />
+          <Property Name="BillType" Type="varchar" MaxLength="20" />
+          <Property Name="FaceAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Workplace" Type="bit" />
+          <Property Name="Tobacco" Type="bit" Nullable="false" />
+          <Property Name="AD" Type="bit" />
+          <Property Name="OtherAge" Type="int" />
+          <Property Name="OtherTobacco" Type="bit" />
+          <Property Name="OtherFaceAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OtherRatingClass" Type="varchar" MaxLength="30" />
+          <Property Name="Disability" Type="varchar" MaxLength="1" />
+          <Property Name="LikedQuote" Type="bit" />
+          <Property Name="LifeAD" Type="varchar" MaxLength="1" />
+          <Property Name="AioGir" Type="bit" />
+          <Property Name="AioGirAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AppWaiverRider" Type="varchar" MaxLength="1" />
+          <Property Name="PayorAge" Type="int" />
+          <Property Name="WaiverOfPremium" Type="varchar" MaxLength="1" />
+          <Property Name="WaiverOfMonthlyDeduction" Type="varchar" MaxLength="1" />
+          <Property Name="FlatExtra" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="RaterBillingOptions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Rater" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BillTypeCode" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="BillTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PremiumModeCode" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="PremiumModeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RiderRatings">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateGroupMaps">
+          <Key>
+            <PropertyRef Name="StateGroupId" />
+            <PropertyRef Name="StateCode" />
+          </Key>
+          <Property Name="StateGroupId" Type="int" Nullable="false" />
+          <Property Name="StateCode" Type="char" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateGroups">
+          <Key>
+            <PropertyRef Name="StateGroupId" />
+          </Key>
+          <Property Name="StateGroupId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EffectiveDate" Type="date" Nullable="false" />
+          <Property Name="TerminationDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StateSettings">
+          <Key>
+            <PropertyRef Name="StateCode" />
+          </Key>
+          <Property Name="StateCode" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="StateAbbreviation" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="MaxWaiverPremiumAge" Type="int" Nullable="false" />
+          <Property Name="MaxApplicantWaiverPremiumAge" Type="int" Nullable="false" />
+          <Property Name="MaxWaiverMonthlyDeductionAge" Type="int" Nullable="false" />
+          <Property Name="MaxFamilyTermWaiverAge" Type="int" Nullable="false" />
+          <Property Name="MaxAcceleratedDeathBenefitAge" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupportedPlans">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rater" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HeaderCode" Type="int" Nullable="false" />
+          <Property Name="InsuranceType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PlanId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="255" />
+          <Property Name="HasEmbeddedDues" Type="bit" Nullable="false" />
+          <Property Name="FaceAmount" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AvailabilityTable_BaseRatingsMax">
+          <End Role="BaseRatings" Type="Self.BaseRatings" Multiplicity="1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseRatings">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="MinRatingClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_BaseRatingsMin">
+          <End Role="BaseRatings" Type="Self.BaseRatings" Multiplicity="1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseRatings">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="MaxRatingClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_BillingFrequencies">
+          <End Role="BillingModes" Type="Self.BillingModes" Multiplicity="1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingModes">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="BillingMode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_BillingMethods">
+          <End Role="BillingMethods" Type="Self.BillingMethods" Multiplicity="1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingMethods">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="BillingMethod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_RiderRatingsAD">
+          <End Role="RiderRatings" Type="Self.RiderRatings" Multiplicity="0..1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiderRatings">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="ADRating" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_RiderRatingsAWP">
+          <End Role="RiderRatings" Type="Self.RiderRatings" Multiplicity="0..1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiderRatings">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="AWPRating" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_RiderRatingsWMD">
+          <End Role="RiderRatings" Type="Self.RiderRatings" Multiplicity="0..1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiderRatings">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="WMDRating" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_RiderRatingsWP">
+          <End Role="RiderRatings" Type="Self.RiderRatings" Multiplicity="0..1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiderRatings">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="WPRating" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_StateGroups">
+          <End Role="StateGroups" Type="Self.StateGroups" Multiplicity="1" />
+          <End Role="AvailabilityTable" Type="Self.AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateGroups">
+              <PropertyRef Name="StateGroupId" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="StateGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateGroupMaps_StateGroups">
+          <End Role="StateGroups" Type="Self.StateGroups" Multiplicity="1" />
+          <End Role="StateGroupMaps" Type="Self.StateGroupMaps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateGroups">
+              <PropertyRef Name="StateGroupId" />
+            </Principal>
+            <Dependent Role="StateGroupMaps">
+              <PropertyRef Name="StateGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="FetchAvaliableProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StateCode" Type="varchar" Mode="In" />
+          <Parameter Name="HeaderCode" Type="int" Mode="In" />
+          <Parameter Name="InsuredAge" Type="int" Mode="In" />
+          <Parameter Name="IsTobaccoUser" Type="bit" Mode="In" />
+          <Parameter Name="FaceAmount" Type="int" Mode="In" />
+          <Parameter Name="BillingMethod" Type="char" Mode="In" />
+          <Parameter Name="BillingMode" Type="char" Mode="In" />
+          <Parameter Name="IsWorkplace" Type="bit" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="BaseRating" Type="int" Mode="In" />
+          <Parameter Name="QueryDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="FetchReverseProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaxMonthlyPremium" Type="decimal" Mode="In" />
+          <Parameter Name="MinMontlyPremium" Type="decimal" Mode="In" />
+          <Parameter Name="Gender" Type="char" Mode="In" />
+          <Parameter Name="Age" Type="int" Mode="In" />
+          <Parameter Name="Tabacco" Type="bit" Mode="In" />
+          <Parameter Name="AioGir" Type="bit" Mode="In" />
+          <Parameter Name="FaceAmount" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="PurgeProductQuotes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="WOWMobileRaterServiceModelsStoreContainer">
+          <EntitySet Name="AvailabilityTable" EntityType="Self.AvailabilityTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaseRatings" EntityType="Self.BaseRatings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillingMethods" EntityType="Self.BillingMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillingModes" EntityType="Self.BillingModes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuoteRequests" EntityType="Self.QuoteRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaterBillingOptions" EntityType="Self.RaterBillingOptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiderRatings" EntityType="Self.RiderRatings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateGroupMaps" EntityType="Self.StateGroupMaps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateGroups" EntityType="Self.StateGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateSettings" EntityType="Self.StateSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupportedPlans" EntityType="Self.SupportedPlans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductQuotes" EntityType="Self.ProductQuotes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductQuotes].[ID] AS [ID], 
+    [ProductQuotes].[Age] AS [Age], 
+    [ProductQuotes].[Gender] AS [Gender], 
+    [ProductQuotes].[Tobacco] AS [Tobacco], 
+    [ProductQuotes].[FaceAmount] AS [FaceAmount], 
+    [ProductQuotes].[PaymentMode] AS [PaymentMode], 
+    [ProductQuotes].[BillType] AS [BillType], 
+    [ProductQuotes].[Quote] AS [Quote], 
+    [ProductQuotes].[DateCalculated] AS [DateCalculated], 
+    [ProductQuotes].[ProductName] AS [ProductName], 
+    [ProductQuotes].[AioGir] AS [AioGir]
+    FROM [dbo].[ProductQuotes] AS [ProductQuotes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AvailabilityTable_BaseRatingsMax" Association="Self.FK_AvailabilityTable_BaseRatingsMax">
+            <End Role="BaseRatings" EntitySet="BaseRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_BaseRatingsMin" Association="Self.FK_AvailabilityTable_BaseRatingsMin">
+            <End Role="BaseRatings" EntitySet="BaseRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_BillingFrequencies" Association="Self.FK_AvailabilityTable_BillingFrequencies">
+            <End Role="BillingModes" EntitySet="BillingModes" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_BillingMethods" Association="Self.FK_AvailabilityTable_BillingMethods">
+            <End Role="BillingMethods" EntitySet="BillingMethods" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_RiderRatingsAD" Association="Self.FK_AvailabilityTable_RiderRatingsAD">
+            <End Role="RiderRatings" EntitySet="RiderRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_RiderRatingsAWP" Association="Self.FK_AvailabilityTable_RiderRatingsAWP">
+            <End Role="RiderRatings" EntitySet="RiderRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_RiderRatingsWMD" Association="Self.FK_AvailabilityTable_RiderRatingsWMD">
+            <End Role="RiderRatings" EntitySet="RiderRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_RiderRatingsWP" Association="Self.FK_AvailabilityTable_RiderRatingsWP">
+            <End Role="RiderRatings" EntitySet="RiderRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_StateGroups" Association="Self.FK_AvailabilityTable_StateGroups">
+            <End Role="StateGroups" EntitySet="StateGroups" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateGroupMaps_StateGroups" Association="Self.FK_StateGroupMaps_StateGroups">
+            <End Role="StateGroups" EntitySet="StateGroups" />
+            <End Role="StateGroupMaps" EntitySet="StateGroupMaps" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WOW.MobileRaterService.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MobileRaterServiceEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="FetchAvaliableProducts" ReturnType="Collection(WOW.MobileRaterService.Models.FetchAvaliableProducts_Result)">
+            <Parameter Name="StateCode" Mode="In" Type="String" />
+            <Parameter Name="HeaderCode" Mode="In" Type="Int32" />
+            <Parameter Name="InsuredAge" Mode="In" Type="Int32" />
+            <Parameter Name="IsTobaccoUser" Mode="In" Type="Boolean" />
+            <Parameter Name="FaceAmount" Mode="In" Type="Int32" />
+            <Parameter Name="BillingMethod" Mode="In" Type="String" />
+            <Parameter Name="BillingMode" Mode="In" Type="String" />
+            <Parameter Name="IsWorkplace" Mode="In" Type="Boolean" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="BaseRating" Mode="In" Type="Int32" />
+            <Parameter Name="QueryDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="FetchReverseProducts" ReturnType="Collection(WOW.MobileRaterService.Models.FetchReverseProducts_Result)">
+            <Parameter Name="MaxMonthlyPremium" Mode="In" Type="Decimal" />
+            <Parameter Name="MinMontlyPremium" Mode="In" Type="Decimal" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="Age" Mode="In" Type="Int32" />
+            <Parameter Name="Tabacco" Mode="In" Type="Boolean" />
+            <Parameter Name="AioGir" Mode="In" Type="Boolean" />
+            <Parameter Name="FaceAmount" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="AvailabilityTables" EntityType="WOW.MobileRaterService.Models.AvailabilityTable" />
+          <EntitySet Name="BaseRatings" EntityType="WOW.MobileRaterService.Models.BaseRating" />
+          <EntitySet Name="BillingMethods" EntityType="WOW.MobileRaterService.Models.BillingMethod" />
+          <EntitySet Name="BillingModes" EntityType="WOW.MobileRaterService.Models.BillingMode" />
+          <EntitySet Name="RaterBillingOptions" EntityType="WOW.MobileRaterService.Models.RaterBillingOption" />
+          <EntitySet Name="RiderRatings" EntityType="WOW.MobileRaterService.Models.RiderRating" />
+          <EntitySet Name="StateGroupMaps" EntityType="WOW.MobileRaterService.Models.StateGroupMap" />
+          <EntitySet Name="StateGroups" EntityType="WOW.MobileRaterService.Models.StateGroup" />
+          <EntitySet Name="StateSettings" EntityType="WOW.MobileRaterService.Models.StateSetting" />
+          <EntitySet Name="SupportedPlans" EntityType="WOW.MobileRaterService.Models.SupportedPlan" />
+          <AssociationSet Name="FK_AvailabilityTable_BaseRatingsMax" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_BaseRatingsMax">
+            <End Role="BaseRating" EntitySet="BaseRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_BaseRatingsMin" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_BaseRatingsMin">
+            <End Role="BaseRating" EntitySet="BaseRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_BillingFrequencies" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_BillingFrequencies">
+            <End Role="BillingMode" EntitySet="BillingModes" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_BillingMethods" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_BillingMethods">
+            <End Role="BillingMethod" EntitySet="BillingMethods" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_RiderRatingsAD" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsAD">
+            <End Role="RiderRating" EntitySet="RiderRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_RiderRatingsAWP" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsAWP">
+            <End Role="RiderRating" EntitySet="RiderRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_RiderRatingsWMD" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsWMD">
+            <End Role="RiderRating" EntitySet="RiderRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_RiderRatingsWP" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsWP">
+            <End Role="RiderRating" EntitySet="RiderRatings" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AvailabilityTable_StateGroups" Association="WOW.MobileRaterService.Models.FK_AvailabilityTable_StateGroups">
+            <End Role="StateGroup" EntitySet="StateGroups" />
+            <End Role="AvailabilityTable" EntitySet="AvailabilityTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateGroupMaps_StateGroups" Association="WOW.MobileRaterService.Models.FK_StateGroupMaps_StateGroups">
+            <End Role="StateGroup" EntitySet="StateGroups" />
+            <End Role="StateGroupMap" EntitySet="StateGroupMaps" />
+          </AssociationSet>
+          <FunctionImport Name="PurgeProductQuotes" />
+          <EntitySet Name="ProductQuotes" EntityType="WOW.MobileRaterService.Models.ProductQuote" />
+        </EntityContainer>
+        <ComplexType Name="FetchAvaliableProducts_Result">
+          <Property Type="Int32" Name="CombinationID" Nullable="false" />
+          <Property Type="Int32" Name="HeaderCode" Nullable="false" />
+          <Property Type="Int32" Name="StateGroupId" Nullable="false" />
+          <Property Type="Int32" Name="MinInsuredAge" Nullable="false" />
+          <Property Type="Int32" Name="MaxInsuredAge" Nullable="false" />
+          <Property Type="Boolean" Name="IsTobaccoUser" Nullable="true" />
+          <Property Type="Int32" Name="MinRatingClass" Nullable="false" />
+          <Property Type="Int32" Name="MaxRatingClass" Nullable="false" />
+          <Property Type="Int32" Name="MinFaceAmount" Nullable="false" />
+          <Property Type="Int32" Name="MaxFaceAmount" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="1" />
+          <Property Type="Boolean" Name="IsWorkplace" Nullable="false" />
+          <Property Type="String" Name="BillingMethod" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="BillingMode" Nullable="false" MaxLength="1" />
+          <Property Type="Boolean" Name="IsAIO" Nullable="true" />
+          <Property Type="Int32" Name="MinAIOAmount" Nullable="true" />
+          <Property Type="Int32" Name="MaxAIOAmount" Nullable="true" />
+          <Property Type="Int32" Name="AWPRating" Nullable="true" />
+          <Property Type="Int32" Name="MinPayorAge" Nullable="true" />
+          <Property Type="Int32" Name="MaxPayorAge" Nullable="true" />
+          <Property Type="Int32" Name="ADRating" Nullable="true" />
+          <Property Type="Int32" Name="WPRating" Nullable="true" />
+          <Property Type="Int32" Name="WMDRating" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="FetchReverseProducts_Result">
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="FaceAmount" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MonthlyPremium" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="AnnualPremium" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
+        <EntityType Name="AvailabilityTable">
+          <Key>
+            <PropertyRef Name="CombinationID" />
+          </Key>
+          <Property Name="CombinationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HeaderCode" Type="Int32" Nullable="false" />
+          <Property Name="StateGroupId" Type="Int32" Nullable="false" />
+          <Property Name="MinInsuredAge" Type="Int32" Nullable="false" />
+          <Property Name="MaxInsuredAge" Type="Int32" Nullable="false" />
+          <Property Name="IsTobaccoUser" Type="Boolean" />
+          <Property Name="MinRatingClass" Type="Int32" Nullable="false" />
+          <Property Name="MaxRatingClass" Type="Int32" Nullable="false" />
+          <Property Name="MinFaceAmount" Type="Int32" Nullable="false" />
+          <Property Name="MaxFaceAmount" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IsWorkplace" Type="Boolean" Nullable="false" />
+          <Property Name="BillingMethod" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BillingMode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IsAIO" Type="Boolean" />
+          <Property Name="MinAIOAmount" Type="Int32" />
+          <Property Name="MaxAIOAmount" Type="Int32" />
+          <Property Name="AWPRating" Type="Int32" />
+          <Property Name="MinPayorAge" Type="Int32" />
+          <Property Name="MaxPayorAge" Type="Int32" />
+          <Property Name="ADRating" Type="Int32" />
+          <Property Name="WPRating" Type="Int32" />
+          <Property Name="WMDRating" Type="Int32" />
+          <NavigationProperty Name="BaseRating" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_BaseRatingsMax" FromRole="AvailabilityTable" ToRole="BaseRating" />
+          <NavigationProperty Name="BaseRating1" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_BaseRatingsMin" FromRole="AvailabilityTable" ToRole="BaseRating" />
+          <NavigationProperty Name="BillingMode1" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_BillingFrequencies" FromRole="AvailabilityTable" ToRole="BillingMode" />
+          <NavigationProperty Name="BillingMethod1" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_BillingMethods" FromRole="AvailabilityTable" ToRole="BillingMethod" />
+          <NavigationProperty Name="RiderRating" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsAD" FromRole="AvailabilityTable" ToRole="RiderRating" />
+          <NavigationProperty Name="RiderRating1" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsAWP" FromRole="AvailabilityTable" ToRole="RiderRating" />
+          <NavigationProperty Name="RiderRating2" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsWMD" FromRole="AvailabilityTable" ToRole="RiderRating" />
+          <NavigationProperty Name="RiderRating3" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsWP" FromRole="AvailabilityTable" ToRole="RiderRating" />
+          <NavigationProperty Name="StateGroup" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_StateGroups" FromRole="AvailabilityTable" ToRole="StateGroup" />
+        </EntityType>
+        <EntityType Name="BaseRating">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AvailabilityTables" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_BaseRatingsMax" FromRole="BaseRating" ToRole="AvailabilityTable" />
+          <NavigationProperty Name="AvailabilityTables1" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_BaseRatingsMin" FromRole="BaseRating" ToRole="AvailabilityTable" />
+        </EntityType>
+        <EntityType Name="BillingMethod">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AvailabilityTables" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_BillingMethods" FromRole="BillingMethod" ToRole="AvailabilityTable" />
+        </EntityType>
+        <EntityType Name="BillingMode">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AvailabilityTables" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_BillingFrequencies" FromRole="BillingMode" ToRole="AvailabilityTable" />
+        </EntityType>
+        <EntityType Name="RaterBillingOption">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Rater" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BillTypeCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="BillTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PremiumModeCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PremiumModeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RiderRating">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AvailabilityTables" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsAD" FromRole="RiderRating" ToRole="AvailabilityTable" />
+          <NavigationProperty Name="AvailabilityTables1" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsAWP" FromRole="RiderRating" ToRole="AvailabilityTable" />
+          <NavigationProperty Name="AvailabilityTables2" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsWMD" FromRole="RiderRating" ToRole="AvailabilityTable" />
+          <NavigationProperty Name="AvailabilityTables3" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_RiderRatingsWP" FromRole="RiderRating" ToRole="AvailabilityTable" />
+        </EntityType>
+        <EntityType Name="StateGroupMap">
+          <Key>
+            <PropertyRef Name="StateGroupId" />
+            <PropertyRef Name="StateCode" />
+          </Key>
+          <Property Name="StateGroupId" Type="Int32" Nullable="false" />
+          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="StateGroup" Relationship="WOW.MobileRaterService.Models.FK_StateGroupMaps_StateGroups" FromRole="StateGroupMap" ToRole="StateGroup" />
+        </EntityType>
+        <EntityType Name="StateGroup">
+          <Key>
+            <PropertyRef Name="StateGroupId" />
+          </Key>
+          <Property Name="StateGroupId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EffectiveDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TerminationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AvailabilityTables" Relationship="WOW.MobileRaterService.Models.FK_AvailabilityTable_StateGroups" FromRole="StateGroup" ToRole="AvailabilityTable" />
+          <NavigationProperty Name="StateGroupMaps" Relationship="WOW.MobileRaterService.Models.FK_StateGroupMaps_StateGroups" FromRole="StateGroup" ToRole="StateGroupMap" />
+        </EntityType>
+        <EntityType Name="StateSetting">
+          <Key>
+            <PropertyRef Name="StateCode" />
+          </Key>
+          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="StateName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="StateAbbreviation" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="MaxWaiverPremiumAge" Type="Int32" Nullable="false" />
+          <Property Name="MaxApplicantWaiverPremiumAge" Type="Int32" Nullable="false" />
+          <Property Name="MaxWaiverMonthlyDeductionAge" Type="Int32" Nullable="false" />
+          <Property Name="MaxFamilyTermWaiverAge" Type="Int32" Nullable="false" />
+          <Property Name="MaxAcceleratedDeathBenefitAge" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupportedPlan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rater" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HeaderCode" Type="Int32" Nullable="false" />
+          <Property Name="InsuranceType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PlanId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duration" Type="Int32" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HasEmbeddedDues" Type="Boolean" Nullable="false" />
+          <Property Name="FaceAmount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+        </EntityType>
+        <Association Name="FK_AvailabilityTable_BaseRatingsMax">
+          <End Type="WOW.MobileRaterService.Models.BaseRating" Role="BaseRating" Multiplicity="1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseRating">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="MinRatingClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_BaseRatingsMin">
+          <End Type="WOW.MobileRaterService.Models.BaseRating" Role="BaseRating" Multiplicity="1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseRating">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="MaxRatingClass" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_BillingFrequencies">
+          <End Type="WOW.MobileRaterService.Models.BillingMode" Role="BillingMode" Multiplicity="1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingMode">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="BillingMode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_BillingMethods">
+          <End Type="WOW.MobileRaterService.Models.BillingMethod" Role="BillingMethod" Multiplicity="1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingMethod">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="BillingMethod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_RiderRatingsAD">
+          <End Type="WOW.MobileRaterService.Models.RiderRating" Role="RiderRating" Multiplicity="0..1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiderRating">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="ADRating" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_RiderRatingsAWP">
+          <End Type="WOW.MobileRaterService.Models.RiderRating" Role="RiderRating" Multiplicity="0..1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiderRating">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="AWPRating" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_RiderRatingsWMD">
+          <End Type="WOW.MobileRaterService.Models.RiderRating" Role="RiderRating" Multiplicity="0..1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiderRating">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="WMDRating" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_RiderRatingsWP">
+          <End Type="WOW.MobileRaterService.Models.RiderRating" Role="RiderRating" Multiplicity="0..1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RiderRating">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="WPRating" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AvailabilityTable_StateGroups">
+          <End Type="WOW.MobileRaterService.Models.StateGroup" Role="StateGroup" Multiplicity="1" />
+          <End Type="WOW.MobileRaterService.Models.AvailabilityTable" Role="AvailabilityTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateGroup">
+              <PropertyRef Name="StateGroupId" />
+            </Principal>
+            <Dependent Role="AvailabilityTable">
+              <PropertyRef Name="StateGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateGroupMaps_StateGroups">
+          <End Type="WOW.MobileRaterService.Models.StateGroup" Role="StateGroup" Multiplicity="1" />
+          <End Type="WOW.MobileRaterService.Models.StateGroupMap" Role="StateGroupMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateGroup">
+              <PropertyRef Name="StateGroupId" />
+            </Principal>
+            <Dependent Role="StateGroupMap">
+              <PropertyRef Name="StateGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductQuote">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Age" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="Tobacco" />
+            <PropertyRef Name="FaceAmount" />
+            <PropertyRef Name="PaymentMode" />
+            <PropertyRef Name="BillType" />
+            <PropertyRef Name="Quote" />
+            <PropertyRef Name="DateCalculated" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="AioGir" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Tobacco" Type="Boolean" Nullable="false" />
+          <Property Name="FaceAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="PaymentMode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BillType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Quote" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DateCalculated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AioGir" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WOWMobileRaterServiceModelsStoreContainer" CdmEntityContainer="MobileRaterServiceEntities">
+          <FunctionImportMapping FunctionImportName="FetchAvaliableProducts" FunctionName="WOW.MobileRaterService.Models.Store.FetchAvaliableProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WOW.MobileRaterService.Models.FetchAvaliableProducts_Result">
+                <ScalarProperty Name="CombinationID" ColumnName="CombinationID" />
+                <ScalarProperty Name="HeaderCode" ColumnName="HeaderCode" />
+                <ScalarProperty Name="StateGroupId" ColumnName="StateGroupId" />
+                <ScalarProperty Name="MinInsuredAge" ColumnName="MinInsuredAge" />
+                <ScalarProperty Name="MaxInsuredAge" ColumnName="MaxInsuredAge" />
+                <ScalarProperty Name="IsTobaccoUser" ColumnName="IsTobaccoUser" />
+                <ScalarProperty Name="MinRatingClass" ColumnName="MinRatingClass" />
+                <ScalarProperty Name="MaxRatingClass" ColumnName="MaxRatingClass" />
+                <ScalarProperty Name="MinFaceAmount" ColumnName="MinFaceAmount" />
+                <ScalarProperty Name="MaxFaceAmount" ColumnName="MaxFaceAmount" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IsWorkplace" ColumnName="IsWorkplace" />
+                <ScalarProperty Name="BillingMethod" ColumnName="BillingMethod" />
+                <ScalarProperty Name="BillingMode" ColumnName="BillingMode" />
+                <ScalarProperty Name="IsAIO" ColumnName="IsAIO" />
+                <ScalarProperty Name="MinAIOAmount" ColumnName="MinAIOAmount" />
+                <ScalarProperty Name="MaxAIOAmount" ColumnName="MaxAIOAmount" />
+                <ScalarProperty Name="AWPRating" ColumnName="AWPRating" />
+                <ScalarProperty Name="MinPayorAge" ColumnName="MinPayorAge" />
+                <ScalarProperty Name="MaxPayorAge" ColumnName="MaxPayorAge" />
+                <ScalarProperty Name="ADRating" ColumnName="ADRating" />
+                <ScalarProperty Name="WPRating" ColumnName="WPRating" />
+                <ScalarProperty Name="WMDRating" ColumnName="WMDRating" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FetchReverseProducts" FunctionName="WOW.MobileRaterService.Models.Store.FetchReverseProducts" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WOW.MobileRaterService.Models.FetchReverseProducts_Result">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="FaceAmount" ColumnName="FaceAmount" />
+                <ScalarProperty Name="MonthlyPremium" ColumnName="MonthlyPremium" />
+                <ScalarProperty Name="AnnualPremium" ColumnName="AnnualPremium" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="AvailabilityTables">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.AvailabilityTable">
+              <MappingFragment StoreEntitySet="AvailabilityTable">
+                <ScalarProperty Name="WMDRating" ColumnName="WMDRating" />
+                <ScalarProperty Name="WPRating" ColumnName="WPRating" />
+                <ScalarProperty Name="ADRating" ColumnName="ADRating" />
+                <ScalarProperty Name="MaxPayorAge" ColumnName="MaxPayorAge" />
+                <ScalarProperty Name="MinPayorAge" ColumnName="MinPayorAge" />
+                <ScalarProperty Name="AWPRating" ColumnName="AWPRating" />
+                <ScalarProperty Name="MaxAIOAmount" ColumnName="MaxAIOAmount" />
+                <ScalarProperty Name="MinAIOAmount" ColumnName="MinAIOAmount" />
+                <ScalarProperty Name="IsAIO" ColumnName="IsAIO" />
+                <ScalarProperty Name="BillingMode" ColumnName="BillingMode" />
+                <ScalarProperty Name="BillingMethod" ColumnName="BillingMethod" />
+                <ScalarProperty Name="IsWorkplace" ColumnName="IsWorkplace" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="MaxFaceAmount" ColumnName="MaxFaceAmount" />
+                <ScalarProperty Name="MinFaceAmount" ColumnName="MinFaceAmount" />
+                <ScalarProperty Name="MaxRatingClass" ColumnName="MaxRatingClass" />
+                <ScalarProperty Name="MinRatingClass" ColumnName="MinRatingClass" />
+                <ScalarProperty Name="IsTobaccoUser" ColumnName="IsTobaccoUser" />
+                <ScalarProperty Name="MaxInsuredAge" ColumnName="MaxInsuredAge" />
+                <ScalarProperty Name="MinInsuredAge" ColumnName="MinInsuredAge" />
+                <ScalarProperty Name="StateGroupId" ColumnName="StateGroupId" />
+                <ScalarProperty Name="HeaderCode" ColumnName="HeaderCode" />
+                <ScalarProperty Name="CombinationID" ColumnName="CombinationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseRatings">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.BaseRating">
+              <MappingFragment StoreEntitySet="BaseRatings">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillingMethods">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.BillingMethod">
+              <MappingFragment StoreEntitySet="BillingMethods">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillingModes">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.BillingMode">
+              <MappingFragment StoreEntitySet="BillingModes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaterBillingOptions">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.RaterBillingOption">
+              <MappingFragment StoreEntitySet="RaterBillingOptions">
+                <ScalarProperty Name="PremiumModeName" ColumnName="PremiumModeName" />
+                <ScalarProperty Name="PremiumModeCode" ColumnName="PremiumModeCode" />
+                <ScalarProperty Name="BillTypeName" ColumnName="BillTypeName" />
+                <ScalarProperty Name="BillTypeCode" ColumnName="BillTypeCode" />
+                <ScalarProperty Name="Rater" ColumnName="Rater" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiderRatings">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.RiderRating">
+              <MappingFragment StoreEntitySet="RiderRatings">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateGroupMaps">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.StateGroupMap">
+              <MappingFragment StoreEntitySet="StateGroupMaps">
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateGroupId" ColumnName="StateGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateGroups">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.StateGroup">
+              <MappingFragment StoreEntitySet="StateGroups">
+                <ScalarProperty Name="TerminationDate" ColumnName="TerminationDate" />
+                <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StateGroupId" ColumnName="StateGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateSettings">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.StateSetting">
+              <MappingFragment StoreEntitySet="StateSettings">
+                <ScalarProperty Name="MaxAcceleratedDeathBenefitAge" ColumnName="MaxAcceleratedDeathBenefitAge" />
+                <ScalarProperty Name="MaxFamilyTermWaiverAge" ColumnName="MaxFamilyTermWaiverAge" />
+                <ScalarProperty Name="MaxWaiverMonthlyDeductionAge" ColumnName="MaxWaiverMonthlyDeductionAge" />
+                <ScalarProperty Name="MaxApplicantWaiverPremiumAge" ColumnName="MaxApplicantWaiverPremiumAge" />
+                <ScalarProperty Name="MaxWaiverPremiumAge" ColumnName="MaxWaiverPremiumAge" />
+                <ScalarProperty Name="StateAbbreviation" ColumnName="StateAbbreviation" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupportedPlans">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.SupportedPlan">
+              <MappingFragment StoreEntitySet="SupportedPlans">
+                <ScalarProperty Name="FaceAmount" ColumnName="FaceAmount" />
+                <ScalarProperty Name="HasEmbeddedDues" ColumnName="HasEmbeddedDues" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="InsuranceType" ColumnName="InsuranceType" />
+                <ScalarProperty Name="HeaderCode" ColumnName="HeaderCode" />
+                <ScalarProperty Name="Rater" ColumnName="Rater" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PurgeProductQuotes" FunctionName="WOW.MobileRaterService.Models.Store.PurgeProductQuotes" />
+          <EntitySetMapping Name="ProductQuotes">
+            <EntityTypeMapping TypeName="WOW.MobileRaterService.Models.ProductQuote">
+              <MappingFragment StoreEntitySet="ProductQuotes">
+                <ScalarProperty Name="AioGir" ColumnName="AioGir" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="DateCalculated" ColumnName="DateCalculated" />
+                <ScalarProperty Name="Quote" ColumnName="Quote" />
+                <ScalarProperty Name="BillType" ColumnName="BillType" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="FaceAmount" ColumnName="FaceAmount" />
+                <ScalarProperty Name="Tobacco" ColumnName="Tobacco" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,55 @@
+﻿@model LPA.Dashboard.Web.ViewModels.ProcessCimFilesViewModel
+
+@{
+    Layout = null;
+}
+
+<table class="displayList">
+    <thead>
+        <tr>
+            <th style="padding-right: 15px">
+                Test Result Id
+            </th>
+            <th style="padding-right: 15px">
+                Test Group Id
+            </th>
+            <th style="padding-right: 15px">
+                Product Type Code
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th>
+                CIM Json
+            </th>
+            <th>
+                Illustration
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var result in Model.TestResults)
+        {
+        <tr style="padding-top: 10px;">
+            <td style="padding-top: 10px; padding-right: 20px">
+                @result.TestResultId
+            </td>
+            <td style="padding-right: 20px">
+                @result.TestGroupId
+            </td>
+            <td style="padding-right: 20px">
+                @result.ProductTypeCode
+            </td>
+            <td style="padding-right: 20px">
+                @result.DateCreated
+            </td>
+            <td style="padding-right: 20px">
+                <span><a class="btn btn-xs btn-primary" href="#" style="font-size: 14px" onclick="DisplayCimJson('@result.TestResultId'); return false;">Show JSON Format</a></span>
+            </td>
+            <td style="white-space: nowrap;">
+                <span>@Html.ActionLink("Display Illustration", "DisplayIllustration", new { controller = "CisTestTool", testResultId = result.TestResultId }, new { target = "_blank", @class = "btn btn-primary btn-xs" })</span>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

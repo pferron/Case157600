@@ -1,0 +1,160 @@
+﻿@model LPA.Dashboard.Web.ViewModels.SalesLaptopUptakeViewModel
+@using Highsoft.Web.Mvc.Charts
+@{
+    ViewBag.Title = "Laptop Versions";
+    ViewBag.ActiveTab = "LaptopVersions";
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/alert.js")
+    <script>
+        $(document).ready(function () {
+            var errorMessage = '@Model.ErrorMessage';
+
+            if (errorMessage.trim().length > 0)
+                AddDismissableAlert(errorMessage, "danger");
+        });
+
+    </script>
+}
+
+<script src="~/Scripts/highcharts/highcharts.js"></script>
+<script src="~/Scripts/highcharts/modules/exporting.js"></script>
+
+
+@*<p>
+    Below is a summary of which version of Life Portraits is installed on Woodmen systems reporting back since the last deployment.<br />
+    The summary is based on the Recon Client reporting directly from each system.<br />
+</p>*@
+<div class="card my-4" style="display:flex;">
+    <div class="card-body">
+        <div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 d-flex flex-row">
+                        <h5 class="text-muted mb-2 mt-auto mr-auto">
+                            Installed LPA Versions
+                        </h5>
+                    </div>
+                </div>
+                <hr class="mt-0" />
+                <div id="alert" class="alert" role="alert" style="display:none;">
+                </div>
+<div class="grid-container">
+    <div class="grid-item">
+        <div class="row">
+            <div class="col-2">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                Version
+                            </th>
+                            <th>
+                                Total
+                            </th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.VersionCounts)
+                    {
+                        <tr>
+                            <td style="vertical-align: middle;">
+                                @item.Version
+                            </td>
+                            <td style="vertical-align: middle;">
+                                @item.Total
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="grid-item">
+        <p>
+            @(Html.Highsoft().GetHighcharts(
+            new Highcharts
+            {
+                Chart = new Highsoft.Web.Mvc.Charts.Chart
+                {
+                    PlotBackgroundColor = null,
+                    PlotBorderWidth = null,
+                    PlotShadow = new Shadow
+                    {
+                        Enabled = false
+                    }
+                },
+                Title = new Title
+                {
+                    Text = "LPA Deployment Status"
+                },
+                Tooltip = new Tooltip
+                {
+                    PointFormat = "{series.name}: <b>{point.percentage:.1f}%</b>"
+                },
+                PlotOptions = new PlotOptions
+                {
+                    Pie = new PlotOptionsPie
+                    {
+                        AllowPointSelect = true,
+                        Cursor = PlotOptionsPieCursor.Pointer,
+                        DataLabels = new PlotOptionsPieDataLabels
+                        {
+                            Enabled = true,
+                            Format = "<b>{point.name}</b>: {point.percentage:.1f} %"
+                        }
+                    }
+                },
+                Series = new List<Series>
+                {
+                    new PieSeries
+                                      {
+                                           Name = "Percent of Laptops",
+                                           Data = Model.PieData
+                                      },
+
+                                      }
+            }
+            , "chart")
+            )
+        </p>
+        <div class="row" style="margin-left: 140px;">
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div style="display: inline-block;">Current</div>
+                                <div style="display: inline-block; margin-top:4px; width:.5px; border: 10px solid #7cb5ec;"></div>
+                            </th>
+                            <th>
+                                <div style="display: inline-block;">Inactive</div>
+                                <div style="display: inline-block; width:.5px; border: 10px solid #434348"></div>
+                            </th>
+                            <th>
+                                <div style="display: inline-block;">Not Current</div>
+                                <div style="display: inline-block; width:.5px; border: 10px solid #90ED7D;"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td style="vertical-align: middle;">
+                            @Model.StatusCounts[0].Total
+                        </td>
+                        <td style="vertical-align: middle;">
+                            @Model.StatusCounts[1].Total
+                        </td>
+                        <td style="vertical-align: middle;">
+                            @Model.StatusCounts[2].Total
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+            </div>
+        </div>
+    </div>
+

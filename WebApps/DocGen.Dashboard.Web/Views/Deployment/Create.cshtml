@@ -1,0 +1,156 @@
+﻿@model CreateDeploymentViewModel
+@{
+    ViewBag.Title = "Create";
+    ViewBag.ActiveTab = "Deployment";
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/alert.js")
+    @Scripts.Render("~/Scripts/custom/common.js")
+    <script>
+        $(document).on('change', '.custom-file-input', function (event) {
+            console.log(event.originalEvent);
+
+            //get the file name
+            var filename = $('input[type=file]').val();
+            filename = filename.split('\\').pop();
+
+            if (filename === "")
+                filename = "Choose file"
+
+            if (event.target.files.length > 1)
+                filename  = "Multiple files selected"
+
+            //replace the "Choose a file" label
+            $('.custom-file-label').html(filename);
+        });
+        $(document).ready(function () {
+            var errorMessage = '@Model.ErrorMessage';
+            if (errorMessage.trim().length > 0)
+                AddDismissableAlert(errorMessage, "danger");
+        });
+
+
+            $(document).on("change", "#region", function () {
+                var selectedRegion = $("#region").val();
+                var checklistSelect = $("#checklist");
+                checklistSelect.empty();
+
+                if (selectedRegion != null && selectedRegion != '' && selectedRegion != 0) {
+                    $("#version").val(GetNewVersion($("#region option:selected").text()));
+                    $("#version").effect("highlight", { color: "#c0d8ef"}, 3000);
+
+                    $.getJSON('@Url.Action("GetChecklists")', { regionId: selectedRegion }, function (checklists) {
+                        if (checklists != null && !jQuery.isEmptyObject(checklists)) {
+                            if (checklists.length > 1) {
+                                checklistSelect.append($('<option/>', {
+                                    value: null,
+                                    text: ""
+                                }));
+                            }
+                            $.each(checklists, function (index, checklist) {
+                                checklistSelect.append($('<option/>', {
+                                    value: checklist.Id,
+                                    text: checklist.TemplateName
+                                }));
+                            });
+                        }
+                        else {
+                            checklistSelect.append($('<option/>', {
+                                value: null,
+                                text: "No Checklist available...."
+                            }));
+                        };
+                    });
+                } else {
+                    $("#version").val("");
+                }
+            });
+    </script>
+}
+
+@using (Html.BeginForm("CreateResourceUpdate", "Deployment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-xl-8 offset-xl-2 col-lg-12">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="text-muted mb-2">
+                                        Deployment
+                                    </h5>
+                                </div>
+                            </div>
+                            <hr class="mt-0" />
+                            <div id="alert" class="alert" role="alert" style="display:none;">
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="deploymentDate" calss="control-label">Deployment Date</label>
+                                        @Html.TextBoxFor(m => m.ResourceUpdate.DeploymentScheduled, new { @type = "date", @class = "form-control datepicker", placeholder = "Enter the deployment date." })
+                                        @Html.ValidationMessageFor(m => m.ResourceUpdate.DeploymentScheduled, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="title" class="control-label">Title</label>
+                                        @Html.EditorFor(m => m.ResourceUpdate.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "LPA" } })
+                                        @Html.ValidationMessageFor(m => m.ResourceUpdate.Title, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region" class="control-label">Region</label>
+                                        @Html.DropDownListFor(m => m.Region, new SelectList(Model.DeploymentRegions?.OrderBy(o => o.Name), "DeploymentRegionId", "RegionWithVersion"), new { @class = "form-control", name = "region", id = "region" })
+                                        @Html.ValidationMessageFor(m => m.Region, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="version" class="control-label">Deployment Version</label>
+                                        @Html.EditorFor(m => m.ResourceUpdate.Version, new { htmlAttributes = new { @class = "form-control", @placeholder = "Deployment Version", name = "version", id = "version" } })
+                                        @Html.ValidationMessageFor(m => m.ResourceUpdate.Version, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="checklist" class="control-label">Checklist</label>
+                                        @Html.DropDownListFor(m => m.ChecklistTemplate, new SelectList(Model.ChecklistTemplates.OrderBy(o => o.Id), "Id", "TemplateName"), new { @class = "form-control", name = "checklist", id = "checklist" })
+                                        @Html.ValidationMessageFor(m => m.ChecklistTemplate, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="wikipw" class="control-label">Wiki Password</label>
+                                        @Html.PasswordFor(m => m.ResourceUpdate.WikiPassword, new { @class = "form-control", name = "wikipw", id = "wikipw", placeholder = "Enter your password for the Wiki" })
+                                        @Html.ValidationMessageFor(m => m.ResourceUpdate.WikiPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description" class="control-label">Description</label>
+                                        @Html.TextAreaFor(m => m.ResourceUpdate.Description, 5, 40, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.ResourceUpdate.Description, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>File that will be included in the change</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                @Html.TextBoxFor(model => model.ResourceUpdate.File, new { type = "file", accept = ".sql,.exe", @multiple = "", @class = "form-control custom-file-input" })
+                                                <label class="custom-file-label" for="file">Choose file</label>
+
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.ResourceUpdate.File, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-4">
+                <div class="col-lg-6 mb-4">
+                    <a href='@Url.Action("Index", "Deployment")' class="btn btn-secondary form-control" style="height: 45px; padding: .7rem;"><i class="fas fa-arrow-left"></i> Back</a>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <button type="submit" class="btn btn-primary form-control" style="height: 45px; padding: .7rem;"><i class="fas fa-save"></i> Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,32 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TestCaseService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\Work\\tfs_dev\\WOW.Illustration\\1_DEVL\\WebApps\\WebServiceTestManager\\App_Data\\MobileRaterTests</Value>
+    </Setting>
+    <Setting Name="CheckFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\\Work\\tfs_dev\\WOW.Illustration\\1_DEVL\\WebApps\\WebServiceTestManager\\App_Data\\checkfolder</Value>
+    </Setting>
+    <Setting Name="TestManagerDataEntities" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;metadata=res://*/Models.RaterDB.csdl|res://*/Models.RaterDB.ssdl|res://*/Models.RaterDB.msl;provider=System.Data.SqlClient;provider connection string="data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\TestManagerData.mdf;integrated security=True;multipleactiveresultsets=True;connect timeout=30;application name=EntityFramework"&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.EntityClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">metadata=res://*/Models.RaterDB.csdl|res://*/Models.RaterDB.ssdl|res://*/Models.RaterDB.msl;provider=System.Data.SqlClient;provider connection string="data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\TestManagerData.mdf;integrated security=True;multipleactiveresultsets=True;connect timeout=30;application name=EntityFramework"</Value>
+    </Setting>
+    <Setting Name="IndependenceSeriesEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">api/Rate/FetchIndependenceSeriesRates</Value>
+    </Setting>
+    <Setting Name="PatriotSeriesEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">api/Rate/FetchPatriotSeriesRate</Value>
+    </Setting>
+    <Setting Name="FamilyTermEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">api/Rate/FetchFamilyTermRates</Value>
+    </Setting>
+    <Setting Name="LifeRaterEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">api/Rate/FetchLifeRates</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.WoodmenIllustrationService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LpaBatchUsername" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">sa_lpa</Value>
+    </Setting>
+    <Setting Name="LpaBatchPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">w00dm3nLP@</Value>
+    </Setting>
+    <Setting Name="UploadStorageFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/App_Data/uploads</Value>
+    </Setting>
+    <Setting Name="PayloadStorageFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/App_Data/payloads</Value>
+    </Setting>
+    <Setting Name="PayloadFileExtension" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">payload</Value>
+    </Setting>
+    <Setting Name="SqlCommandTimeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="DistributionChannelName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="LogAcordMessages" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LogWimMessages" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HeaderCodesWithSuppressedDues" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">850,855,860,865,870,875</Value>
+    </Setting>
+    <Setting Name="Term2016HeaderCodes" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">850,855,860,865,870,875,880,885</Value>
+    </Setting>
+    <Setting Name="IntegrationDbConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Connection Timeout=60;Data Source=(localdb)\WIS_Instance;Initial Catalog=WOWIntegration;Integrated Security=True;AttachDbFileName=|DataDirectory|\WOWIntegration.mdf;</Value>
+    </Setting>
+    <Setting Name="WcfGatewayServiceClientName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BasicHttpBinding_IGatewayService</Value>
+    </Setting>
+    <Setting Name="WcfSearchServiceClientName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">BasicHttpBinding_IPersonSceneSearchService</Value>
+    </Setting>
+    <Setting Name="BackDateHeaderCodes" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">123,124,280,281,282,283,284,290,291,292,293,294,295,296,297,298,850,855,860,865,870,875,880,885</Value>
+    </Setting>
+    <Setting Name="FRHierarchyServiceEndpoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://eim-test.woodmen.net/FRHierarchyRESTService/api/v2/Hierarchy2/GetAgent?FRCode=</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

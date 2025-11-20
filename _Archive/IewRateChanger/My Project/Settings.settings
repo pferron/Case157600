@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="RateFiles" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">G:\IEW Rate Files\Prod</Value>
+    </Setting>
+    <Setting Name="CSOdb" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Fipsco\WOW\2001CSO.mdb</Value>
+    </Setting>
+    <Setting Name="FipscoCSdb" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Fipsco\WOW\FipscoCS.mdb</Value>
+    </Setting>
+    <Setting Name="FipscoWG" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Program Files\WiseServer\Wise.mdw</Value>
+    </Setting>
+    <Setting Name="LastRateFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SystemWG" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\LEN5019\AppData\Roaming\Microsoft\Access\system.mdw</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

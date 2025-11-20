@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build WiX Installers",
+			"type": "shell",
+			"command": "dotnet build Installers/WoodmenReconClientInstaller/WoodmenReconClientInstaller.wixproj && dotnet build Installers/WoodmenIllustrationServiceInstaller/WoodmenIllustrationServiceInstaller.wixproj && dotnet build Installers/ProductPremiumCollectorServiceInstaller/ProductPremiumCollectorServiceInstaller.wixproj",
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Build WiX Installers",
+			"type": "shell",
+			"command": "dotnet build Installers/WoodmenReconClientInstaller/WoodmenReconClientInstaller.wixproj; dotnet build Installers/WoodmenIllustrationServiceInstaller/WoodmenIllustrationServiceInstaller.wixproj; dotnet build Installers/ProductPremiumCollectorServiceInstaller/ProductPremiumCollectorServiceInstaller.wixproj",
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build"
+		}
+	]
+}

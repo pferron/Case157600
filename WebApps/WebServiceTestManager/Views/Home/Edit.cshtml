@@ -1,0 +1,20 @@
+﻿@using WebServiceTestManager.Models
+@{
+    var EditModel = ViewData.Model;
+    var actionName = ViewData["ActionName"];
+}
+
+<h2>Edit</h2>
+<hr />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+@using (Html.BeginForm((string)actionName, "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel(new { htmlAttributes = new { @class = "form-control" } })
+    <br />
+    <input type="submit" value="Submit" class="btn btn-primary" />
+}

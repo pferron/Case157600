@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.PEIllustrationClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IllustrationServiceBaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://appserv-t6:2015/api/</Value>
+    </Setting>
+    <Setting Name="HttpClientRequestTimeout" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:00:30</Value>
+    </Setting>
+    <Setting Name="FipEndpoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Illustrations/GenerateIllustrationViaFip</Value>
+    </Setting>
+    <Setting Name="InputFipFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\\FIPSCO\\WOW\\{0}.fip</Value>
+    </Setting>
+    <Setting Name="RetryCount" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="WarningThresholdRatio" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">0.05</Value>
+    </Setting>
+    <Setting Name="MaxConcurrentRequests" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

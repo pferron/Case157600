@@ -1,0 +1,25 @@
+<Dictionary>
+  <Words>
+    <Unrecognized>
+      <Word>Acord</Word>
+    </Unrecognized>
+    <Recognized>
+      <Word></Word>
+    </Recognized>
+    <Deprecated>
+      <Term PreferredAlternate=""></Term>
+    </Deprecated>
+    <Compound>
+      <Term CompoundAlternate=""></Term>
+    </Compound>
+    <DiscreteExceptions>
+      <Term></Term>
+    </DiscreteExceptions>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>WOW</Acronym>
+      <Acronym>ACORD</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

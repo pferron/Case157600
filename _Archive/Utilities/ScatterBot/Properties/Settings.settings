@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ScatterBot.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MasterServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LPAM1</Value>
+    </Setting>
+    <Setting Name="SecondaryServers" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LPAT1</Value>
+    </Setting>
+    <Setting Name="AppServerVersionFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">d$\Accelerate\Server\system.ver</Value>
+    </Setting>
+    <Setting Name="LifeServerVersionFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">d$\Accelerate\LifeServer\system.ver</Value>
+    </Setting>
+    <Setting Name="WebServerVersionFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">d$\Accelerate\Web\bin\system.ver</Value>
+    </Setting>
+    <Setting Name="AppServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ClientWcfBusinessFacadeServer</Value>
+    </Setting>
+    <Setting Name="LifeServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LifeServerService</Value>
+    </Setting>
+    <Setting Name="RsuFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">d$\Accelerate\RSU</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

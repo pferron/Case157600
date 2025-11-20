@@ -1,0 +1,14 @@
+14.0
+12
+1       SQLCHAR             0       37      "	"      1     AddressID              ""
+2       SQLCHAR             0       37      "	"      2     OwnerID                ""
+3       SQLCHAR             0       12      "	"      3     TypeCode               ""
+4       SQLCHAR             0       200     "	"      4     Line1                  SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0       120     "	"      5     Line2                  SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR             0       100     "	"      6     Line3                  SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR             0       100     "	"      7     Line4                  SQL_Latin1_General_CP1_CI_AS
+8       SQLCHAR             0       120     "	"      8     City                   SQL_Latin1_General_CP1_CI_AS
+9       SQLCHAR             0       12      "	"      9     State                  ""
+10      SQLCHAR             0       32      "	"      10    Zip                    SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR             0       12      "	"      11    Country                ""
+12      SQLCHAR             0       120     "\r\n"   12    County                 SQL_Latin1_General_CP1_CI_AS

@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">DEVL</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4607AB03-5DFF-416D-A569-527C571C4BBB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WOW.Illustration.Model</RootNamespace>
+    <AssemblyName>WOW.Illustration.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>keyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'DEVL'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <NoWarn>NU5128</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'TEST'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'MODL'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'PROD'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enums\BillingModalType.cs" />
+    <Compile Include="Generation\Request\AccumulationUniversalLifePolicy.cs" />
+    <Compile Include="Generation\Request\AgentPerson.cs" />
+    <Compile Include="Generation\Request\AnnuityPolicy.cs" />
+    <Compile Include="Generation\Request\ClientPerson.cs" />
+    <Compile Include="Generation\Request\DeferredAnnuityPolicy.cs" />
+    <Compile Include="Enums\CategoryCode.cs" />
+    <Compile Include="Enums\RatingClassCode.cs" />
+    <Compile Include="Enums\HeaderCode.cs" />
+    <Compile Include="Enums\ProductType.cs" />
+    <Compile Include="Enums\ReportType.cs" />
+    <Compile Include="Generation\Request\AdjustableLifeFlexibleLifePolicy.cs" />
+    <Compile Include="Generation\Request\IndexedUniversalLifePolicy.cs" />
+    <Compile Include="Generation\Request\LifePolicy.cs" />
+    <Compile Include="Generation\Request\NoLapseGuaranteedUniversalLifePolicy.cs" />
+    <Compile Include="Generation\Request\NonLevelData.cs" />
+    <Compile Include="Generation\Request\NonLevelPolicyData.cs" />
+    <Compile Include="Generation\Request\Person.cs" />
+    <Compile Include="Generation\Request\Policy.cs" />
+    <Compile Include="Generation\Request\SubAccount.cs" />
+    <Compile Include="Generation\Response\WoodmenIllustrationResponse.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Generation\Request\Report.cs" />
+    <Compile Include="Generation\Request\Rider.cs" />
+    <Compile Include="Search\Request\SearchRequest.cs" />
+    <Compile Include="Search\Response\SearchResponse.cs" />
+    <Compile Include="Search\Response\SearchResponseClient.cs" />
+    <Compile Include="Search\Response\SearchResponseScene.cs" />
+    <Compile Include="Generation\Request\TermLifePolicy.cs" />
+    <Compile Include="Generation\Request\TraditionalLifePolicy.cs" />
+    <Compile Include="Generation\Request\UniversalLifePolicy.cs" />
+    <Compile Include="Generation\Request\WholeLifePolicy.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IllustrationModels.nuspec" />
+    <None Include="keyPair.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+    <None Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,1 @@
+bcp %3.dbo.RandomCodeContent in %1 -f RandomCodeContent.fmt -S %2 -T

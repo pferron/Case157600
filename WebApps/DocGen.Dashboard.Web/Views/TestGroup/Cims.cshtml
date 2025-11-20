@@ -1,0 +1,462 @@
+﻿@model LPA.Dashboard.Web.ViewModels.CimFileViewModel
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+@{
+    ViewBag.Title = "Cims";
+    ViewBag.ActiveTab = "Test Groups";
+}
+@section Scripts{
+    @Scripts.Render("~/Scripts/datatables.js")
+    @Scripts.Render("~/Scripts/alert.js")
+    @Scripts.Render("~/Scripts/moment.js")
+    <script>
+
+        $(document).ready(function () {
+            String.prototype.format = function () {
+        var args = [].slice.call(arguments);
+        return this.replace(/(\{\d+\})/g, function (a) {
+            return args[+(a.substr(1, a.length - 2)) || 0];
+        });
+    };
+
+            //If an error is passed into the view model display it as a notification
+            var errorMessage = "@Model.ErrorMessage";
+
+            if (errorMessage != "")
+                AddDismissableAlert(errorMessage, "danger");
+
+            var tags = [];
+            var selectedCimFiles = [];
+            var testGroups = @Html.Raw(Json.Encode(Model.TestGroups));
+
+
+            $('#tags').on('focusout', function () {
+
+            }).on('keyup', function (e) {
+                // comma|enter (add more keyCodes delimited with | pipe)
+                if (/(188|13)/.test(e.which)) {
+                    var tag = this.value.replace(/[^a-zA-Z0-9\+\-\.\#]/g, '').toUpperCase(); // allowed characters list
+                    if (tag) {
+                        if (tags.includes(tag)) {
+                            $('.search-tag').each(function () {
+                                if ($(this).text().toUpperCase() == tag) {
+                                    $(this).addClass("animate");
+                                    $(this).on("animationend", function () {
+                                        $(this).removeClass('animate');
+                                    });
+                                }
+                            });
+                            return;
+                        }
+                        $(this).before('<div style="text-align: center" class="mr-1"><span class="search-tag badge">' + tag + '</span></div>');
+                        tags.push(tag);
+                    }
+                    this.value = "";
+                    EvaluateSearch();
+                }
+                EvaluateSearch();
+            });
+
+            $('.search-area').on('click', '.search-tag', function () {
+                for (var i = 0; i < tags.length; i++) {
+                    if (tags[i] === $(this).text().toUpperCase()) {
+                        tags.splice(i, 1);
+                    }
+                }
+
+                $(this).parent("div").remove();
+                var searchBox = $("#tags");
+                searchBox.val("");
+                EvaluateSearch();
+            });
+
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+
+            $(".tags").click(function (e) { e.stopImmediatePropagation(); })
+
+            $(".tag").click(function (e) {
+                e.stopPropagation();
+
+                //find tag that was clicked
+                var newTag = $(this).find('.searchable');
+
+                //get the search box
+                var searchBox = $("#tags");
+
+                //clear the text box and and the tag
+                searchBox.val('');
+                searchBox.val((newTag.text() + ","));
+
+                //trigger the keyup event
+                var e = $.Event("keyup", { which: 13 });
+                searchBox.trigger(e);
+            });
+
+            $("input[type=checkbox]").on("click", SelectedCheck);
+
+            function SelectedCheck() {
+                var total = $('input[type=checkbox]:checked:visible');
+                var selectControls = $("#select-controls");
+
+                selectControls.show();
+
+                if (total.length == 0)
+                    selectControls.hide();
+
+                selectedCimFiles = [];
+
+                total.each(function () {
+                    selectedCimFiles.push($(this).val());
+                });
+            }
+
+            $("#select-all").click(SelectAll);
+            $("#deselect-all").click(DeselectAll);
+            $("#clone-selected").click(CloneSelected);
+            $(".remove").click(Delete);
+
+            function SelectAll() {
+                $(".selectable:visible").prop('checked', true);
+                SelectedCheck();
+            }
+
+            function DeselectAll() {
+                $(".selectable").prop('checked', false);
+                SelectedCheck();
+            }
+
+            function CloneSelected() {
+                var destinations = `<select class="form-control val" id='destinations'>`
+                var options = "";
+                var successful = false;
+                var destinationId = 0;
+
+                for (var i = 0; i < testGroups.length; i += 1) {
+                    options = options + `<option value="${testGroups[i].TestGroupId}">${testGroups[i].Name}</option>`;
+                };
+                destinations += options;
+                destinations += "</select>"
+
+                ShowDialog("Destination?", `Where would you like to clone these file(s)? ${destinations}`, function () {
+                    destinationId = $("#destinations").val();
+
+                    var input = {
+                        TargetTestGroupId: destinationId,
+                        SelectedCims: selectedCimFiles,
+                        ModifiedBy: "Interpreted at runtime on server level :)"
+                    };
+
+                    var DTO = JSON.stringify(input);
+
+                    $.ajax({
+                        type: "POST",
+                        url: baseUrl + "api" + "@Url.Action("CloneSelected", "TestGroupManagement")",
+                        data: DTO,
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            console.log(data);
+                            successful = true;
+
+                            var newTestGroupUrl = unescape('@Url.Action("Cims", "TestGroup",new { id = "{0}"})').format(destinationId)
+
+                            AddDismissableAlert(`Successfully copied files to the <a href='${newTestGroupUrl}'>destination</a>`, "success");
+                        },
+                        error: function (data) {
+                            AddDismissableAlert("Unable to copy selected files, no files were copied", "danger");
+                        }
+                    });
+
+                });
+            }
+
+            function Delete() {
+                var id = $(this).data('id');
+
+                console.log(id);
+
+                ShowDialog("Are you sure", "<strong class='text-danger'>WARNING</strong> deleting a file can not be undone.", function () {
+                    $.ajax({
+                        type: "GET",
+                        url: baseUrl + "api/@Url.Action("DeleteCimFile", "TestGroupManagement")?id=" + id,
+                        contentType: "application/json; charset=utf-8",
+                        //dataType: "json",
+                        success: function (response) {
+                            AddAlert("Sucessfully deleted Cim File", "success", 30000);
+                            $(`#cimFile-${id}`).remove();
+                        },
+                        error: function (error) {
+                            AddDismissableAlert("Unable to delete Cim File", "danger");
+                            console.log(error);
+                        }
+                    });
+                });
+            }
+
+
+            /**
+             * Evaluate the search box and all tags applied
+             * */
+            function EvaluateSearch() {
+
+                $('.line-content').hide();
+                $('.text-success').removeClass("text-success found");
+
+                var txt = $('#tags').val();
+
+                if (txt === "" && tags.length != 0) {
+                    $('.line-content').show();
+                    ApplyTagFilteringToVisibleItems();
+                    return;
+                }
+                else if (txt === "") {
+                    $('.line-content').show();
+                    SelectedCheck();
+                    return;
+                }
+
+
+                $('.searchable').each(function () {
+                    if ($(this).text().toUpperCase().indexOf(txt.toUpperCase()) != -1) {
+                        $(this).closest('.line-content').show();
+                        $(this).addClass("text-success found");
+                    }
+
+                });
+
+                $("span .found").removeClass("text-success found");
+
+                ApplyTagFilteringToVisibleItems();
+
+            }
+
+            /**
+             * Filter the avaliable results and remove the ones that don't have all of the tags
+             */
+            function ApplyTagFilteringToVisibleItems() {
+                $('.line-content:visible').each(function () {
+                    var count = 0;
+                    $(this).find('.tags .tag .searchable').each(function () {
+                        for (var i = 0; i < tags.length; i++) {
+                            if ($(this).text().toUpperCase() == tags[i].toUpperCase()) {
+                                $(this).addClass("text-success found");
+                                count++;
+                            }
+                        }
+
+                    });
+
+                    if (tags.length != count)
+                        $(this).closest('.line-content').hide();
+
+                    count = 0;
+
+                });
+                SelectedCheck();
+            }
+        });
+
+
+    </script>
+}
+@functions {
+    public string GetTestGroupUrl(int id)
+    {
+        return Url.Action("Cims", "TestGroup", new { id = id });
+    }
+
+    public string TimeAgo(DateTime dt)
+    {
+        const int SECOND = 1;
+        const int MINUTE = 60 * SECOND;
+        const int HOUR = 60 * MINUTE;
+        const int DAY = 24 * HOUR;
+        const int MONTH = 30 * DAY;
+
+        var ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
+        double delta = Math.Abs(ts.TotalSeconds);
+
+        if (delta < 1 * MINUTE)
+            return ts.Seconds == 1 ? "1 second ago" : ts.Seconds + " seconds ago";
+
+        if (delta < 2 * MINUTE)
+            return "A minute ago";
+
+        if (delta < 60 * MINUTE)
+            return $"{ts.Minutes} minutes ago";
+
+        if (delta < 120 * MINUTE)
+            return $"{ts.Hours} hour and {ts.Minutes} minutes ago";
+
+        if (delta < 24 * HOUR)
+            return $"{ts.Hours} hours ago";
+
+        if (delta < 36 * HOUR)
+            return "Yesterday at " + dt.ToShortTimeString();
+
+        if (delta < 48 * HOUR)
+            return $"{dt.DayOfWeek} at {dt.ToShortTimeString()}";
+
+        if (delta < 30 * DAY)
+            return $"{ts.Days} days ago at {dt.ToShortTimeString()}";
+
+        return $"{dt} at {dt.ToShortTimeString()}";
+    }
+}
+<style>
+    @@keyframes wiggle {
+        0% {
+            transform: rotate(10deg);
+            background-color: #ccc;
+        }
+
+        25% {
+            transform: rotate(-10deg);
+        }
+
+        50% {
+            transform: rotate(20deg);
+            background-color: #ffc107;
+        }
+
+        75% {
+            transform: rotate(-5deg);
+        }
+
+        100% {
+            background-color: #ccc;
+            transform: rotate(0deg);
+        }
+    }
+
+    .animate {
+        animation: wiggle 2s;
+    }
+
+    .search-field:focus {
+        box-shadow: none;
+        border: none;
+    }
+
+    .search-field {
+        border: none;
+        box-shadow: none;
+        transition: none;
+        border-color: transparent;
+        border-radius: 0%;
+    }
+
+    .search-area {
+        display: flex;
+        text-align: center;
+        align-items: center;
+    }
+
+    .search-tag {
+        cursor: pointer;
+        font-size: 1rem;
+        transition: 0.5s ease-in-out;
+    }
+
+    .found {
+        font-size: 150%;
+    }
+
+    .pagination a.active {
+        background-color: #003755;
+        color: white;
+    }
+
+    .pagination a:hover:not(.active) {
+        background-color: #ddd;
+    }
+
+    .file-list {
+        display: flex;
+    }
+
+        .file-list:hover {
+            background-color: rgba(0,55,85, 0.5);
+            cursor: pointer;
+        }
+
+    .file-detail {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .badge {
+        font-weight: 400;
+        background-color: #ccc;
+        color: #000;
+    }
+
+    .tags {
+        display: flex;
+    }
+</style>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/TestGroup">Test Groups</a></li>
+        <li class="breadcrumb-item active" aria-current="page"> @Model.CurrentTestGroup.Name</li>
+    </ol>
+</nav>
+<div class="card my-4" style="display:flex;">
+    <div class="card-body">
+        <div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 d-flex flex-row">
+                        <h4 class="text-muted mb-2 mt-auto mr-auto">
+                            Cim Files
+                        </h4>
+                        <a href="@Url.Action("CreateCim", "TestGroup", new { id = Model.CurrentTestGroup.TestGroupId})" class="btn btn-primary mb-2 add-agent">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <hr class="mb-0" />
+                <div id="alert" class="alert" role="alert" style="display:none;">
+                </div>
+
+                <div class="search-area">
+                    <input class="form-control search-field" type="text" id="tags" placeholder="Search" aria-label="Search" />
+                </div>
+                <hr class="mb-1 mt-0" />
+                <div id="select-controls" style="display: none">
+                    <a href="#" class="mr-1" id="select-all">Select All</a>
+                    <a href="#" class="mr-1" id="deselect-all">Deselect All</a>
+                    <a href="#" class="mr-1" id="clone-selected">Clone Selected</a>
+                    <hr class="mb-1 mt-0" />
+                </div>
+                @foreach (var item in Model.TestFiles)
+                {
+                    <div class="line-content rounded" id="cimFile-@item.TestFileCimId">
+                        <div class="file-list p-2">
+                            <div style="display: flex; align-items: center;">
+                                <input style="width: 5em" class="form-control selectable" type="checkbox" name="" value="@item.TestFileCimId" />
+                            </div>
+                            <div class="file-detail rounded clickable-row mr-1" data-href="@Url.Action("FileDetail", "TestGroup", new { id = item.TestFileCimId })">
+                                <p class="m-0"><span class="searchable">@item.FileName</span></p>
+                                <p class="mb-0">@LPA.Dashboard.Web.Helpers.ActiveDirectoryHelper.UsernameToFullName(item.Creator)</p>
+                                <p class="mb-0">Last modified <span id="time-@item.TestFileCimId">@TimeAgo(item.DateModified)</span></p>
+                                <div class="tags">
+                                    <p class="tag"><span class="badge badge-secondary">Age: <span class="searchable">@item.Age</span></span></p>
+                                    <p class="ml-1 tag"><span class="badge badge-secondary">FaceAmount: <span class="searchable">@item.FaceAmount</span></span></p>
+                                    <p class="ml-1 tag"><span class="badge badge-secondary">Gender: <span class="searchable">@item.Gender</span></span></p>
+                                    <p class="ml-1 tag"><span class="badge badge-secondary">State: <span class="searchable">@item.StateCode</span></span></p>
+                                    <p class="ml-1 tag"><span class="badge badge-secondary">Product Code: <span class="searchable">@item.ProductTypeCode</span></span></p>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: flex-end ">
+                                <a href="#" class="btn btn-danger remove" data-id="@item.TestFileCimId" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"> <i class="far fa-trash-alt"></i> </a>
+                            </div>
+                        </div>
+                        <hr class="m-0" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

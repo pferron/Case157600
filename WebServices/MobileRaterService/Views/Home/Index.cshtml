@@ -1,0 +1,28 @@
+﻿@model WOW.WoodmenIllustrationService.SharedModels.ServiceStatus
+
+<fieldset>
+    <legend>@ViewBag.Title</legend>
+    <table>
+        <tr>
+            <td style="width: 18%">Web API:</td>
+            <td>ONLINE</td>
+        </tr>
+        <tr>
+            <td>Database:</td>
+            <td>@((Model.HasError) ? "OFFLINE" : "ONLINE")</td>
+        </tr>
+    </table>
+</fieldset>
+
+@if (String.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    
+}
+else
+{ 
+    <br />
+    <fieldset>
+        <legend>Error Message</legend>
+        <p>@ViewBag.ErrorMessage</p>
+    </fieldset>
+}

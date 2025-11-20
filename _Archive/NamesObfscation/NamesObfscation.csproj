@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B26BC31-B8D8-4D0E-A774-7A2121F07A44}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>NamesObfuscation</RootNamespace>
+    <AssemblyName>NamesObfuscation</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="BCP\Address.fmt" />
+    <None Include="BCP\AgentData.fmt" />
+    <None Include="BCP\AgentDChannel.fmt" />
+    <None Include="BCP\AgentDChannelContactInfo.fmt" />
+    <None Include="BCP\Person.fmt" />
+    <None Include="BCP\RandomCodeContent.fmt" />
+    <None Include="BCP\UserData.fmt" />
+    <None Include="Powershell\BcpMigrate.ps1" />
+    <None Include="Powershell\BcpTemplate.cmd" />
+    <None Include="Powershell\EncodeAndBlankOut.ps1" />
+    <None Include="Powershell\LoadObfuscated.ps1" />
+    <None Include="Powershell\LoadObfuscatedMacro.cmd" />
+    <None Include="Powershell\Obfuscate.ps1" />
+    <None Include="Powershell\TruncateTable.cmd" />
+    <None Include="Powershell\UnloadNamesTemplate.cmd" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Sql\AddressesBlankout.sql" />
+    <Content Include="Sql\EncodeAgentData.sql" />
+    <Content Include="Sql\EncodePerson.sql" />
+    <Content Include="Sql\EncodeUserData.sql" />
+    <Content Include="Sql\TruncateTable.sql" />
+    <Content Include="Sql\WowService.sql" />
+    <Content Include="Sql\WowServiceScript.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://wwww/stoneriver.com/services/GatewayService" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GatewayService" targetNamespace="http://wwww/stoneriver.com/services/GatewayService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IGatewayService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://wwww/stoneriver.com/services/GatewayService/Imports">
+      <xsd:import schemaLocation="https://lpa-test.woodmen.net/GatewayService?xsd=xsd5" namespace="http://wwww/stoneriver.com/services/GatewayService" />
+      <xsd:import schemaLocation="https://lpa-test.woodmen.net/GatewayService?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="https://lpa-test.woodmen.net/GatewayService?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/LifeServer.DataModel" />
+      <xsd:import schemaLocation="https://lpa-test.woodmen.net/GatewayService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LifeServer.DataModel.response" />
+      <xsd:import schemaLocation="https://lpa-test.woodmen.net/GatewayService?xsd=xsd3" />
+      <xsd:import schemaLocation="https://lpa-test.woodmen.net/GatewayService?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/LifeServer.DataModel.request" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IGatewayService_processXmlRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:processXmlRequest" />
+  </wsdl:message>
+  <wsdl:message name="IGatewayService_processXmlRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:processXmlRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGatewayService_processRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:processRequest" />
+  </wsdl:message>
+  <wsdl:message name="IGatewayService_processRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:processRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGatewayService_processStringRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:processStringRequest" />
+  </wsdl:message>
+  <wsdl:message name="IGatewayService_processStringRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:processStringRequestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IGatewayService">
+    <wsdl:operation name="processXmlRequest">
+      <wsdl:input wsaw:Action="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processXmlRequest" message="tns:IGatewayService_processXmlRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processXmlRequestResponse" message="tns:IGatewayService_processXmlRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="processRequest">
+      <wsdl:input wsaw:Action="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processRequest" message="tns:IGatewayService_processRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processRequestResponse" message="tns:IGatewayService_processRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="processStringRequest">
+      <wsdl:input wsaw:Action="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processStringRequest" message="tns:IGatewayService_processStringRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processStringRequestResponse" message="tns:IGatewayService_processStringRequest_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IGatewayService" type="tns:IGatewayService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IGatewayService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="processXmlRequest">
+      <soap:operation soapAction="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processXmlRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processRequest">
+      <soap:operation soapAction="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processStringRequest">
+      <soap:operation soapAction="http://wwww/stoneriver.com/services/GatewayService/IGatewayService/processStringRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GatewayService">
+    <wsdl:port name="BasicHttpBinding_IGatewayService" binding="tns:BasicHttpBinding_IGatewayService">
+      <soap:address location="https://lpa-test.woodmen.net/GatewayService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,111 @@
+﻿@model LPA.Dashboard.Web.ViewModels.VaTestToolViewModel
+ 
+
+@{
+    ViewBag.Title = "VA Test Tool";
+}
+
+<form id="form" enctype="multipart/form-data">
+    <div class="card my-4" style="display:flex;">
+        <div class="card-body">
+            <div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 d-flex flex-row">
+                            <h4 class="text-muted mb-2 mt-auto mr-auto">
+                                VA Test Tool
+                            </h4>
+                        </div>
+                    </div>
+                    <hr class="mt-0" />
+                    <div id="alert" class="alert" role="alert" style="display:none;">
+                    </div>
+                    <div>
+                        <input type="file" name="file" id="file" />
+                        <input type="submit" value="Upload" />
+                    </div>
+                    <div id="dvResults" style="padding-top: 50px;">
+
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        DisplayExcelFiles();
+    });
+
+    function DisplayExcelFiles() {
+        $.ajax({
+            datatype: "text/plain",
+            type: "GET",
+            url: baseUrl + 'VaTestTool/DisplayExcelFiles',
+            cache: false,
+            async: false,
+            success: function (data) {
+                $('#dvResults').html(data);
+
+            }
+        });
+
+    }
+
+    function GenerateSql(filePath, SqlFilePath) {
+        url = baseUrl + 'api/ProcessRateData';
+        var updateSqlPath = '@Model.SqlPath';
+
+        $.ajax({
+            datatype: "text/plain",
+            data: { filePath: filePath },
+            type: "GET",
+            url: url,
+            cache: false,
+            async: false,
+            success: function (data) {
+                AddDismissableAlert(`Successfully created sql scripts to location: ${updateSqlPath} `, "success");
+            },
+            error: function (data) {
+                AddDismissableAlert(data.responseText, "danger");
+            }
+        });
+    }
+
+    $(function () {
+        // When your form is submitted
+        $("#form").submit(function (e) {
+            // Prevent the default behavior
+            e.preventDefault();
+
+            var formData = new FormData();
+            var file = $('#file')[0];
+            formData.append('file', file.files[0]);
+
+            var excelFilePath = '@Model.ExcelFilePath';
+            // set url
+            var url = baseUrl + 'api/UploadExcelFile';
+
+            // Make your POST
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {                    
+                    location.reload();
+                    AddDismissableAlert(`Successfully copied files to the folder: ${excelFilePath}`, "success");
+                },
+                error: function (data) {
+                    AddDismissableAlert(data.responseText, "danger");
+                }
+            });
+        });
+    })
+</script>
+
+

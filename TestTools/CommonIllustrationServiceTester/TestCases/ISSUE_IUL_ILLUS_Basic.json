@@ -1,0 +1,1773 @@
+[{
+  "recordId": "102060",
+  "jobName": {
+    "code": "ISSUE_IUL_ILLUS",
+    "description": "ISSUE_IUL_ILLUS"
+  },
+  "company": {
+    "code": "WLI",
+    "description": "WoodmenLife"
+  },
+  "activityDate": "2019-01-28",
+  "policyId": "009156691",
+  "clientInfo": {
+    "OWNER": {
+      "adminSystemClientId": "1234567890",
+      "clientType": {
+        "code": "PERSON",
+        "description": "Person"
+      },
+      "clientRole": {
+        "code": "OWNER",
+        "description": "O - Owner"
+      },
+      "gender": {
+        "code": "FEMALE",
+        "description": "Female"
+      },
+      "firstName": "Melissa",
+      "lastName": "Snuffalufagussason-Patterson",
+      "middleName": "May",
+      "namePrefix": "Mrs",
+      "nameSuffix": "",
+      "preferredName": "",
+      "organizationName": "",
+      "addressId": "",
+      "addressType": {
+        "code": "PR",
+        "description": "Residence Address"
+      },
+      "returnedMailCounter": "1",
+      "returnedMailIndicator": true,
+      "addressLine1": "1234 Millard Street",
+      "addressLine2": "",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressCity": "Council Bluffs",
+      "addressState": {
+        "code": "IA",
+        "description": "Iowa"
+      },
+      "addressZip": "51103",
+      "addressCountry": {
+        "code": "USA",
+        "description": "United States of America"
+      },
+      "birthdate": ""
+    },
+    "PRIMARY": {
+      "adminSystemClientId": "1234567890",
+      "clientType": {
+        "code": "PERSON",
+        "description": "Person"
+      },
+      "clientRole": {
+        "code": "PRIMARY",
+        "description": "I - Insured"
+      },
+      "gender": {
+        "code": "FEMALE",
+        "description": "Female"
+      },
+      "firstName": "Mellisa",
+      "lastName": "Snuffalufagussason-Patterson",
+      "middleName": "May",
+      "namePrefix": "Mrs",
+      "nameSuffix": "",
+      "preferredName": "",
+      "organizationName": "",
+      "addressId": "",
+      "addressType": {
+        "code": "PR",
+        "description": "Residence Address"
+      },
+      "returnedMailCounter": "1",
+      "returnedMailIndicator": true,
+      "addressLine1": "1234 Millard Street",
+      "addressLine2": "",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressCity": "Council Bluffs",
+      "addressState": {
+        "code": "IA",
+        "description": "Iowa"
+      },
+      "addressZip": "51103",
+      "addressCountry": {
+        "code": "USA",
+        "description": "United States of America"
+      },
+      "birthdate": "1993-05-15"
+    }
+  },
+  "contingentOwnerInfo": [
+    {
+      "adminSystemClientId": "2228889991",
+      "clientType": {
+        "code": "PERSON",
+        "description": "Person"
+      },
+      "clientRole": {
+        "code": "OWNERCONT",
+        "description": "Q - Contingent Owner"
+      },
+      "gender": {
+        "code": "FEMALE",
+        "description": "Female"
+      },
+      "firstName": "Melinda",
+      "lastName": "Lang",
+      "middleName": "Anne",
+      "namePrefix": "",
+      "nameSuffix": "",
+      "preferredName": "",
+      "organizationName": "",
+      "addressId": "",
+      "addressType": {
+        "code": "PR",
+        "description": "Residence Address"
+      },
+      "returnedMailCounter": "0",
+      "returnedMailIndicator": false,
+      "addressLine1": "364 Charlestown Square Drive",
+      "addressLine2": "",
+      "addressLine3": "",
+      "addressLine4": "",
+      "addressCity": "Montgomery",
+      "addressState": {
+        "code": "AL",
+        "description": "Alabama"
+      },
+      "addressZip": "36131",
+      "addressCountry": {
+        "code": "USA",
+        "description": "United States of America"
+      },
+      "birthdate": ""
+    }
+  ],
+  "policyInfo": {
+    "issueState": {
+      "code": "FL",
+      "description": "Florida"
+    },
+    "effectiveDate": "2018-09-11",
+    "applicationSignedState": {
+      "code": "FL",
+      "description": "Florida"
+    },
+    "applicationSignedDate": "2018-09-01",
+    "rightToExamineDuration": "30",
+    "billingAmount": "25.54",
+    "billingMethod": {
+      "code": "REGBILL",
+      "description": "Regular Billing"
+    },
+    "billingMode": {
+      "code": "QUARTLY",
+      "description": "Quarter or Quarterly"
+    },
+    "producerId": "140116",
+    "producerInfo": {
+      "producerId": "140116",
+      "suffix": "",
+      "firstName": "Clay",
+      "lastName": "Caligur",
+      "middleName": "",
+      "addressTypeCode": "",
+      "addressLine1": "1700 Farnam St",
+      "addressLine2": "",
+      "addressLine3": "",
+      "addressCity": "Omaha",
+      "addressStateCode": "NE",
+      "addressZip": "68102",
+      "addressCountryCode": "",
+      "emailAddress": "cacaligur@woodmen.org",
+      "phoneTypeCode": "",
+      "phoneCountryCode": "",
+      "phoneNumber": "4025154008",
+      "phoneExtension": ""
+    },
+    "deathBenefitOption": {
+      "code": "INCR",
+      "description": "Increasing (DB = Face + Cash)"
+    },
+    "dividendType": {
+      "code": "CASH",
+      "description": "Paid in cash"
+    },
+    "mecAllowedIndicator": false,
+    "mecIndicator": false,
+    "surrenderChargeAmount": "888.88",
+    "surrenderChargeDuration": "15",
+    "surrenderChargeDurationDescription": "15 years",
+    "surrenderChargeDurationType": {
+      "code": "ANNUAL",
+      "description": "Annual or Annually"
+    },
+    "noLapsePremiumAmount": "1523.00",
+    "noLapsePeriodDuration": "10",
+    "dividendsOnDepositInterestRate": "1.00",
+    "planLegalName": "Flexible Premium Adjustable Indexed Life Insurance",
+    "planMarketingName": "This is the Marketing Name",
+    "planCorrespondenceName": "This is the Correspondence Plan Name",
+    "sevenPayPremiumAmount": "",
+    "applicantAge": "",
+    "chapterInfo": {
+      "chapterNumber": "230028",
+      "addressCity": "HATTIESBURG",
+      "addressStateCode": "MS"
+    },
+    "initialDepositAmount": 5000.0,
+    "exchange1035Amount": 0.0,
+    "policyFundInfo": [
+      {
+        "fundAccountId": "WLINDX",
+        "indexParticipationRate": 50
+      },
+      {
+        "fundAccountId": "IUFIXD",
+        "indexParticipationRate": 50
+      }
+    ],
+    "surrenderIndexInfo": [
+      {
+        "surrenderIndexDuration": "10",
+        "surrenderIndexRate": "3.46"
+      },
+      {
+        "surrenderIndexDuration": "20",
+        "surrenderIndexRate": "4.22"
+      }
+    ]
+  },
+  "coverageInfo": {
+    "ABE": {
+      "planId": "TUINDEXR",
+      "planLegalName": "Accelerated Death Benefit Rider",
+      "planCorrespondenceName": "This is the Correspondence Name",
+      "productTypeCode": "",
+      "lineOfBusiness": "",
+      "coverageOptionType": {
+        "code": "ABE",
+        "description": "Accelerated Benefit"
+      },
+      "effectiveDate": "2018-09-11",
+      "issueAge": "25",
+      "faceAmount": "",
+      "permanentTableRatingFactor": "",
+      "permanentTableRating": {
+        "code": "NONE",
+        "description": ""
+      },
+      "tobaccoPremiumBasis": {
+        "code": "UNKNOWN",
+        "description": "Unknown"
+      },
+      "temporaryFlatExtraRate": "",
+      "temporaryFlatExtraEndDate": "",
+      "costOfInsuranceAmount": "0.00",
+      "expirationDate": "",
+      "maturityDate": "",
+      "temporaryFlatExtraAmount": 0,
+      "permanentTableRatingEndDate": ""
+    },
+    "OPAI": {
+      "planId": "TUINDEXR",
+      "planLegalName": "Guaranteed Insurability Rider",
+      "planCorrespondenceName": "This is the Correspondence Name",
+      "productTypeCode": "",
+      "lineOfBusiness": "",
+      "coverageOptionType": {
+        "code": "OPAI",
+        "description": "Option to Purchase Additional Insurance"
+      },
+      "effectiveDate": "2018-09-11",
+      "issueAge": "25",
+      "faceAmount": "50000",
+      "permanentTableRatingFactor": "1.00",
+      "permanentTableRating": {
+        "code": "NONE",
+        "description": "None"
+      },
+      "tobaccoPremiumBasis": {
+        "code": "UNKNOWN",
+        "description": "Unknown"
+      },
+      "temporaryFlatExtraRate": "",
+      "temporaryFlatExtraEndDate": "",
+      "costOfInsuranceAmount": "4.33",
+      "expirationDate": "2033-09-11",
+      "maturityDate": "",
+      "temporaryFlatExtraAmount": 0,
+      "permanentTableRatingEndDate": ""
+    },
+    "INDXUL": {
+      "planId": "TUINDEXR",
+      "planLegalName": "Flexible Premium Adjustable Indexed Life Insurance",
+      "planCorrespondenceName": "This is the Correspondence Name",
+      "productTypeCode": "INDXUL",
+      "lineOfBusiness": "LIFE",
+      "coverageOptionType": {
+        "code": "UNKNOWN",
+        "description": "Unknown"
+      },
+      "effectiveDate": "2018-09-11",
+      "issueAge": "25",
+      "faceAmount": "125000",
+      "permanentTableRatingFactor": "1.00",
+      "permanentTableRating": {
+        "code": "NONE",
+        "description": "None"
+      },
+      "tobaccoPremiumBasis": {
+        "code": "PRESMOKER",
+        "description": "Preferred Tobacco"
+      },
+      "temporaryFlatExtraRate": "0.00000",
+      "temporaryFlatExtraEndDate": "",
+      "costOfInsuranceAmount": "0.00",
+      "expirationDate": "",
+      "maturityDate": "2114-09-11",
+      "temporaryFlatExtraAmount": 0.0,
+      "permanentTableRatingEndDate": ""
+    },
+    "ADB": {
+      "planId": "TUINDEXR",
+      "planLegalName": "Accidental Death Benefit Rider",
+      "planCorrespondenceName": "This is the Correspondence Name",
+      "productTypeCode": "",
+      "lineOfBusiness": "",
+      "coverageOptionType": {
+        "code": "ADB",
+        "description": "Accidental Death Benefit"
+      },
+      "effectiveDate": "2018-09-11",
+      "issueAge": "25",
+      "faceAmount": "125000",
+      "permanentTableRatingFactor": "1.00",
+      "permanentTableRating": {
+        "code": "NONE",
+        "description": "None"
+      },
+      "tobaccoPremiumBasis": {
+        "code": "UNKNOWN",
+        "description": "Unknown"
+      },
+      "temporaryFlatExtraRate": "",
+      "temporaryFlatExtraEndDate": "",
+      "costOfInsuranceAmount": "5.92",
+      "expirationDate": "2063-09-11",
+      "maturityDate": "",
+      "temporaryFlatExtraAmount": 0,
+      "permanentTableRatingEndDate": ""
+    },
+    "WMD": {
+      "planId": "TUINDEXR",
+      "planLegalName": "Waiver of Monthly Deduction Rider",
+      "planCorrespondenceName": "This is the Correspondence Name",
+      "productTypeCode": "",
+      "lineOfBusiness": "",
+      "coverageOptionType": {
+        "code": "WMD",
+        "description": "Waiver of Monthly Deductions (WMD)"
+      },
+      "effectiveDate": "2018-09-11",
+      "issueAge": "25",
+      "faceAmount": "125000",
+      "permanentTableRatingFactor": "1.00",
+      "permanentTableRating": {
+        "code": "NONE",
+        "description": "None"
+      },
+      "tobaccoPremiumBasis": {
+        "code": "UNKNOWN",
+        "description": "Unknown"
+      },
+      "temporaryFlatExtraRate": "",
+      "temporaryFlatExtraEndDate": "",
+      "costOfInsuranceAmount": "2.51",
+      "expirationDate": "2058-09-11",
+      "maturityDate": "",
+      "temporaryFlatExtraAmount": 0,
+      "permanentTableRatingEndDate": ""
+    }
+  },
+  "productValuesInfo": {
+    "minFaceAmount": "25000",
+    "minIncreaseAmount": "10000",
+    "increaseMaxIssueAge": "85",
+    "minDecreaseAmount": "5000",
+    "minPartialSurrenderAmount": "250",
+    "minDCATransferAmount": "100.00",
+    "settlementOptionInterestRate": "8.00",
+    "minFixedAccountInterestRate": "2.00",
+    "loanedAmountMaxInterestRate": "8.00",
+    "maxIllustrativeReportFee": "50.00",
+    "maxMonthlyChargeAmount": "6.00",
+    "maxMonthlyUnitChargeAmount": ".25",
+    "maxPartialSurrenderFee": "50.00",
+    "listFundInfo": [
+      {
+        "fundAccountName": "S&P 500 Point-to-Point with Cap Rate",
+        "indexName": "S&P 500",
+        "indexSegmentAllocationDay": "15",
+        "indexSegmentAllocationDayDescription": "15th day of each calendar month",
+        "indexPeriodDuration": "1",
+        "indexPeriodDurationType": {
+          "code": "ANNUAL",
+          "description": "Annual or Annually"
+        },
+        "indexPeriodDurationDescription": "1 Year",
+        "minIndexFloorRate": "0",
+        "minIndexCapRate": "3.00",
+        "minIndexParticipationRate": "100"
+      }
+    ],
+    "listCostOfInsuranceAmountTable": [
+      {
+        "attainedAge": "25",
+        "costOfInsuranceRate": "0.117500"
+      },
+      {
+        "attainedAge": "26",
+        "costOfInsuranceRate": "0.128333"
+      },
+      {
+        "attainedAge": "27",
+        "costOfInsuranceRate": "0.139166"
+      },
+      {
+        "attainedAge": "28",
+        "costOfInsuranceRate": "0.149999"
+      },
+      {
+        "attainedAge": "29",
+        "costOfInsuranceRate": "0.160832"
+      },
+      {
+        "attainedAge": "30",
+        "costOfInsuranceRate": "0.171665"
+      },
+      {
+        "attainedAge": "31",
+        "costOfInsuranceRate": "0.182498"
+      },
+      {
+        "attainedAge": "32",
+        "costOfInsuranceRate": "0.193331"
+      },
+      {
+        "attainedAge": "33",
+        "costOfInsuranceRate": "0.204164"
+      },
+      {
+        "attainedAge": "34",
+        "costOfInsuranceRate": "0.214997"
+      },
+      {
+        "attainedAge": "35",
+        "costOfInsuranceRate": "0.225830"
+      },
+      {
+        "attainedAge": "36",
+        "costOfInsuranceRate": "0.236663"
+      },
+      {
+        "attainedAge": "37",
+        "costOfInsuranceRate": "0.247496"
+      },
+      {
+        "attainedAge": "38",
+        "costOfInsuranceRate": "0.258329"
+      },
+      {
+        "attainedAge": "39",
+        "costOfInsuranceRate": "0.269162"
+      },
+      {
+        "attainedAge": "40",
+        "costOfInsuranceRate": "0.279995"
+      },
+      {
+        "attainedAge": "41",
+        "costOfInsuranceRate": "0.290828"
+      },
+      {
+        "attainedAge": "42",
+        "costOfInsuranceRate": "0.301661"
+      },
+      {
+        "attainedAge": "43",
+        "costOfInsuranceRate": "0.312494"
+      },
+      {
+        "attainedAge": "44",
+        "costOfInsuranceRate": "0.323327"
+      },
+      {
+        "attainedAge": "45",
+        "costOfInsuranceRate": "0.334160"
+      },
+      {
+        "attainedAge": "46",
+        "costOfInsuranceRate": "0.344993"
+      },
+      {
+        "attainedAge": "47",
+        "costOfInsuranceRate": "0.355826"
+      },
+      {
+        "attainedAge": "48",
+        "costOfInsuranceRate": "0.366659"
+      },
+      {
+        "attainedAge": "49",
+        "costOfInsuranceRate": "0.377492"
+      },
+      {
+        "attainedAge": "50",
+        "costOfInsuranceRate": "0.388325"
+      },
+      {
+        "attainedAge": "51",
+        "costOfInsuranceRate": "0.399158"
+      },
+      {
+        "attainedAge": "52",
+        "costOfInsuranceRate": "0.409991"
+      },
+      {
+        "attainedAge": "53",
+        "costOfInsuranceRate": "0.420824"
+      },
+      {
+        "attainedAge": "54",
+        "costOfInsuranceRate": "0.431657"
+      },
+      {
+        "attainedAge": "55",
+        "costOfInsuranceRate": "0.442490"
+      },
+      {
+        "attainedAge": "56",
+        "costOfInsuranceRate": "0.453323"
+      },
+      {
+        "attainedAge": "57",
+        "costOfInsuranceRate": "0.464156"
+      },
+      {
+        "attainedAge": "58",
+        "costOfInsuranceRate": "0.474989"
+      },
+      {
+        "attainedAge": "59",
+        "costOfInsuranceRate": "0.485822"
+      },
+      {
+        "attainedAge": "60",
+        "costOfInsuranceRate": "0.496655"
+      },
+      {
+        "attainedAge": "61",
+        "costOfInsuranceRate": "0.507488"
+      },
+      {
+        "attainedAge": "62",
+        "costOfInsuranceRate": "0.518321"
+      },
+      {
+        "attainedAge": "63",
+        "costOfInsuranceRate": "0.529154"
+      },
+      {
+        "attainedAge": "64",
+        "costOfInsuranceRate": "0.539987"
+      },
+      {
+        "attainedAge": "65",
+        "costOfInsuranceRate": "0.550820"
+      },
+      {
+        "attainedAge": "66",
+        "costOfInsuranceRate": "0.561653"
+      },
+      {
+        "attainedAge": "67",
+        "costOfInsuranceRate": "0.572486"
+      },
+      {
+        "attainedAge": "68",
+        "costOfInsuranceRate": "0.583319"
+      },
+      {
+        "attainedAge": "69",
+        "costOfInsuranceRate": "0.594152"
+      },
+      {
+        "attainedAge": "70",
+        "costOfInsuranceRate": "0.604985"
+      },
+      {
+        "attainedAge": "71",
+        "costOfInsuranceRate": "0.615818"
+      },
+      {
+        "attainedAge": "72",
+        "costOfInsuranceRate": "0.626651"
+      },
+      {
+        "attainedAge": "73",
+        "costOfInsuranceRate": "0.637484"
+      },
+      {
+        "attainedAge": "74",
+        "costOfInsuranceRate": "0.648317"
+      },
+      {
+        "attainedAge": "75",
+        "costOfInsuranceRate": "0.659150"
+      },
+      {
+        "attainedAge": "76",
+        "costOfInsuranceRate": "0.669983"
+      },
+      {
+        "attainedAge": "77",
+        "costOfInsuranceRate": "0.680816"
+      },
+      {
+        "attainedAge": "78",
+        "costOfInsuranceRate": "0.691649"
+      },
+      {
+        "attainedAge": "79",
+        "costOfInsuranceRate": "0.702482"
+      },
+      {
+        "attainedAge": "80",
+        "costOfInsuranceRate": "0.713315"
+      },
+      {
+        "attainedAge": "81",
+        "costOfInsuranceRate": "0.724148"
+      },
+      {
+        "attainedAge": "82",
+        "costOfInsuranceRate": "0.734981"
+      },
+      {
+        "attainedAge": "83",
+        "costOfInsuranceRate": "0.745814"
+      },
+      {
+        "attainedAge": "84",
+        "costOfInsuranceRate": "0.756647"
+      },
+      {
+        "attainedAge": "85",
+        "costOfInsuranceRate": "0.767480"
+      },
+      {
+        "attainedAge": "86",
+        "costOfInsuranceRate": "0.778313"
+      },
+      {
+        "attainedAge": "87",
+        "costOfInsuranceRate": "0.789146"
+      },
+      {
+        "attainedAge": "88",
+        "costOfInsuranceRate": "0.799979"
+      },
+      {
+        "attainedAge": "89",
+        "costOfInsuranceRate": "0.810812"
+      },
+      {
+        "attainedAge": "90",
+        "costOfInsuranceRate": "0.821645"
+      },
+      {
+        "attainedAge": "91",
+        "costOfInsuranceRate": "0.832478"
+      },
+      {
+        "attainedAge": "92",
+        "costOfInsuranceRate": "0.843311"
+      },
+      {
+        "attainedAge": "93",
+        "costOfInsuranceRate": "0.854144"
+      },
+      {
+        "attainedAge": "94",
+        "costOfInsuranceRate": "0.864977"
+      },
+      {
+        "attainedAge": "95",
+        "costOfInsuranceRate": "0.875810"
+      },
+      {
+        "attainedAge": "96",
+        "costOfInsuranceRate": "0.886643"
+      },
+      {
+        "attainedAge": "97",
+        "costOfInsuranceRate": "0.897476"
+      },
+      {
+        "attainedAge": "98",
+        "costOfInsuranceRate": "0.908309"
+      },
+      {
+        "attainedAge": "99",
+        "costOfInsuranceRate": "0.919142"
+      },
+      {
+        "attainedAge": "100",
+        "costOfInsuranceRate": "0.929975"
+      },
+      {
+        "attainedAge": "101",
+        "costOfInsuranceRate": "0.940808"
+      },
+      {
+        "attainedAge": "102",
+        "costOfInsuranceRate": "0.951641"
+      },
+      {
+        "attainedAge": "103",
+        "costOfInsuranceRate": "0.962474"
+      },
+      {
+        "attainedAge": "104",
+        "costOfInsuranceRate": "0.973307"
+      },
+      {
+        "attainedAge": "105",
+        "costOfInsuranceRate": "0.984140"
+      },
+      {
+        "attainedAge": "106",
+        "costOfInsuranceRate": "0.994973"
+      },
+      {
+        "attainedAge": "107",
+        "costOfInsuranceRate": "1.005806"
+      },
+      {
+        "attainedAge": "108",
+        "costOfInsuranceRate": "1.016639"
+      },
+      {
+        "attainedAge": "109",
+        "costOfInsuranceRate": "1.027472"
+      },
+      {
+        "attainedAge": "110",
+        "costOfInsuranceRate": "1.038305"
+      },
+      {
+        "attainedAge": "111",
+        "costOfInsuranceRate": "1.049138"
+      },
+      {
+        "attainedAge": "112",
+        "costOfInsuranceRate": "1.059971"
+      },
+      {
+        "attainedAge": "113",
+        "costOfInsuranceRate": "1.070804"
+      },
+      {
+        "attainedAge": "114",
+        "costOfInsuranceRate": "1.081637"
+      },
+      {
+        "attainedAge": "115",
+        "costOfInsuranceRate": "1.092470"
+      },
+      {
+        "attainedAge": "116",
+        "costOfInsuranceRate": "1.103303"
+      },
+      {
+        "attainedAge": "117",
+        "costOfInsuranceRate": "1.114136"
+      },
+      {
+        "attainedAge": "118",
+        "costOfInsuranceRate": "1.124969"
+      },
+      {
+        "attainedAge": "119",
+        "costOfInsuranceRate": "1.135802"
+      },
+      {
+        "attainedAge": "120",
+        "costOfInsuranceRate": "1.146635"
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      }
+    ],
+    "listWaiverCostOfInsuranceAmountTable": [
+      {
+        "attainedAge": "25",
+        "costOfInsuranceRate": "0.05335"
+      },
+      {
+        "attainedAge": "26",
+        "costOfInsuranceRate": "0.07418"
+      },
+      {
+        "attainedAge": "27",
+        "costOfInsuranceRate": "0.09502"
+      },
+      {
+        "attainedAge": "28",
+        "costOfInsuranceRate": "0.11585"
+      },
+      {
+        "attainedAge": "29",
+        "costOfInsuranceRate": "0.13668"
+      },
+      {
+        "attainedAge": "30",
+        "costOfInsuranceRate": "0.15752"
+      },
+      {
+        "attainedAge": "31",
+        "costOfInsuranceRate": "0.17835"
+      },
+      {
+        "attainedAge": "32",
+        "costOfInsuranceRate": "0.19918"
+      },
+      {
+        "attainedAge": "33",
+        "costOfInsuranceRate": "0.22001"
+      },
+      {
+        "attainedAge": "34",
+        "costOfInsuranceRate": "0.24085"
+      },
+      {
+        "attainedAge": "35",
+        "costOfInsuranceRate": "0.26168"
+      },
+      {
+        "attainedAge": "36",
+        "costOfInsuranceRate": "0.28251"
+      },
+      {
+        "attainedAge": "37",
+        "costOfInsuranceRate": "0.30335"
+      },
+      {
+        "attainedAge": "38",
+        "costOfInsuranceRate": "0.32418"
+      },
+      {
+        "attainedAge": "39",
+        "costOfInsuranceRate": "0.34501"
+      },
+      {
+        "attainedAge": "40",
+        "costOfInsuranceRate": "0.36584"
+      },
+      {
+        "attainedAge": "41",
+        "costOfInsuranceRate": "0.38668"
+      },
+      {
+        "attainedAge": "42",
+        "costOfInsuranceRate": "0.40751"
+      },
+      {
+        "attainedAge": "43",
+        "costOfInsuranceRate": "0.42834"
+      },
+      {
+        "attainedAge": "44",
+        "costOfInsuranceRate": "0.44918"
+      },
+      {
+        "attainedAge": "45",
+        "costOfInsuranceRate": "0.47001"
+      },
+      {
+        "attainedAge": "46",
+        "costOfInsuranceRate": "0.49084"
+      },
+      {
+        "attainedAge": "47",
+        "costOfInsuranceRate": "0.51168"
+      },
+      {
+        "attainedAge": "48",
+        "costOfInsuranceRate": "0.53251"
+      },
+      {
+        "attainedAge": "49",
+        "costOfInsuranceRate": "0.55334"
+      },
+      {
+        "attainedAge": "50",
+        "costOfInsuranceRate": "0.57417"
+      },
+      {
+        "attainedAge": "51",
+        "costOfInsuranceRate": "0.59501"
+      },
+      {
+        "attainedAge": "52",
+        "costOfInsuranceRate": "0.61584"
+      },
+      {
+        "attainedAge": "53",
+        "costOfInsuranceRate": "0.63667"
+      },
+      {
+        "attainedAge": "54",
+        "costOfInsuranceRate": "0.65751"
+      },
+      {
+        "attainedAge": "55",
+        "costOfInsuranceRate": "0.67834"
+      },
+      {
+        "attainedAge": "56",
+        "costOfInsuranceRate": "0.69917"
+      },
+      {
+        "attainedAge": "57",
+        "costOfInsuranceRate": "0.72001"
+      },
+      {
+        "attainedAge": "58",
+        "costOfInsuranceRate": "0.74084"
+      },
+      {
+        "attainedAge": "59",
+        "costOfInsuranceRate": "0.76167"
+      },
+      {
+        "attainedAge": "60",
+        "costOfInsuranceRate": "0.78250"
+      },
+      {
+        "attainedAge": "61",
+        "costOfInsuranceRate": "0.80334"
+      },
+      {
+        "attainedAge": "62",
+        "costOfInsuranceRate": "0.82417"
+      },
+      {
+        "attainedAge": "63",
+        "costOfInsuranceRate": "0.84500"
+      },
+      {
+        "attainedAge": "64",
+        "costOfInsuranceRate": "0.86584"
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      },
+      {
+        "attainedAge": "",
+        "costOfInsuranceRate": ""
+      }
+    ],
+    "listApplicantWaiverCostOfInsuranceAmountTable": [],
+    "listMaxCashValueFactorTable": [
+      {
+        "attainedAge": "25",
+        "maxCashValueFactor": "226.5"
+      },
+      {
+        "attainedAge": "26",
+        "maxCashValueFactor": "235.46"
+      },
+      {
+        "attainedAge": "27",
+        "maxCashValueFactor": "244.42"
+      },
+      {
+        "attainedAge": "28",
+        "maxCashValueFactor": "253.38"
+      },
+      {
+        "attainedAge": "29",
+        "maxCashValueFactor": "262.34"
+      },
+      {
+        "attainedAge": "30",
+        "maxCashValueFactor": "271.3"
+      },
+      {
+        "attainedAge": "31",
+        "maxCashValueFactor": "280.26"
+      },
+      {
+        "attainedAge": "32",
+        "maxCashValueFactor": "289.22"
+      },
+      {
+        "attainedAge": "33",
+        "maxCashValueFactor": "298.18"
+      },
+      {
+        "attainedAge": "34",
+        "maxCashValueFactor": "307.14"
+      },
+      {
+        "attainedAge": "35",
+        "maxCashValueFactor": "316.1"
+      },
+      {
+        "attainedAge": "36",
+        "maxCashValueFactor": "325.06"
+      },
+      {
+        "attainedAge": "37",
+        "maxCashValueFactor": "334.02"
+      },
+      {
+        "attainedAge": "38",
+        "maxCashValueFactor": "342.98"
+      },
+      {
+        "attainedAge": "39",
+        "maxCashValueFactor": "351.94"
+      },
+      {
+        "attainedAge": "40",
+        "maxCashValueFactor": "360.9"
+      },
+      {
+        "attainedAge": "41",
+        "maxCashValueFactor": "369.86"
+      },
+      {
+        "attainedAge": "42",
+        "maxCashValueFactor": "378.82"
+      },
+      {
+        "attainedAge": "43",
+        "maxCashValueFactor": "387.78"
+      },
+      {
+        "attainedAge": "44",
+        "maxCashValueFactor": "396.74"
+      },
+      {
+        "attainedAge": "45",
+        "maxCashValueFactor": "405.7"
+      },
+      {
+        "attainedAge": "46",
+        "maxCashValueFactor": "414.66"
+      },
+      {
+        "attainedAge": "47",
+        "maxCashValueFactor": "423.62"
+      },
+      {
+        "attainedAge": "48",
+        "maxCashValueFactor": "432.58"
+      },
+      {
+        "attainedAge": "49",
+        "maxCashValueFactor": "441.54"
+      },
+      {
+        "attainedAge": "50",
+        "maxCashValueFactor": "450.5"
+      },
+      {
+        "attainedAge": "51",
+        "maxCashValueFactor": "459.46"
+      },
+      {
+        "attainedAge": "52",
+        "maxCashValueFactor": "468.42"
+      },
+      {
+        "attainedAge": "53",
+        "maxCashValueFactor": "477.38"
+      },
+      {
+        "attainedAge": "54",
+        "maxCashValueFactor": "486.34"
+      },
+      {
+        "attainedAge": "55",
+        "maxCashValueFactor": "495.3"
+      },
+      {
+        "attainedAge": "56",
+        "maxCashValueFactor": "504.26"
+      },
+      {
+        "attainedAge": "57",
+        "maxCashValueFactor": "513.22"
+      },
+      {
+        "attainedAge": "58",
+        "maxCashValueFactor": "522.18"
+      },
+      {
+        "attainedAge": "59",
+        "maxCashValueFactor": "531.14"
+      },
+      {
+        "attainedAge": "60",
+        "maxCashValueFactor": "540.1"
+      },
+      {
+        "attainedAge": "61",
+        "maxCashValueFactor": "549.06"
+      },
+      {
+        "attainedAge": "62",
+        "maxCashValueFactor": "558.02"
+      },
+      {
+        "attainedAge": "63",
+        "maxCashValueFactor": "566.98"
+      },
+      {
+        "attainedAge": "64",
+        "maxCashValueFactor": "575.94"
+      },
+      {
+        "attainedAge": "65",
+        "maxCashValueFactor": "584.9"
+      },
+      {
+        "attainedAge": "66",
+        "maxCashValueFactor": "593.86"
+      },
+      {
+        "attainedAge": "67",
+        "maxCashValueFactor": "602.82"
+      },
+      {
+        "attainedAge": "68",
+        "maxCashValueFactor": "611.78"
+      },
+      {
+        "attainedAge": "69",
+        "maxCashValueFactor": "620.74"
+      },
+      {
+        "attainedAge": "70",
+        "maxCashValueFactor": "629.7"
+      },
+      {
+        "attainedAge": "71",
+        "maxCashValueFactor": "638.66"
+      },
+      {
+        "attainedAge": "72",
+        "maxCashValueFactor": "647.62"
+      },
+      {
+        "attainedAge": "73",
+        "maxCashValueFactor": "656.58"
+      },
+      {
+        "attainedAge": "74",
+        "maxCashValueFactor": "665.54"
+      },
+      {
+        "attainedAge": "75",
+        "maxCashValueFactor": "674.5"
+      },
+      {
+        "attainedAge": "76",
+        "maxCashValueFactor": "683.46"
+      },
+      {
+        "attainedAge": "77",
+        "maxCashValueFactor": "692.42"
+      },
+      {
+        "attainedAge": "78",
+        "maxCashValueFactor": "701.38"
+      },
+      {
+        "attainedAge": "79",
+        "maxCashValueFactor": "710.34"
+      },
+      {
+        "attainedAge": "80",
+        "maxCashValueFactor": "719.3"
+      },
+      {
+        "attainedAge": "81",
+        "maxCashValueFactor": "728.26"
+      },
+      {
+        "attainedAge": "82",
+        "maxCashValueFactor": "737.22"
+      },
+      {
+        "attainedAge": "83",
+        "maxCashValueFactor": "746.18"
+      },
+      {
+        "attainedAge": "84",
+        "maxCashValueFactor": "755.14"
+      },
+      {
+        "attainedAge": "85",
+        "maxCashValueFactor": "764.1"
+      },
+      {
+        "attainedAge": "86",
+        "maxCashValueFactor": "773.06"
+      },
+      {
+        "attainedAge": "87",
+        "maxCashValueFactor": "782.02"
+      },
+      {
+        "attainedAge": "88",
+        "maxCashValueFactor": "790.98"
+      },
+      {
+        "attainedAge": "89",
+        "maxCashValueFactor": "799.94"
+      },
+      {
+        "attainedAge": "90",
+        "maxCashValueFactor": "808.9"
+      },
+      {
+        "attainedAge": "91",
+        "maxCashValueFactor": "817.86"
+      },
+      {
+        "attainedAge": "92",
+        "maxCashValueFactor": "826.82"
+      },
+      {
+        "attainedAge": "93",
+        "maxCashValueFactor": "835.78"
+      },
+      {
+        "attainedAge": "94",
+        "maxCashValueFactor": "844.74"
+      },
+      {
+        "attainedAge": "95",
+        "maxCashValueFactor": "853.7"
+      },
+      {
+        "attainedAge": "96",
+        "maxCashValueFactor": "862.66"
+      },
+      {
+        "attainedAge": "97",
+        "maxCashValueFactor": "871.62"
+      },
+      {
+        "attainedAge": "98",
+        "maxCashValueFactor": "880.58"
+      },
+      {
+        "attainedAge": "99",
+        "maxCashValueFactor": "889.54"
+      },
+      {
+        "attainedAge": "100",
+        "maxCashValueFactor": "898.5"
+      },
+      {
+        "attainedAge": "101",
+        "maxCashValueFactor": "907.46"
+      },
+      {
+        "attainedAge": "102",
+        "maxCashValueFactor": "916.42"
+      },
+      {
+        "attainedAge": "103",
+        "maxCashValueFactor": "925.38"
+      },
+      {
+        "attainedAge": "104",
+        "maxCashValueFactor": "934.34"
+      },
+      {
+        "attainedAge": "105",
+        "maxCashValueFactor": "943.3"
+      },
+      {
+        "attainedAge": "106",
+        "maxCashValueFactor": "952.26"
+      },
+      {
+        "attainedAge": "107",
+        "maxCashValueFactor": "961.22"
+      },
+      {
+        "attainedAge": "108",
+        "maxCashValueFactor": "970.18"
+      },
+      {
+        "attainedAge": "109",
+        "maxCashValueFactor": "979.14"
+      },
+      {
+        "attainedAge": "110",
+        "maxCashValueFactor": "988.1"
+      },
+      {
+        "attainedAge": "111",
+        "maxCashValueFactor": "997.06"
+      },
+      {
+        "attainedAge": "112",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "113",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "114",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "115",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "116",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "117",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "118",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "119",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "120",
+        "maxCashValueFactor": "1000"
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      },
+      {
+        "attainedAge": "",
+        "maxCashValueFactor": ""
+      }
+    ],
+    "listSurrenderChargeRateTable": [
+      {
+        "attainedAge": "1",
+        "surrenderChargeRate": "21.10"
+      },
+      {
+        "attainedAge": "2",
+        "surrenderChargeRate": "19.87"
+      },
+      {
+        "attainedAge": "3",
+        "surrenderChargeRate": "18.63"
+      },
+      {
+        "attainedAge": "4",
+        "surrenderChargeRate": "17.40"
+      },
+      {
+        "attainedAge": "5",
+        "surrenderChargeRate": "16.16"
+      },
+      {
+        "attainedAge": "6",
+        "surrenderChargeRate": "14.93"
+      },
+      {
+        "attainedAge": "7",
+        "surrenderChargeRate": "13.70"
+      },
+      {
+        "attainedAge": "8",
+        "surrenderChargeRate": "12.46"
+      },
+      {
+        "attainedAge": "9",
+        "surrenderChargeRate": "11.23"
+      },
+      {
+        "attainedAge": "10",
+        "surrenderChargeRate": "9.99"
+      },
+      {
+        "attainedAge": "11",
+        "surrenderChargeRate": "8.76"
+      },
+      {
+        "attainedAge": "12",
+        "surrenderChargeRate": "7.53"
+      },
+      {
+        "attainedAge": "13",
+        "surrenderChargeRate": "6.29"
+      },
+      {
+        "attainedAge": "14",
+        "surrenderChargeRate": "5.06"
+      },
+      {
+        "attainedAge": "15",
+        "surrenderChargeRate": "3.82"
+      }
+    ]
+  },
+  "amendmentReason": {
+    "code": "NEWBUSINESS",
+    "description": "New Business"
+  },
+  "amendmentReturnDate": "2018-11-03",
+  "amendmentInfo": {
+    "A10": {
+      "amendmentId": "A10",
+      "amendmentText": ""
+    },
+    "A25": {
+      "amendmentId": "A25",
+      "amendmentText": ""
+    },
+    "A36": {
+      "amendmentId": "A36",
+      "amendmentText": ""
+    }
+  },
+  "endorsementInfo": {
+    "E04": {
+      "endorsementId": "E04",
+      "endorsementText": ""
+    },
+    "E03": {
+      "endorsementId": "E03",
+      "endorsementText": ""
+    },
+    "E17": {
+      "endorsementId": "E17",
+      "endorsementText": ""
+    },
+    "E16": {
+      "endorsementId": "E16",
+      "endorsementText": ""
+    }
+  },
+  "illustrationInfo": {
+    "illustrationReportType": {
+      "code": "BASIC",
+      "description": "Basic Illustration"
+    },
+    "illustration": "",
+    "illustrationPageCount": "1"
+  },
+  "correspondenceImages": "",
+  "certificatePackageReprint": "NONE"
+} 
+]

@@ -1,0 +1,149 @@
+﻿@model WOW.WoodmenReconService.Models.HomeModel
+
+<fieldset>
+    <legend>@ViewBag.Title</legend>
+    <table>
+        <tr>
+            <td style="width: 18%">Web API:</td>
+            <td>ONLINE</td>
+        </tr>
+        <tr>
+            <td>Database:</td>
+            <td>@((Model.IsDatabaseActive) ? "ONLINE" : "OFFLINE")</td>
+        </tr>
+    </table>
+</fieldset>
+
+@if (String.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    if (Model.LpaVersionReports.Any() || Model.NonCompliantHosts.Any())
+    {
+        <p>@Html.ActionLink(HttpUtility.HtmlDecode("&laquo; Clear Results"), "Index")</p>
+    }
+    else
+    {
+        <br />
+        <fieldset>
+            <legend>Activity</legend>
+            <table>
+                <tr>
+                    <td style="width: 40%">Reports Submitted (Today):</td>
+                    <td>@Model.ReportsSubmittedToday.ToString("n0")</td>
+                </tr>
+                <tr>
+                    <td>Reports Submitted (Last 30 Days):</td>
+                    <td>@Model.ReportsSubmittedLastThirtyDays.ToString("n0")</td>
+                </tr>
+            </table>
+            <br />
+            <table>
+                <tr>
+                    <td style="width: 40%">Total Distinct Hosts (Today):</td>
+                    <td>@Model.HostsSeenToday.ToString("n0")</td>
+                </tr>
+                <tr>
+                    <td>Total Distinct Hosts (Last 30 Days):</td>
+                    <td>@Model.HostsSeenLastThirtyDays.ToString("n0")</td>
+                </tr>
+            </table>
+        </fieldset>
+        <br />
+    }
+    <fieldset>
+        <legend>Query for Non-Compliant Hosts</legend>
+        @using (Html.BeginForm())
+        {
+            <p><label>LPA Version Number:</label> <input type="text" id="LpaVersion" name="LpaVersion" value="@Model.LpaVersionParameter" /></p>
+            <p><label>Deployment Date:</label> <input type="text" name="DeploymentDate" value="@Model.DeploymentDateParameter" /></p>
+            <p><label>&nbsp;</label> <input type="submit" name="btnSubmit" value="Submit" /></p>
+        }
+
+        @if (Model.NonCompliantHosts.Any())
+        {
+            <h2>Non-Compliant Hosts</h2>
+            <table class="results">
+                <tr>
+                    <th width="165">Hostname</th>
+                    <th>Last Reported LPA Version</th>
+                </tr>
+                @foreach (var record in Model.NonCompliantHosts)
+                {
+                    <tr>
+                        <td>@record.Hostname</td>
+                        <td>@record.LpaVersion</td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            if (!String.IsNullOrWhiteSpace(Model.LpaVersionParameter) && !String.IsNullOrWhiteSpace(Model.DeploymentDateParameter))
+            {
+                // Parameter values means the user attempted to query the system, but no rows were returned.
+                <h2>Non-Compliant Hosts</h2>
+                <p>No matching records found.</p>
+            }
+        }
+    </fieldset>
+
+    <br />
+    <fieldset>
+        <legend>Query for LPA Version Data by Hostname</legend>
+        @using (Html.BeginForm())
+        {
+            <p><label>Hostname:</label> <input type="text" name="Hostname" value="@Model.HostnameParameter" /></p>
+            <p><label>&nbsp;</label> <input type="submit" name="btnSubmit" value="Submit" /></p>
+        }
+
+        @if (Model.LpaVersionReports.Any())
+        {
+            <h2>LPA Version Reports for @Model.HostnameParameter</h2>
+            <table class="results">
+                <tr>
+                    <th width="165">Hostname</th>
+                    <th>LPA Version</th>
+                    <th>Received Date</th>
+                </tr>
+                @foreach (var record in Model.LpaVersionReports)
+                {
+                    <tr>
+                        <td>@record.Hostname</td>
+                        <td>@record.LpaVersion</td>
+                        <td>@record.ReportReceivedDate.ToString("MM/dd/yyyy")</td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            if (!String.IsNullOrWhiteSpace(Model.HostnameParameter))
+            {
+                // Parameter value means the user attempted to query the system, but no rows were returned.
+                <h2>LPA Version Reports for @Model.HostnameParameter</h2>
+                <p>No matching records found.</p>
+            }
+        }
+    </fieldset>
+}
+else
+{
+    <br />
+    <fieldset>
+        <legend>Error Message</legend>
+        <p>@ViewBag.ErrorMessage</p>
+    </fieldset>
+}
+
+<script>
+    if(typeof(Storage) !== 'undefined')
+    {
+        var versionTextbox = document.getElementById('LpaVersion');
+        
+        versionTextbox.value = localStorage.getItem('lpaVersion');
+
+        versionTextbox.addEventListener("blur", function (event)
+        {
+            localStorage.setItem('lpaVersion', document.getElementById('LpaVersion').value);
+        }, true);
+    }
+</script>

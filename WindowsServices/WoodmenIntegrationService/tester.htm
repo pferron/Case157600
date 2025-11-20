@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta content="IE=11.0000" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Woodmen Illustration Service</title>
+    <link href="./Site.css" rel="stylesheet">
+    <link href="./simpletabs.css" rel="stylesheet">
+    <script src="./simpletabs_1.3.packed.js"></script>
+    <meta name="GENERATOR" content="MSHTML 11.00.9600.17631">
+</head>
+<body>
+    <div>
+        <fieldset>
+            <legend>Woodmen Illustration Service</legend>
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width: 18%;">Web API:</td>
+                        <td>
+                            <a style="color: white;" href="http://localhost:2015/api/Service/Heartbeat" target="_blank">Check Service</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Database:</td>
+                        <td style="color: white;">
+                            <a style="color: white;" href="http://localhost:2015/api/Service/DatabaseCheck" target="_blank">Check Database</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <div class="simpleTabs">
+            <ul class="simpleTabsNavigation">
+                <li>
+                    <a href="#">FIP to ACORD Debugging</a>
+                </li>
+                <li>
+                    <a href="#">LifePortraits Search</a>
+                </li>
+                <li>
+                    <a href="#">Download Illustrations</a>
+                </li>
+                <li>
+                    <a href="#">Rater Functions</a>
+                </li>
+                <li>
+                    <a href="#">Maintenance</a>
+                </li>
+            </ul>
+            <div class="simpleTabsContent">
+                <h3>FIP File Test Submission</h3>
+                <p>Upload a FIP File using this form. An Illustration Values model will be returned.</p>
+                <form action="http://localhost:2015/api/Illustrations/GenerateIllustrationViaFip" enctype="multipart/form-data" method="post">
+                    <input name="testfile" type="file">
+                    <input name="btnSubmit" type="submit" value="Submit">
+                </form>
+                <br>
+                <h3>Convert FIP File to ACORD</h3>
+                <p>Upload a FIP File using this form. An ACORD TX111 Illustration Request XML document will be returned.</p>
+                <form action="http://localhost:2015/api/Illustrations/ConvertFipFile" enctype="multipart/form-data" method="post">
+                    <input name="testfile" type="file">
+                    <input name="btnSubmit" type="submit" value="Submit">
+                </form>
+                <br>
+                <h3>Submit ACORD to LifePortraits</h3>
+                <p>Upload an ACORD TX111 Illustration Request directly to the LifePortraits backend.</p>
+                <form action="http://localhost:2015/api/Illustrations/GenerateIllustrationViaAcord" enctype="multipart/form-data" method="post">
+                    <input name="testfile" type="file">
+                    <input name="btnSubmit" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="simpleTabsContent">
+                <h3>Submit Search Request to LifePortraits</h3>
+                <p>Submit a test search.</p>
+                <form action="http://localhost:2015/api/Search/Search" method="post">
+                    <div>
+                        <div>
+                            <label for="firstName">First Name:</label>
+                            <br>
+                            <input name="firstName" type="text">
+                        </div>
+                        <div>
+                            <label for="lastName">Last Name:*</label>
+                            <br>
+                            <input name="lastName" type="text">
+                        </div>
+                        <div>
+                            <label for="age">Age:</label>
+                            <br>
+                            <input name="age" type="number">
+                        </div>
+                        <div>
+                            <label for="userName">User Name:*</label>
+                            <br>
+                            <input name="userName" type="text" value="DAD7443">
+                        </div>
+                        <div>
+                            <input name="btnSubmit" type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="simpleTabsContent">
+                <h3>Download Illustration PDF</h3>
+                <p>Upload a FIP File using this form. An Illustration PDF will be downloaded.</p>
+                <form action="http://localhost:2015/api/Illustrations/FetchIllustrationPdf" enctype="multipart/form-data" method="post">
+                    <input name="testfile" type="file">
+                    <input name="btnSubmit" type="submit" value="Submit">
+                </form>
+                <br>
+                <p>Upload an ACORD File using this form. An Illustration PDF will be downloaded.</p>
+                <form action="http://localhost:2015/api/Illustrations/FetchIllustrationPdfViaAcord" enctype="multipart/form-data" method="post">
+                    <input name="testfile" type="file">
+                    <input name="btnSubmit" type="submit" value="Submit">
+                </form>
+                <br>
+                <h3>Download Illustration Values</h3>
+                <p>Upload a FIP File using this form. An Illustration Values text file will be returned.</p>
+                <form action="http://localhost:2015/api/Illustrations/FetchIllustrationValues" enctype="multipart/form-data" method="post">
+                    <input name="testfile" type="file">
+                    <input name="btnSubmit" type="submit" value="Submit">
+                </form>
+                <br>
+                <p>Upload an ACORD File using this form. An Illustration Values text file will be returned.</p>
+                <form action="http://localhost:2015/api/Illustrations/FetchIllustrationValuesViaAcord" enctype="multipart/form-data" method="post">
+                    <input name="testfile" type="file">
+                    <input name="btnSubmit" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="simpleTabsContent">
+                <h3>Rater Functions</h3>
+                <p>Upload a rate request using a JSON File using this form.</p>
+                <form action="http://localhost:2015/api/Rater/FetchRateViaJson" enctype="multipart/form-data" method="post">
+                    <input name="testfile" type="file">
+                    <input name="btnSubmit" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="simpleTabsContent">
+                <h3>Maintenance</h3>
+                <p>A manual purge of files can be triggered, if needed.</p>
+                <p>
+                    <a style="color: rgb(255, 255, 255);" onclick="return confirm('This will remove all uploads and results from the server. Continue?');" href="http://localhost:2015/api/Service/PurgeUploads">Purge AppData Files»</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

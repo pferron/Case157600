@@ -1,0 +1,147 @@
+﻿@model IEnumerable<WebServiceTestManager.Models.TestSetModel>
+@using WebServiceTestManager.Models
+
+@{
+    ViewBag.Title = "Tests";
+}
+@section Scripts{
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        $(document).ready(function () {
+            $('.deleteTestSet').click(function () {
+                var ctrl = $(this);
+                ShowDialog("Are you sure", "Deleting a test set cannot be undone. <strong>WARNING</strong> This will also remove all of the tests in the set.", function () {
+                    $.ajax({
+                        url: '@Url.Action("Remove")',
+                        type: 'POST',
+                        data: { modifierType: @((int)ModifierType.TestSet) , id: ctrl.data('id') }
+                    }).done(function (data) {
+                        if (data == "OK") {
+                            ctrl.closest('tr').remove();
+                            AddAlert("Successfully removed " + ctrl.data('name'), "success");
+                        }
+                        else {
+                            AddAlert(data + "", "danger");
+                        }
+                    }).fail(function () {
+                        AddAlert("Something went wrong while trying to process your request. Please contact the help desk if this issue continues.", "danger");
+                    })
+                });
+            });
+
+            $(document).on("click", ".clickable", (function () {
+                window.location = $(this).find("a").attr("href");
+                console.log("click");
+            }));
+
+            $('.edit').click(function (event) {
+                event.stopPropagation();
+
+                var ctrl = $(this);
+                var id = ctrl.data('id');
+                var idPrefix = '#' + id;
+                toggleEdit(id);
+                $(idPrefix + "-Container").removeClass("clickable");
+                var name = $(idPrefix + "-Name");
+                var nameEditor = $(idPrefix + "-EditName")
+                nameEditor.val(name.text());
+            });
+
+            $('.cancel').click(function () {
+                event.stopPropagation();
+                var ctrl = $(this);
+                var id = ctrl.data('id');
+                var idPrefix = '#' + id;
+                $(idPrefix + "-Container").addClass("clickable");
+                toggleEdit(id);
+            });
+
+            $('.save').click(function () {
+                var ctrl = $(this);
+                var id = ctrl.data('id');
+                var idPrefix = '#' + id;
+                $(idPrefix + "-Container").addClass("clickable");
+                var name = $(idPrefix + "-Name");
+                var nameEditor = $(idPrefix + "-EditName");
+                var input = {
+                    Id: id,
+                    Name: nameEditor.val()
+                };
+
+                var DTO = JSON.stringify(input);
+
+                $.ajax({
+                    type: "POST",
+                    data: DTO,
+                    url: "@Url.Action("EditTestSet", "")",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    complete: function (data) {
+                        if (data.responseText == 1) {
+                            AddAlert("Changes saved successfully.", "success");
+                            toggleEdit(id);
+                            name.text(nameEditor.val());
+                        }
+                        else {
+                            AddAlert("Unable to edit destination.", "danger");
+                        }
+                    }
+                });
+            });
+
+        });
+        function toggleEdit(id) {
+            var idPrefix = '#' + id;
+            $(idPrefix + "-Remove").toggle();
+            $(idPrefix + "-Edit").toggle();
+            $(idPrefix + "-Name").toggle();
+            $(idPrefix + "-EditName").toggle();
+            $(idPrefix + "-Cancel").toggle();
+            $(idPrefix + "-Save").toggle();
+        }
+    </script>
+}
+<style>
+    .testset {
+        display: grid;
+        grid-template-columns: 90% 10%;
+        padding: 5px;
+    }
+    .testset:hover {
+        background-color: #e9ecef;
+    }
+    .clickable {
+        cursor: pointer;
+    }
+</style>
+<div class="bg-white rounded shadow my-3 p-3">
+    <div style="display: flex; justify-content: space-between;">
+        <h1>Test Sets</h1>
+        <a href="@Url.Action("Create" ,"TestSet", new {@id = ViewContext.RouteData.Values["id"] } )" class="btn btn-lg" data-toggle="tooltip" data-placement="left" title="Create a new Test Case"><span class='fas fa-plus text-success'></span></a>
+    </div>
+    <hr style="margin-top: 0" />
+    @foreach (var item in Model)
+    {
+        <div class="testset-container rounded ">
+            
+            <div class="testset rounded">
+                
+                <div id="@item.Id-Container" class="clickable">
+                    <h4 data-id="@item.Id" id="@item.Id-Name">@item.Name</h4>
+                    <input type="text" style="display:none" class="form-control" id="@item.Id-EditName" name="name">
+                    <a style="display: none" href="@Url.Action("View" ,"TestSet", new { id=item.GenerateSlug() } )"></a> @*@title = item.Name, @id = item.Id*@
+                </div>
+                <div>
+                    <button type='button' data-id="@item.Id" class='btn edit' id="@item.Id-Edit" data-toggle="tooltip" data-placement="left" title="Edit"> <span class='fas  fa-pencil-alt'></span> </button>
+                    <button type='button' class='btn cancel' id="@item.Id-Cancel" style="display: none" data-toggle="tooltip" data-placement="left" title="Cancel Changes" data-id="@item.Id" data-name="@item.Name"> <span class='fas fa-times'></span> </button>
+                    <button type='button' class='btn' id="@item.Id-Remove" data-toggle="tooltip" data-placement="right" title="Remove" data-id="@item.Id" data-name="@item.Name"> <span class='fas  fa-times text-danger'></span> </button>
+                    <button type='button' class='btn save' id="@item.Id-Save" style="display: none" data-toggle="tooltip" data-placement="right" title="Save Changes" data-id="@item.Id" data-name="@item.Name"> <span class='fas fa-check text-success'></span> </button>
+                </div>
+
+            </div>
+        </div>
+        <hr />
+    }
+</div>

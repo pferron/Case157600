@@ -1,0 +1,303 @@
+﻿body {
+    background-color: #f7f7f6;
+    font-family: 'Roboto', "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 400;
+}
+
+input, textarea, select, button {
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 400;
+}
+
+.main {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.navbar {
+    padding-top: 0px;
+    background-image: linear-gradient(#c0d8ef, #f7f7f6);
+}
+
+.navbar-brand {
+    padding: 0px;
+}
+
+footer {
+    color: #777;
+    font-size: 12px;
+    padding: 1rem;
+}
+
+    footer p {
+        margin: 0px;
+    }
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select,
+textarea {
+    border-radius: 1px;
+}*/
+
+.side-nav {
+    width: 300px;
+    background-color: #003755;
+}
+
+    .side-nav .nav-item a {
+        color: #CCC;
+        padding: .75rem 2rem;
+        border-left: 5px solid #003755;
+    }
+
+        .side-nav .nav-item a.active,
+        .side-nav .nav-item a:hover {
+            background-color: #00314a;
+            color: white;
+            border-left: 5px solid #c0d8ef;
+        }
+
+        .side-nav .nav-item a i {
+            padding-right: 5px;
+        }
+
+.card {
+    border-radius: 1px;
+}
+
+thead {
+    background-color: #EEE;
+}
+
+.table thead th {
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 400;
+}
+
+.table-bordered th, .table-bordered td {
+    border: none;
+}
+
+.btn {
+    border-radius: 1px;
+    border: none;
+}
+
+.btn-image {
+    color: #003750;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:not(.disabled):not(.disabled):active {
+    background-color: #003755;
+    color: white;
+}
+
+.text-primary {
+    color: #003755 !important;
+}
+
+.hiddenSpinner {
+    display: none;
+}
+
+#busySpinner {
+    background: #ffffff;
+    color: #666666;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 5000;
+    top: 0;
+    left: 0;
+    float: left;
+    text-align: center;
+    padding-top: 25%;
+    opacity: .80;
+}
+
+.spinner-border {
+    height: 128px;
+    width: 128px;
+}
+
+.form-control {
+    border-radius: 1px;
+}
+
+.custom-file-label {
+    border-radius: 1px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.grid-item {
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+container-fluid {
+    border: solid;
+    border-color: black;
+}
+
+/* Changes read only background fields*/
+.form-control[readonly].no-gray {
+    background-color: white;
+}
+
+.form-control[readonly].background {
+    background-color: #e8f1f7;
+}
+
+/*style settings for popup dialog form cimJson*/
+.background {
+    background-color: #e8f1f7;
+}
+
+.confirmDialog {
+    padding: 2em 2em 0em 2em;
+    text-align: center;
+}
+
+.btn-xs,
+.btn-group-xs > .btn {
+    padding: 1px 5px;
+    font-size: 14px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.item-selected {
+    background-color: #28a745 !important;
+}
+
+#render-content {
+    overflow: auto;
+    max-height: 60vh;
+}
+
+
+#sidebar {
+    max-height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#side-render {
+    border-radius: 4px;
+    border: solid rgba(0, 0, 0, 0.125);
+    padding: 4px;
+}
+
+#render {
+    display: flex;
+    flex-direction: column;
+}
+
+.cim {
+    /*height: 100vh;*/
+    height: 100%;
+    background-color: #ccc;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border: solid 4px rgba(0, 0, 0, 0.125);
+    /*border: dashed 4px #aaa;*/
+    padding: 10px;
+}
+
+.cim-item {
+    border-radius: 4px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    justify-content: center;
+    background-color: #003755;
+    width: 100%;
+}
+
+.cim-container {
+    padding: 5px;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    background-color: #003755;
+    width: 100%;
+    min-height: 50px;
+    flex-direction: column;
+}
+
+.cim-in-container {
+    background-color: #6c757d;
+}
+
+.drag-container {
+    margin: 2px;
+    height: 100px;
+    border-radius: 2px;
+    border: solid rgba(0, 0, 0, 0.125);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drag-body {
+    text-align: center;
+    display: flex;
+    flex-direction: column
+}
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+.can-drag {
+    background-color: #29e;
+}
+
+.can-drag-border {
+    border: dashed 4px #000;
+}
+
+.container-drag-border {
+    border: dashed 4px #fff;
+}

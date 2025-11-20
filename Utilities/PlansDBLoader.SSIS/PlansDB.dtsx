@@ -1,0 +1,1845 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/8/2019 12:59:52 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="T460-BT-BTG6549"
+  DTS:CreatorName="HOAD\btg6549"
+  DTS:DTSID="{B39B1A6B-49B2-47F1-825A-51B405BC182D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1900.73"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{B56C9707-CBCE-421C-AC1E-3E43D9D66739}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1E4DCFBB-F286-4420-96D3-9CB7BA3F6AB3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\RateDataByYear_Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="RateDataByYear_Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[RateDataByYear]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\RateDataByYear_Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{F9720D7E-6EEE-4CC3-B09C-6A0722390726}:invalid"
+                  connectionManagerRefId="{F9720D7E-6EEE-4CC3-B09C-6A0722390726}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[RateDataByYearID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RateDataByYearID"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[RateDataByYearID]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[RateDataByYearID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ RateCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" RateCode"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[RateCode]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ RateCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Age]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Age"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Age]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Sex]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Sex"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sex]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Sex]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Class]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Class"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Class]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Class]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Band]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Band"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Band]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Band]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Year]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Year"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Year]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate1"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate1]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate2"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate2]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate3"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate3]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate3]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate4]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate4"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate4]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate4]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate5]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate5"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate5]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate5]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate6]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate6"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate6]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate6]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate7]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate7"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate7]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate7]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate8]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate8"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate8]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate8]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate9]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate9"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate9]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate9]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].Columns[ Rate10 ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate10 "
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate10]"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate10 ]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[RateDataByYearID]"
+                      dataType="i4"
+                      name="RateDataByYearID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[RateCode]"
+                      dataType="i4"
+                      name="RateCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
+                      dataType="i4"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sex]"
+                      dataType="ui1"
+                      name="Sex" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Class]"
+                      dataType="i4"
+                      name="Class" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Band]"
+                      dataType="i4"
+                      name="Band" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Year]"
+                      dataType="i4"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate1]"
+                      dataType="r8"
+                      name="Rate1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate2]"
+                      dataType="r8"
+                      name="Rate2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate3]"
+                      dataType="r8"
+                      name="Rate3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate4]"
+                      dataType="r8"
+                      name="Rate4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate5]"
+                      dataType="r8"
+                      name="Rate5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate6]"
+                      dataType="r8"
+                      name="Rate6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate7]"
+                      dataType="r8"
+                      name="Rate7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate8]"
+                      dataType="r8"
+                      name="Rate8" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate9]"
+                      dataType="r8"
+                      name="Rate9" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate10]"
+                      dataType="r8"
+                      name="Rate10" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\RateDataByYear_Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\RateDataByYear_Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="RateDataByYear_Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\RateDataByYear_Source.Connections[FlatFileConnection]"
+                  connectionManagerID="{E1723A55-97E9-42E1-8E76-5127DE2B7D2C}:invalid"
+                  connectionManagerRefId="{E1723A55-97E9-42E1-8E76-5127DE2B7D2C}:invalid"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[RateDataByYearID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[RateDataByYearID]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[RateDataByYearID]"
+                      name="RateDataByYearID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ RateCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ RateCode]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ RateCode]"
+                      name=" RateCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Age]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Age]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Age]"
+                      name=" Age"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Sex]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Sex]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Sex]"
+                      name=" Sex"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Class]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Class]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Class]"
+                      name=" Class"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Band]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Band]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Band]"
+                      name=" Band"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Year]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Year]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Year]"
+                      name=" Year"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate1]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate1]"
+                      name=" Rate1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate2]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate2]"
+                      name=" Rate2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate3]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate3]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate3]"
+                      name=" Rate3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate4]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate4]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate4]"
+                      name=" Rate4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate5]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate5]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate5]"
+                      name=" Rate5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate6]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate6]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate6]"
+                      name=" Rate6"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate7]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate7]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate7]"
+                      name=" Rate7"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate8]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate8]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate8]"
+                      name=" Rate8"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate9]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate9]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate9]"
+                      name=" Rate9"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate10 ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate10 ]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].Columns[ Rate10 ]"
+                      name=" Rate10 "
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[RateDataByYearID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RateDataByYearID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ RateCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" RateCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Age]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Age" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Sex]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Sex" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Class]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Class" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Band]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Band" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Year]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Year" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate8]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate8" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate9" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate10 ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate10 " />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\RateData_Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="RateData_Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[RateData]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\RateData_Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{F9720D7E-6EEE-4CC3-B09C-6A0722390726}:invalid"
+                  connectionManagerRefId="{F9720D7E-6EEE-4CC3-B09C-6A0722390726}:invalid"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[RateDataID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="RateDataID"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[RateDataID]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[RateDataID]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ RateCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" RateCode"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[RateCode]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ RateCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Age]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Age"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Age]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Sex]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Sex"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sex]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Sex]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Class]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Class"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Class]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Class]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Band]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Band"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Band]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Band]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate1"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate1]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate2"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate2]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate3]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate3"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate3]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate3]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate4]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate4"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate4]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate4]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate5]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate5"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate5]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate5]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate6]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate6"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate6]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate6]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate7]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate7"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate7]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate7]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate8]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate8"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate8]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate8]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate9]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate9"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate9]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate9]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].Columns[ Rate10 ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName=" Rate10 "
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate10]"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate10 ]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[RateDataID]"
+                      dataType="i4"
+                      name="RateDataID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[RateCode]"
+                      dataType="i4"
+                      name="RateCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Age]"
+                      dataType="i4"
+                      name="Age" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Sex]"
+                      dataType="ui1"
+                      name="Sex" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Class]"
+                      dataType="i4"
+                      name="Class" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Band]"
+                      dataType="i4"
+                      name="Band" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate1]"
+                      dataType="r8"
+                      name="Rate1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate2]"
+                      dataType="r8"
+                      name="Rate2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate3]"
+                      dataType="r8"
+                      name="Rate3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate4]"
+                      dataType="r8"
+                      name="Rate4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate5]"
+                      dataType="r8"
+                      name="Rate5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate6]"
+                      dataType="r8"
+                      name="Rate6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate7]"
+                      dataType="r8"
+                      name="Rate7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate8]"
+                      dataType="r8"
+                      name="Rate8" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate9]"
+                      dataType="r8"
+                      name="Rate9" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Rate10]"
+                      dataType="r8"
+                      name="Rate10" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\RateData_Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\RateData_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\RateData_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\RateData_Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="RateData_Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\RateData_Source.Connections[FlatFileConnection]"
+                  connectionManagerID="{22F6DCEA-76D3-4114-86FF-69359720DE1F}:invalid"
+                  connectionManagerRefId="{22F6DCEA-76D3-4114-86FF-69359720DE1F}:invalid"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[RateDataID]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[RateDataID]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[RateDataID]"
+                      name="RateDataID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ RateCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ RateCode]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ RateCode]"
+                      name=" RateCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Age]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Age]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Age]"
+                      name=" Age"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Sex]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Sex]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Sex]"
+                      name=" Sex"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Class]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Class]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Class]"
+                      name=" Class"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Band]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Band]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Band]"
+                      name=" Band"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate1]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate1]"
+                      name=" Rate1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate2]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate2]"
+                      name=" Rate2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate3]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate3]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate3]"
+                      name=" Rate3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate4]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate4]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate4]"
+                      name=" Rate4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate5]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate5]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate5]"
+                      name=" Rate5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate6]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate6]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate6]"
+                      name=" Rate6"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate7]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate7]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate7]"
+                      name=" Rate7"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate8]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate8]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate8]"
+                      name=" Rate8"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate9]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate9]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate9]"
+                      name=" Rate9"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate10 ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate10 ]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].Columns[ Rate10 ]"
+                      name=" Rate10 "
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[RateDataID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="RateDataID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ RateCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" RateCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Age]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Age" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Sex]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Sex" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Class]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Class" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Band]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Band" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate3" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate4" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate5" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate6" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate7" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate8]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate8" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate9" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output].ExternalColumns[ Rate10 ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name=" Rate10 " />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Flat File Source Output]"
+              endId="Package\Data Flow Task\RateData_Destination.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Data Flow Task\RateData_Source.Outputs[Flat File Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Flat File Source Output1]"
+              endId="Package\Data Flow Task\RateDataByYear_Destination.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Data Flow Task\RateDataByYear_Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="154.666666666667,42"
+          Id="Package\Data Flow Task"
+          TopLeft="138,83" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\Data Flow Task\RateData_Source"
+          TopLeft="56.6666658222675,26.0000004893855" />
+        <NodeLayout
+          Size="184,42.6666666666667"
+          Id="Package\Data Flow Task\RateData_Destination"
+          TopLeft="69.166665636003,148.245616825444" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
+          TopLeft="138.666665822268,68.6666671560522">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="22.4999998137355,79.5789496693915"
+              Start="0,0"
+              End="22.4999998137355,72.0789496693915">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.7894748346958" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.7894748346958"
+                    Point2="0,39.7894748346958"
+                    Point3="4,39.7894748346958" />
+                  <mssgle:LineSegment
+                    End="18.4999998137355,39.7894748346958" />
+                  <mssgle:CubicBezierSegment
+                    Point1="18.4999998137355,39.7894748346958"
+                    Point2="22.4999998137355,39.7894748346958"
+                    Point3="22.4999998137355,43.7894748346958" />
+                  <mssgle:LineSegment
+                    End="22.4999998137355,72.0789496693915" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="200,42.6666666666667"
+          Id="Package\Data Flow Task\RateDataByYear_Source"
+          TopLeft="351.666661426425,33.298246240792" />
+        <NodeLayout
+          Size="218.666666666667,42.6666666666667"
+          Id="Package\Data Flow Task\RateDataByYear_Destination"
+          TopLeft="316.666661947966,152.807020420073" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Flat File Source Output1]"
+          TopLeft="451.666661426425,75.9649129074586">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25.6666661451261,76.8421075126141"
+              Start="0,0"
+              End="-25.6666661451261,69.3421075126141">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.4210537563071" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.4210537563071"
+                    Point2="0,38.4210537563071"
+                    Point3="-4,38.4210537563071" />
+                  <mssgle:LineSegment
+                    End="-21.6666661451261,38.4210537563071" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21.6666661451261,38.4210537563071"
+                    Point2="-25.6666661451261,38.4210537563071"
+                    Point3="-25.6666661451261,42.4210537563071" />
+                  <mssgle:LineSegment
+                    End="-25.6666661451261,69.3421075126141" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\RateData_Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\RateDataByYear_Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

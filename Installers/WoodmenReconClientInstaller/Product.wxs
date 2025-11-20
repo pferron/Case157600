@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+	<Product Id="*" Name="Woodmen Recon Client" Language="1033" Version="2.1.0" Manufacturer="WoodmenLife" UpgradeCode="a6527ae1-3686-4e0b-bdc1-ba8be60d79df">
+    <Package InstallerVersion="400" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" Platform="x64" />
+
+    <PropertyRef Id="WIX_ACCOUNT_LOCALSYSTEM" />
+    <!--<PropertyRef Id="WIX_IS_NETFRAMEWORK_47_OR_LATER_INSTALLED"/>
+
+    <Condition Message="This application requires .NET Framework 4.7.2. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_47_OR_LATER_INSTALLED]]>
+    </Condition>-->
+
+    <Icon Id="ProgramIcon" SourceFile="$(var.WoodmenReconClient.TargetDir)WLTOWER.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="ProgramIcon" />
+    
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="WoodmenReconClientInstaller" Level="1">
+      <ComponentRef Id="CMP_WOW.WoodmenReconClient"/>
+      <ComponentRef Id="CMP_WOW.WoodmenReconClientConfig"/>
+      <ComponentRef Id="CMP_log4net"/>
+      <ComponentRef Id="CMP_NewtonsoftJson"/>
+      <ComponentRef Id="CMP_WLTOWER"/>
+		</Feature>
+
+    <UIRef Id="WoodmenWixUI"/>
+    
+	</Product>
+
+  <Fragment>
+    <UI Id="WoodmenWixUI">
+      <UIRef Id="WixUI_InstallDir"/>
+      <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+      <!-- skip license page going forward -->
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg"  Order="3">1</Publish>
+      <!-- skip license page on the way back too -->
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg"  Order="3">1</Publish>
+    </UI>
+  </Fragment>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="CompanyFolder" Name="WoodmenLife">
+          <Directory Id="INSTALLFOLDER" Name="Woodmen Recon Client" />
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+	<Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="CMP_WOW.WoodmenReconClient" Win64="yes">
+        <File Id="FILE_WOW.WoodmenReconClient.exe"        Name="WOW.WoodmenReconClient.exe"        KeyPath="yes" Source="$(var.WoodmenReconClient.TargetDir)WOW.WoodmenReconClient.exe" />
+        <ServiceInstall
+          Id="SI_WoodmenReconClient"
+          Name="WoodmenReconClient"
+          DisplayName="WoodmenLife Recon Client"
+          Start="auto"
+          ErrorControl="normal"
+          Type="ownProcess"
+          Interactive="no"
+          Account="[WIX_ACCOUNT_LOCALSYSTEM]"
+          Description="Service that reports system configuration details to the Home Office."
+          Vital="yes"/>
+        <ServiceControl
+          Id="SC_WoodmenReconClient"
+          Name="WoodmenReconClient"
+          Start="install"
+          Stop="both"
+          Remove="uninstall"
+          Wait="no"/>
+      </Component>
+      <Component Id="CMP_WOW.WoodmenReconClientConfig" Win64="yes">
+        <File Id="FILE_WOW.WoodmenReconClient.exe.config" Name="WOW.WoodmenReconClient.exe.config" KeyPath="yes" Source="$(var.WoodmenReconClient.TargetDir)WOW.WoodmenReconClient.exe.config" />
+      </Component>
+      <Component Id="CMP_log4net" Win64="yes">
+        <File Id="FILE_log4net.dll"                       Name="log4net.dll"                       KeyPath="yes" Source="$(var.WoodmenReconClient.TargetDir)log4net.dll" />
+      </Component>
+      <Component Id="CMP_NewtonsoftJson" Win64="yes">
+        <File Id="FILE_Newtonsoft.Json.dll"               Name="Newtonsoft.Json.dll"               KeyPath="yes" Source="$(var.WoodmenReconClient.TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="CMP_WLTOWER" Win64="yes">
+        <File Id="FILE_WLTOWER.ico"                       Name="WLTOWER.ico"                       KeyPath="yes" Source="$(var.WoodmenReconClient.TargetDir)WLTOWER.ico" />
+      </Component>
+    </DirectoryRef>
+	</Fragment>
+</Wix>

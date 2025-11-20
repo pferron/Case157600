@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://lpat1.hoad.local:8568/GatewayService?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://lpat1.hoad.local:8568/GatewayService?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/LifeServer.DataModel.request" />
+  <xs:import schemaLocation="http://lpat1.hoad.local:8568/GatewayService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LifeServer.DataModel" />
+  <xs:complexType name="TxLifeServiceRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/LifeServer.DataModel.request" base="q1:LifeServerBaseRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SceneID" type="ser:guid" />
+          <xs:element minOccurs="0" name="xmlData" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:any minOccurs="0" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TxLifeServiceRequest" nillable="true" type="TxLifeServiceRequest" />
+  <xs:complexType name="TxLifeServiceResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/LifeServer.DataModel" base="q2:LifeServerBaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="txLifeResponseXML" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:any minOccurs="0" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TxLifeServiceResponse" nillable="true" type="TxLifeServiceResponse" />
+</xs:schema>

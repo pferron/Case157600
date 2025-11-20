@@ -1,0 +1,19 @@
+﻿@model LPA.Dashboard.Web.ViewModels.DisplayCimJsonViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="confirmDialog">
+    <div>
+        @{
+            @Html.TextAreaFor(m => m.CimJson, new { @class = "form-control background", style = "width: 100%; max-width: 100%;", @rows = 20, @readonly = "readonly" })
+        }
+    </div>
+</div>
+
+<div style="padding-top: 25px; text-align:center; ">
+    <button class="btn btn-primary btn-sm" onclick="DialogClose()">
+        OK
+    </button>
+</div>

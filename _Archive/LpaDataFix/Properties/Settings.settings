@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LpaDataFix.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LpaConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=database type=mssql;server=(LocalDB)\v11.0;database=WOWLPES;AttachDBFilename=C:\LPLADesktop\WOW\Databases\WOWLPES.mdf;Integrated Security=SSPI</Value>
+    </Setting>
+    <Setting Name="SqlQuery" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">insert into dbo.Scenario select [ScenarioID], null, null,[ProspectID],17,null,4,null from [dbo].[ScenePointer] where [ScenarioID] not in (select [ScenarioID] from [dbo].[Scenario])</Value>
+    </Setting>
+    <Setting Name="LpaServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LifePortraitsWebServer - WOW</Value>
+    </Setting>
+    <Setting Name="LpaSyncServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LifeManagerService - WOW</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

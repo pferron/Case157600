@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FipToHubTest" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IllustrationServiceBaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://appserv-t6:2015/api/</Value>
+    </Setting>
+    <Setting Name="HttpClientRequestTimeout" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:00:30</Value>
+    </Setting>
+    <Setting Name="FipEndpoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Illustrations/GenerateIllustrationViaFip</Value>
+    </Setting>
+    <Setting Name="InputFipFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">E:\Illusfiles</Value>
+    </Setting>
+    <Setting Name="RetryCount" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="WarningThresholdRatio" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">0.05</Value>
+    </Setting>
+    <Setting Name="MaxConcurrentRequests" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="OutputFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">E:\Illusfiles\FipTest</Value>
+    </Setting>
+    <Setting Name="HubIllustrationServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:51781</Value>
+    </Setting>
+    <Setting Name="HubEndPoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Illustrations/FetchIllustrationPdfViaWIM</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

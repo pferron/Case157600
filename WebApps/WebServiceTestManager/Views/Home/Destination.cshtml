@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WebServiceTestManager.Models.Destination>
+@using WebServiceTestManager.Models
+
+@{
+    ViewBag.Title = "Destinations";
+}
+
+<h2>Current Destinations</h2>
+@Html.ActionLink("Create a new Destination", "Create", "Home", new { @model = (int)ModifierType.Destination, @actionName = "CreateDestination" }, new { @class = "btn btn-primary" })
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        $('.deleteDestination').click(function (e) {
+            var $ctrl = $(this);
+            ShowDialog("Delete confirmation", "Deleting a Destination cannot be undone. <strong class='text-danger'>WARNING</strong> This will also delete the Destinaiton for everyone on your team.", function () {
+                $.ajax({
+                    url: '@Url.Action("Remove")',
+                    type: 'POST',
+                    data: { modifierType: @((int)ModifierType.Destination) , id: $(this).data('id') }
+                }).done(function (data) {
+                    if (data == "OK") {
+                        $ctrl.closest('tr').remove();
+                        AddAlert("Destination was successfully removed", "success")
+                    }
+                    else {
+                        AddAlert(data + "", "danger");
+                    }
+                }).fail(function () {
+                    AddAlert("There is something wrong. Please try again.", "danger");
+                });
+            });
+        });
+    });
+    </script>
+}
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Destination</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(destination => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(destination => item.Url)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Home", new { @model = (int)ModifierType.Destination, @id = item.Id, @actionName = "UpdateDestination" }, new { @class = "btn btn-primary" })
+                    | <button type="button" data-id="@item.Id" class="btn btn-danger deleteDestination">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

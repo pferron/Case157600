@@ -1,0 +1,166 @@
+name: UNIT_mobile_rater_api_$(Date:yyyyMMdd)_$(Build.BuildId)
+
+trigger:
+  - 'main'
+  - 'release/rater/*'
+  # paths:
+  #   exclude:
+  #   - WebServices/WoodmenIllustrationService/*
+  #   - WebServices/CommonIllustrationService/*
+  #   - WebServices/LifePortraitsWebAuthentication/*
+  #   - WebServices/WoodmenReconService/*
+  #   - Installers/*
+  #   - msi/
+  #   - UnitTests/*
+  #   - Utilities/*
+  #   - WebApps/*
+  #   - WindowsServices/*
+
+pool: SSIS-Deploy
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: 'WoodmenLife Enterprise/ADO-Templates'
+      
+stages:
+  - stage: 'Build_Publish_MobileRaterApi'
+    displayName: 'Build and Publish'
+    jobs:
+    ######### Web API
+    - job: PublishMobileRaterApi
+      displayName: 'Publish MobileRaterApi'
+      steps:
+        - checkout: self
+      
+        - task: NuGetCommand@2
+          inputs:
+            command: 'restore'
+            restoreSolution: '**/*.sln'
+            feedsToUse: 'config'
+
+        - task: MSBuild@1
+          displayName: 'Build solution'
+          inputs:           
+            solution: 'WebServices/MobileRaterService/MobileRaterService.csproj'
+            platform: 'Any CPU'
+            configuration: 'Release'
+            msbuildArguments: '-t:restore /t:rebuild /p:OutputPath="bin"'
+
+        - task: PublishPipelineArtifact@1
+          displayName: 'Publish artifact MobileRaterApi'
+          inputs:
+            targetPath: '$(Build.SourcesDirectory)/WebServices/MobileRaterService/bin/_PublishedWebsites/MobileRaterService'
+            artifact: 'MobileRaterApi'
+            publishLocation: 'pipeline'
+        
+  - ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+    - stage: 'Deploy_Api_To_Test'
+      displayName: 'Deploy To Test'
+      dependsOn: 'Build_Publish_MobileRaterApi'
+      variables:
+      - group: 'UNIT_TEST_RATER'
+      jobs:
+      ######### Web API
+      - deployment: 'Deploy_MobileRaterApi_to_Test'
+        displayName: 'Deploy MobileRaterApi To Test'
+        environment:
+          name: 'UNIT_TEST'
+          resourceType: VirtualMachine
+          tags: tst,mbl,as
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: none              
+                - template: task_based/dotnet/dotnet-core-windows-web-deploy.yml@templates
+                  parameters:
+                    DESCRIPTION_TEXT: 'Mobile Rater Api Test'
+                    SITE_DIRECTORY: 'D:\inetpub\MobileWebAPI\RaterAPI'                  
+                    ARTIFACT_NAME: 'MobileRaterApi'
+                    APP_SETTINGS_ENVIRONMENT: 'Test'
+                    REPLACE_TOKENS: 'true'
+                    REPLACE_TOKENS_FILE: 'D:\inetpub\MobileWebAPI\RaterAPI\Web.config'
+
+  - ${{ if contains(variables['Build.SourceBranch'], 'release/rater/') }}:  
+    - stage: 'Deploy_Api_To_Uat'
+      displayName: 'Deploy To Uat'
+      dependsOn: 'Build_Publish_MobileRaterApi'
+      variables:
+      - group: 'UNIT_UAT_RATER'
+      jobs:
+      ######### Web API
+      - deployment: 'Deploy_MobileRaterApi_to_Uat'
+        displayName: 'Deploy MobileRaterApi To Uat'
+        environment:
+          name: 'UNIT_UAT'
+          resourceType: VirtualMachine
+          tags: uat,mbl,as
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: none
+                - template: task_based/dotnet/dotnet-core-windows-web-deploy.yml@templates
+                  parameters:
+                    DESCRIPTION_TEXT: 'Mobile Rater Api Uat'
+                    SITE_DIRECTORY: 'D:\inetpub\MobileWebAPI\RaterAPI'                  
+                    ARTIFACT_NAME: 'MobileRaterApi'
+                    APP_SETTINGS_ENVIRONMENT: 'Uat'
+                    REPLACE_TOKENS: 'true'
+                    REPLACE_TOKENS_FILE: 'D:\inetpub\MobileWebAPI\RaterAPI\Web.config'
+  
+    - stage: 'Deploy_Api_To_Modl'
+      displayName: 'Deploy To Modl'
+      dependsOn: 'Deploy_Api_To_Uat'
+      variables:
+      - group: 'UNIT_MODL_RATER'
+      jobs:
+      ######### Web API
+      - deployment: 'Deploy_MobileRaterApi_to_Modl'
+        displayName: 'Deploy MobileRaterApi To Modl'
+        environment:
+          name: 'UNIT_MODL'
+          resourceType: VirtualMachine
+          tags: mdl,mbl,as
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: none                
+                - template: task_based/dotnet/dotnet-core-windows-web-deploy.yml@templates
+                  parameters:
+                    DESCRIPTION_TEXT: 'Mobile Rater Api Modl'
+                    SITE_DIRECTORY: 'D:\inetpub\MobileWebAPI\RaterAPI'                  
+                    ARTIFACT_NAME: 'MobileRaterApi'
+                    APP_SETTINGS_ENVIRONMENT: 'Model'
+                    REPLACE_TOKENS: 'true'
+                    REPLACE_TOKENS_FILE: 'D:\inetpub\MobileWebAPI\RaterAPI\Web.config'
+
+    - stage: 'Deploy_Api_To_Prod'
+      displayName: 'Deploy To Prod'
+      dependsOn: 'Deploy_Api_To_Modl'
+      variables:
+      - group: 'UNIT_PROD_RATER'
+      jobs:
+      ######### Web API
+      - deployment: 'Deploy_MobileRaterApi_to_Prod'
+        displayName: 'Deploy MobileRaterApi To Prod'
+        environment:
+          name: 'UNIT_PROD'
+          resourceType: VirtualMachine
+          tags: prd,mbl,as
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: none
+                - template: task_based/dotnet/dotnet-core-windows-web-deploy.yml@templates
+                  parameters:
+                    DESCRIPTION_TEXT: 'Mobile Rater Api Prod'
+                    SITE_DIRECTORY: 'D:\inetpub\MobileWebAPI\RaterAPI'                  
+                    ARTIFACT_NAME: 'MobileRaterApi'
+                    APP_SETTINGS_ENVIRONMENT: 'Production'
+                    REPLACE_TOKENS: 'true'
+                    REPLACE_TOKENS_FILE: 'D:\inetpub\MobileWebAPI\RaterAPI\Web.config'

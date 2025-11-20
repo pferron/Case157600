@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+	<?define ProductName = "Woodmen Illustration Service" ?>
+	<?define ProductVersion = "1.1.97" ?>
+
+	<?if $(var.Platform) = x64 ?>
+	<?define ProductDisplayName = "$(var.ProductName)" ?>
+	<?define ProductUpgradeCode = "B8BD2C8A-3BC8-447B-8C24-6C9CA0B9711D" ?>
+	<?define Win64 = "yes" ?>
+	<?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+	<?else ?>
+	<?define ProductDisplayName = "$(var.ProductName)" ?>
+	<?define ProductUpgradeCode = "FA9BF1A2-DC27-4848-8ABB-51B42FF9645D" ?>
+	<?define Win64 = "no" ?>
+	<?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+	<?endif ?>
+
+	<!-- Set to no for server installs -->
+	<?define SalesLaptop = "no" ?>
+
+	<Product Id="*" Name="$(var.ProductDisplayName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="WoodmenLife" UpgradeCode="$(var.ProductUpgradeCode)">
+		<Package InstallerVersion="400" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" Platform="x64" />
+		<PropertyRef Id="WIX_ACCOUNT_LOCALSYSTEM" />
+		<PropertyRef Id="WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED"/>
+		<Condition Message="This application requires .NET Framework 4.5.2. Please install the .NET Framework then run this installer again."><![CDATA[Installed OR WIX_IS_NETFRAMEWORK_452_OR_LATER_INSTALLED]]></Condition>
+		<Icon Id="ProgramIcon" SourceFile="$(var.WoodmenIntegrationService.TargetDir)favicon.ico"/>
+		<Property Id="ARPPRODUCTICON" Value="ProgramIcon" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+		<Feature Id="ProductFeature" Title="WoodmenIntegrationServiceInstallerWix" Level="1">
+			<ComponentRef Id="CMP_Antlr3.Runtime"/>
+			<ComponentRef Id="CMP_log4net"/>
+			<ComponentRef Id="CMP_Microsoft.Owin"/>
+			<ComponentRef Id="CMP_Microsoft.Owin.Host.HttpListener"/>
+			<ComponentRef Id="CMP_Microsoft.Owin.Host.SystemWeb"/>
+			<ComponentRef Id="CMP_Microsoft.Owin.Hosting"/>
+			<ComponentRef Id="CMP_Microsoft.Web.Infrastructure"/>
+			<ComponentRef Id="CMP_Newtonsoft.Json"/>
+			<ComponentRef Id="CMP_Owin"/>
+			<ComponentRef Id="CMP_System.Net.Http.Formatting"/>
+			<ComponentRef Id="CMP_System.Web.Http"/>
+			<ComponentRef Id="CMP_System.Web.Http.Owin"/>
+			<ComponentRef Id="CMP_System.Web.Http.WebHost"/>
+			<ComponentRef Id="CMP_System.Web.Mvc"/>
+			<ComponentRef Id="CMP_System.Web.Optimization"/>
+			<ComponentRef Id="CMP_System.Web.Razor"/>
+			<ComponentRef Id="CMP_System.Web.WebPages.Deployment"/>
+			<ComponentRef Id="CMP_System.Web.WebPages"/>
+			<ComponentRef Id="CMP_System.Web.WebPages.Razor"/>
+			<ComponentRef Id="CMP_WebGrease"/>
+			<ComponentRef Id="CMP_WoodmenLife.Enterprise.Illustration.Models"/>
+			<ComponentRef Id="CMP_WOW.FipUtilities"/>
+			<ComponentRef Id="CMP_WOW.Illustration.Model.ACORD"/>
+			<ComponentRef Id="CMP_WOW.Illustration.Model"/>
+			<ComponentRef Id="CMP_WOW.WoodmenIllustrationService"/>
+			<ComponentRef Id="CMP_WOW.WoodmenIntegrationService"/>
+			<ComponentRef Id="CMP_WOW.WoodmenIllustrationService.SharedModels"/>
+			<ComponentRef Id="CMP_WOW.WoodmenIntegrationServiceConfig"/>
+			<ComponentRef Id="CMP_LocalDatabaseMDF"/>
+			<ComponentRef Id="CMP_LocalDatabaseLDF"/>
+			<ComponentRef Id="CMP_tester"/>
+			<ComponentRef Id="CMP_simpletabs"/>
+			<ComponentRef Id="CMP_Site"/>
+			<ComponentRef Id="CMP_simpletabs_1.3.packed"/>
+		</Feature>
+		<UIRef Id="WoodmenWixUI"/>
+	</Product>
+	<Fragment>
+		<UI Id="WoodmenWixUI">
+			<UIRef Id="WixUI_InstallDir"/>
+			<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+			<!-- skip license page going forward -->
+			<Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="3">1</Publish>
+			<!-- skip license page on the way back too -->
+			<Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="3">1</Publish>
+		</UI>
+	</Fragment>
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="$(var.PlatformProgramFilesFolder)">
+				<Directory Id="CompanyFolder" Name="WoodmenLife">
+					<Directory Id="INSTALLFOLDER" Name="Woodmen Illustration Service">
+						<Directory Id="APPDATA" Name="App_Data" />
+					</Directory>
+				</Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+	<Fragment>
+		<DirectoryRef Id="APPDATA">
+			<Component Id="CMP_LocalDatabaseMDF" Guid="3cfd1996-9e70-47e1-99b9-ff24f3e1d10c">
+				<File Id="FILE_WOWIntegration.mdf" Name="WOWIntegration.mdf" KeyPath="no" Source="$(var.WoodmenIntegrationService.TargetDir)App_Data\WOWIntegration.mdf" />
+			</Component>
+			<Component Id="CMP_LocalDatabaseLDF" Guid="90e748c9-24ee-4eab-a78d-866634f3dfb7">
+				<File Id="FILE_WOWIntegration_log.ldf" Name="WOWIntegration_log.ldf" KeyPath="no" Source="$(var.WoodmenIntegrationService.TargetDir)App_Data\WOWIntegration_log.ldf" />
+			</Component>
+		</DirectoryRef>
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Component Id="CMP_simpletabs" Win64="$(var.Win64)">
+				<File Id="FILE_simpletabs.css" Name="simpletabs.css" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)simpletabs.css" />
+			</Component>
+			<Component Id="CMP_Site" Win64="$(var.Win64)">
+				<File Id="FILE_Site.css" Name="Site.css" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Site.css" />
+			</Component>
+			<Component Id="CMP_simpletabs_1.3.packed" Win64="$(var.Win64)">
+				<File Id="FILE_simpletabs_1.3.packed.js" Name="simpletabs_1.3.packed.js" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)simpletabs_1.3.packed.js" />
+			</Component>
+			<Component Id="CMP_tester" Win64="$(var.Win64)">
+				<File Id="FILE_tester.htm" Name="tester.htm" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)tester.htm" />
+			</Component>
+			<Component Id="CMP_Antlr3.Runtime" Win64="$(var.Win64)">
+				<File Id="FILE_Antlr3.Runtime.dll" Name="Antlr3.Runtime.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Antlr3.Runtime.dll" />
+			</Component>
+			<Component Id="CMP_log4net" Win64="$(var.Win64)">
+				<File Id="FILE_log4net.dll" Name="log4net.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)log4net.dll" />
+			</Component>
+			<Component Id="CMP_Microsoft.Owin" Win64="$(var.Win64)">
+				<File Id="FILE_Microsoft.Owin.dll" Name="Microsoft.Owin.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Microsoft.Owin.dll" />
+			</Component>
+			<Component Id="CMP_Microsoft.Owin.Host.HttpListener" Win64="$(var.Win64)">
+				<File Id="FILE_Microsoft.Owin.Host.HttpListener.dll" Name="Microsoft.Owin.Host.HttpListener.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Microsoft.Owin.Host.HttpListener.dll" />
+			</Component>
+			<Component Id="CMP_Microsoft.Owin.Host.SystemWeb" Win64="$(var.Win64)">
+				<File Id="FILE_Microsoft.Owin.Host.SystemWeb.dll" Name="Microsoft.Owin.Host.SystemWeb.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Microsoft.Owin.Host.SystemWeb.dll" />
+			</Component>
+			<Component Id="CMP_Microsoft.Owin.Hosting" Win64="$(var.Win64)">
+				<File Id="FILE_Microsoft.Owin.Hosting.dll" Name="Microsoft.Owin.Hosting.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Microsoft.Owin.Hosting.dll" />
+			</Component>
+			<Component Id="CMP_Microsoft.Web.Infrastructure" Win64="$(var.Win64)">
+				<File Id="FILE_Microsoft.Web.Infrastructure.dll" Name="Microsoft.Web.Infrastructure.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Microsoft.Web.Infrastructure.dll" />
+			</Component>
+			<Component Id="CMP_Newtonsoft.Json" Win64="$(var.Win64)">
+				<File Id="FILE_Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Newtonsoft.Json.dll" />
+			</Component>
+			<Component Id="CMP_Owin" Win64="$(var.Win64)">
+				<File Id="FILE_Owin.dll" Name="Owin.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)Owin.dll" />
+			</Component>
+			<Component Id="CMP_System.Net.Http.Formatting" Win64="$(var.Win64)">
+				<File Id="FILE_System.Net.Http.Formatting.dll" Name="System.Net.Http.Formatting.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Net.Http.Formatting.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.Http" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.Http.dll" Name="System.Web.Http.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.Http.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.Http.Owin" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.Http.Owin.dll" Name="System.Web.Http.Owin.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.Http.Owin.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.Http.WebHost" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.Http.WebHost.dll" Name="System.Web.Http.WebHost.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.Http.WebHost.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.Mvc" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.Mvc.dll" Name="System.Web.Mvc.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.Mvc.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.Optimization" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.Optimization.dll" Name="System.Web.Optimization.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.Optimization.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.Razor" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.Razor.dll" Name="System.Web.Razor.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.Razor.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.WebPages.Deployment" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.WebPages.Deployment.dll" Name="System.Web.WebPages.Deployment.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.WebPages.Deployment.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.WebPages" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.WebPages.dll" Name="System.Web.WebPages.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.WebPages.dll" />
+			</Component>
+			<Component Id="CMP_System.Web.WebPages.Razor" Win64="$(var.Win64)">
+				<File Id="FILE_System.Web.WebPages.Razor.dll" Name="System.Web.WebPages.Razor.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)System.Web.WebPages.Razor.dll" />
+			</Component>
+			<Component Id="CMP_WebGrease" Win64="$(var.Win64)">
+				<File Id="FILE_WebGrease.dll" Name="WebGrease.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)WebGrease.dll" />
+			</Component>
+			<Component Id="CMP_WoodmenLife.Enterprise.Illustration.Models" Win64="$(var.Win64)">
+				<File Id="FILE_WoodmenLife.Enterprise.Illustration.Models.dll" Name="WoodmenLife.Enterprise.Illustration.Models.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)WoodmenLife.Enterprise.Illustration.Models.dll" />
+			</Component>
+			<Component Id="CMP_WOW.FipUtilities" Win64="$(var.Win64)">
+				<File Id="FILE_WOW.FipUtilities.dll" Name="WOW.FipUtilities.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)WOW.FipUtilities.dll" />
+			</Component>
+			<Component Id="CMP_WOW.Illustration.Model.ACORD" Win64="$(var.Win64)">
+				<File Id="FILE_WOW.Illustration.Model.ACORD.dll" Name="WOW.Illustration.Model.ACORD.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)WOW.Illustration.Model.ACORD.dll" />
+			</Component>
+			<Component Id="CMP_WOW.Illustration.Model" Win64="$(var.Win64)">
+				<File Id="FILE_WOW.Illustration.Model.dll" Name="WOW.Illustration.Model.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)WOW.Illustration.Model.dll" />
+			</Component>
+			<Component Id="CMP_WOW.WoodmenIllustrationService" Win64="$(var.Win64)">
+				<File Id="FILE_WOW.WoodmenIllustrationService.dll" Name="WOW.WoodmenIllustrationService.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)WOW.WoodmenIllustrationService.dll" />
+			</Component>
+			<Component Id="CMP_WOW.WoodmenIllustrationService.SharedModels" Win64="$(var.Win64)">
+				<File Id="FILE_WOW.WoodmenIllustrationService.SharedModels.dll" Name="WOW.WoodmenIllustrationService.SharedModels.dll" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)WOW.WoodmenIllustrationService.SharedModels.dll" />
+			</Component>
+			<Component Id="CMP_WOW.WoodmenIntegrationServiceConfig" Guid="2bbd2daa-f336-42e2-a74a-765a557e9b70" Win64="$(var.Win64)">
+				<File Id="FILE_WOW.WoodmenIntegrationService.exe.config" Name="WOW.WoodmenIntegrationService.exe.config" KeyPath="no" Source="$(var.WoodmenIntegrationService.TargetDir)WOW.WoodmenIntegrationService.exe.config" />
+				<util:XmlFile Id="SetUploadPath" Action="setValue" Permanent="yes" File="[#FILE_WOW.WoodmenIntegrationService.exe.config]" ElementPath="/configuration/applicationSettings/WOW.WoodmenIllustrationService.Properties.Settings/setting[\[]@name='UploadStorageFolder'[\]]/value" Value="[INSTALLFOLDER]App_Data\uploads" />
+				<util:XmlFile Id="SetPayloadPath" Action="setValue" Permanent="yes" File="[#FILE_WOW.WoodmenIntegrationService.exe.config]" ElementPath="/configuration/applicationSettings/WOW.WoodmenIllustrationService.Properties.Settings/setting[\[]@name='PayloadStorageFolder'[\]]/value" Value="[INSTALLFOLDER]App_Data\payloads" />
+
+				<?if $(var.SalesLaptop) = "no" ?>
+				<util:XmlFile Id="SetConnectionString" Action="setValue" Permanent="yes" File="[#FILE_WOW.WoodmenIntegrationService.exe.config]" ElementPath="/configuration/applicationSettings/WOW.WoodmenIllustrationService.Properties.Settings/setting[\[]@name='IntegrationDbConnectionString'[\]]/value" Value="Data Source=(localdb)\WIS_Instance;Initial Catalog=WOWIntegration;Integrated Security=True;AttachDbFileName=[INSTALLFOLDER]App_Data\WOWIntegration.mdf;" />
+				<?else ?>
+				<util:XmlFile Id="SetConnectionString" Action="setValue" Permanent="yes" File="[#FILE_WOW.WoodmenIntegrationService.exe.config]" ElementPath="/configuration/applicationSettings/WOW.WoodmenIllustrationService.Properties.Settings/setting[\[]@name='IntegrationDbConnectionString'[\]]/value" Value="Data Source=(localdb)\v11.0;Initial Catalog=WOWIntegration;Integrated Security=True;AttachDbFileName=[INSTALLFOLDER]App_Data\WOWIntegration.mdf;" />
+				<?endif ?>
+
+			</Component>
+			<Component Id="CMP_WOW.WoodmenIntegrationService" Win64="$(var.Win64)">
+				<File Id="FILE_WOW.WoodmenIntegrationService.exe" Name="WOW.WoodmenIntegrationService.exe" KeyPath="yes" Source="$(var.WoodmenIntegrationService.TargetDir)WOW.WoodmenIntegrationService.exe" />
+				<ServiceInstall Id="SI_WoodmenIntegrationService" Name="WoodmenIntegrationService" DisplayName="WoodmenLife Integration Service" Start="auto" ErrorControl="normal" Type="ownProcess" Interactive="no" Account="[WIX_ACCOUNT_LOCALSYSTEM]" Description="Self-hosted web service for e-App integration with LifePortraits on the desktop." Vital="yes"/>
+				<ServiceControl Id="SC_WoodmenIntegrationService" Name="WoodmenIntegrationService" Start="install" Stop="both" Remove="uninstall" Wait="no"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+</Wix>

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<WebServiceTestManager.Models.ViewModels.DestinationViewModel>
+@{
+    ViewBag.Title = "Destinations";
+}
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+            $('.edit').click(function () {
+                var ctrl = $(this);
+                var id = ctrl.data('id');
+                var idPrefix = '#' + id;
+                toggleEdit(id);
+
+                var name = $(idPrefix + "-Name");
+                var url = $(idPrefix + "-Url");
+                var nameEditor = $(idPrefix + "-EditName");
+                var urlEditor = $(idPrefix + "-EditUrl");
+                nameEditor.val(name.text());
+                urlEditor.val(url.text());
+
+            });
+
+            $('.cancel').click(function () {
+                var ctrl = $(this);
+                var id = ctrl.data('id');
+                toggleEdit(id);
+            });
+
+            $('.save').click(function () {
+                var ctrl = $(this);
+                var id = ctrl.data('id');
+                var idPrefix = '#' + id;
+
+                var name = $(idPrefix + "-Name");
+                var url = $(idPrefix + "-Url");
+                var nameEditor = $(idPrefix + "-EditName");
+                var urlEditor = $(idPrefix + "-EditUrl");
+                var input = {
+                    Id: id,
+                    Name: nameEditor.val(),
+                    Url: urlEditor.val()
+                };
+
+                var DTO = JSON.stringify(input);
+
+                $.ajax({
+                    type: "POST",
+                    data: DTO,
+                    url: "@Url.Action("EditDesination", "Destination")",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    complete: function (data) {
+                        if (data.responseText == 1) {
+                            AddAlert("Changes saved successfully.", "success");
+                            toggleEdit(id);
+                            name.text(nameEditor.val());
+                            url.text(urlEditor.val());
+                        }
+                        else {
+                            AddAlert("Unable to edit destination.");
+                        }
+                    }
+                });
+            });
+
+            function toggleEdit(id) {
+                var idPrefix = '#' + id;
+                $(idPrefix + "-Remove").toggle();
+                $(idPrefix + "-Edit").toggle();
+                $(idPrefix + "-Name").toggle();
+                $(idPrefix + "-Url").toggle();
+                $(idPrefix + "-EditUrl").toggle();
+                $(idPrefix + "-EditName").toggle();
+                $(idPrefix + "-Cancel").toggle();
+                $(idPrefix + "-Save").toggle();
+            }
+        });
+    </script>
+}
+<style>
+    .testset {
+        display: grid;
+        grid-template-columns: 25% 65% 10%;
+    }
+
+    .form-control {
+        max-width: 700px;
+    }
+</style>
+<div class="bg-white rounded shadow my-3 p-3">
+    <div style="display: flex; justify-content: space-between;">
+        <h1>Destinations</h1>
+        <a href="@Url.Action("Create" ,"Destination", new {@id = ViewContext.RouteData.Values["id"] } )" class="btn btn-lg" data-toggle="tooltip" data-placement="left" title="Create a new Destination"><span class='fas fa-plus text-success'></span></a>
+    </div>
+    <hr style="margin-top: 0" />
+    @foreach (var item in Model)
+    {
+        <div class="testset-container">
+            <div class="testset">
+                <div style="display: flex; align-items: center;">
+                    <h5 class="mb-0" id="@item.Id-Name">@item.Name</h5>
+                    <input type="text" style="display:none" class="form-control" id="@item.Id-EditName" name="name">
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <p class="mb-0" style="word-wrap: break-word;" id="@item.Id-Url">@item.Url</p>
+                    <input type="text" style="display:none;" class="form-control" id="@item.Id-EditUrl" name="name">
+                </div>
+                <div>
+                    <button type='button' class='btn edit' id="@item.Id-Edit" data-toggle="tooltip" data-placement="left" title="Edit" data-id="@item.Id"> <span class='fas fa-pencil-alt'></span> </button>
+                    <button type='button' class='btn cancel' id="@item.Id-Cancel" style="display: none" data-toggle="tooltip" data-placement="left" title="Cancel Changes" data-id="@item.Id" data-name="@item.Name"> <span class='fas fa-times'></span> </button>
+                    <button type='button' class='btn remove' id="@item.Id-Remove" data-toggle="tooltip" data-placement="right" title="Remove" data-id="@item.Id" data-name="@item.Name"> <span class='fas fa-times text-danger'></span> </button>
+                    <button type='button' class='btn save' id="@item.Id-Save" style="display: none" data-toggle="tooltip" data-placement="right" title="Save Changes" data-id="@item.Id" data-name="@item.Name"> <span class='fas fa-check text-success'></span> </button>
+                </div>
+
+            </div>
+        </div>
+        <hr />
+    }
+</div>
+

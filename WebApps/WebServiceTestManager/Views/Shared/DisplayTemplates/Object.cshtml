@@ -1,0 +1,23 @@
+﻿
+@if (ViewData.TemplateInfo.TemplateDepth > 1)
+{
+    @ViewData.ModelMetadata.SimpleDisplayText
+}
+else
+{
+    foreach (var prop in ViewData.ModelMetadata.Properties.Where(pm => pm.ShowForEdit && !ViewData.TemplateInfo.Visited(pm)))
+    {
+        if (prop.HideSurroundingHtml)
+        {
+            <h4>prop.PropertyName</h4>
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(Html.Label(prop.PropertyName).ToHtmlString()))
+            {
+                <div class="display-label"><h4>@Html.Label(prop.PropertyName)</h4></div>
+                <div class="display-field"><h5>@Html.Display(prop.PropertyName)</h5></div>
+            }
+        }
+    }
+}

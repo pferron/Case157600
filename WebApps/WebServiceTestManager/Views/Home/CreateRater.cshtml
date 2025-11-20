@@ -1,0 +1,27 @@
+﻿@model WebServiceTestManager.Models.RaterModel
+
+@{
+    ViewBag.Title = "CreateRater";
+}
+@using (Html.BeginForm("CreateRater", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h2>Create New Rater</h2>
+    <hr />
+    <div>
+        <h3>Expected Result</h3>
+        <input type="text" name="ExpectedResult" />
+    </div>
+    <hr />
+    <div>
+        <h3>Add Test File</h3>
+        <input type="file" name="MobileRaterFile" />
+    </div>
+    <hr />
+    <input type="submit" value="Submit" class="btn btn-primary" />
+    <p>
+        @Html.ActionLink("Go back", "Index")
+    </p>
+
+
+    <span style="color:green">@ViewBag.Message</span>
+}

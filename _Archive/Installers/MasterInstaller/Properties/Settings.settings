@@ -1,0 +1,63 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.ISU.DeltaBot.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ServiceCheckUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:2015/api/Service/DatabaseCheck</Value>
+    </Setting>
+    <Setting Name="LifePortraitsRegKeyPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SOFTWARE\StoneRiver\ACL\WOW</Value>
+    </Setting>
+    <Setting Name="LifePortraitsRegKeyName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ApplicationPath</Value>
+    </Setting>
+    <Setting Name="LifePortraitsExePaths" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\Launcher\LifePortraits.Desktop.Client.exe,WOW\Launcher\LifePortraits.Desktop.WebServer.exe,WOW\LifeManager\LifeManager.Agent\Life.Manager.Agent.exe,WOW\LifeManager\LifeManager.Service\Life.Manager.Service.exe</Value>
+    </Setting>
+    <Setting Name="MigrationUtilityTimeOut" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">14400000</Value>
+    </Setting>
+    <Setting Name="WoodmenIllustrationServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WoodmenIntegrationService</Value>
+    </Setting>
+    <Setting Name="MigrationUtilityRelativePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\LifePortraits\bin\ConvertIEWToAccelerate.exe</Value>
+    </Setting>
+    <Setting Name="PureEdgeIfxHash" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8C1AE857C98E8ECE12A0CA90C03961F6</Value>
+    </Setting>
+    <Setting Name="PureEdgeIfxPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Program Files\PureEdge\Viewer 6.4\extensions\WoodmenIllustrationIFX.jar</Value>
+    </Setting>
+    <Setting Name="WiseServerExePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Program Files\WiseServer\WiseServer.exe</Value>
+    </Setting>
+    <Setting Name="WiseServerExeFileVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2.00</Value>
+    </Setting>
+    <Setting Name="ConnectivityCheckUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://lifeportraits.mywoodmen.org</Value>
+    </Setting>
+    <Setting Name="MainMenuConfigPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">c:\Program Files\WoodmenLife Menu\WoodmenLife Menu.exe.config</Value>
+    </Setting>
+    <Setting Name="LifePortraitsLauncherPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\Launcher\LifePortraits.Desktop.Client.exe</Value>
+    </Setting>
+    <Setting Name="IllustrationSavePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\SavedIllustrations</Value>
+    </Setting>
+    <Setting Name="FilesToRemove" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\All Users\Microsoft\Windows\Start Menu\WoodmenLife\Cancer Rates.LNK,C:\Users\All Users\Microsoft\Windows\Start Menu\WoodmenLife\FamilyTermQuickRates.lnk,C:\Users\All Users\Microsoft\Windows\Start Menu\WoodmenLife\Illustration Edge - 32 bit.lnk,C:\Users\All Users\Microsoft\Windows\Start Menu\WoodmenLife\Illustrations_Run_Once.lnk,C:\Users\All Users\Microsoft\Windows\Start Menu\WoodmenLife\Life Rate.lnk,C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Cancer Rates\Cancer Rates.LNK,C:\ProgramData\Microsoft\Windows\Start Menu\WoodmenLife\Cancer Rates.LNK,C:\ProgramData\Microsoft\Windows\Start Menu\WoodmenLife\FamilyTermQuickRates.lnk,C:\ProgramData\Microsoft\Windows\Start Menu\WoodmenLife\Illustration Edge - 32 bit.lnk,C:\ProgramData\Microsoft\Windows\Start Menu\WoodmenLife\Illustrations_Run_Once.lnk,C:\ProgramData\Microsoft\Windows\Start Menu\WoodmenLife\Life Rate.lnk,C:\ProgramData\Microsoft\Windows\Start Menu\WoodmenLife\Field IEW Rates.lnk,C:\Users\Public\Desktop\LifeManager Agent - WOW.lnk,C:\Users\Public\Desktop\LifePortraits Desktop System - WOW.lnk</Value>
+    </Setting>
+    <Setting Name="AppsToUninstall" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FamilyTermQuickRates,IndependenceRate,Life Rates,RateCheck,Solution,LifeRate</Value>
+    </Setting>
+    <Setting Name="LoggingFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Installation_Logs</Value>
+    </Setting>
+    <Setting Name="SyncAgentShortcutPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Not used</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

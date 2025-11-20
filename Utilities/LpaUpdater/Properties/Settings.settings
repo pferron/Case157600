@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LpaUpdater.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LifePortraitsRegKeyPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SOFTWARE\WOW6432Node\StoneRiver\ACL\WOW</Value>
+    </Setting>
+    <Setting Name="LifePortraitsRegKeyName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ApplicationPath</Value>
+    </Setting>
+    <Setting Name="LoggingFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Installation_Logs</Value>
+    </Setting>
+    <Setting Name="LifeManagerServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LifeManagerService - WOW</Value>
+    </Setting>
+    <Setting Name="LifePortraitsServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LifePortraitsWebServer - WOW</Value>
+    </Setting>
+    <Setting Name="NewLpaVersionNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.146.5990.68006</Value>
+    </Setting>
+    <Setting Name="TargetLpaVersionNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.143.5990.68006</Value>
+    </Setting>
+    <Setting Name="PlansDatabasePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\Databases\WOWPlans.mdf</Value>
+    </Setting>
+    <Setting Name="VersionFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\LifePortraits\bin\system.ver</Value>
+    </Setting>
+    <Setting Name="RsuApplicationsFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\LifeManager\LifeManager.Service\UAB\applications</Value>
+    </Setting>
+    <Setting Name="RsuDownloadFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\LifeManager\LifeManager.Service\UAB\downloader</Value>
+    </Setting>
+    <Setting Name="RsuRegistryFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\LifeManager\LifeManager.Service\UAB</Value>
+    </Setting>
+    <Setting Name="LpaConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=database type=mssql;server=(LocalDB)\v11.0;database=WOWPlans;AttachDBFilename=C:\LPLADesktop\WOW\Databases\WOWPlans.mdf;Integrated Security=SSPI</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

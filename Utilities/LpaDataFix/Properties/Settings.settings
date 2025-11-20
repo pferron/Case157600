@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LpaDataFix.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LpaServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LifePortraitsWebServer - WOW</Value>
+    </Setting>
+    <Setting Name="LpaSyncServiceName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LifeManagerService - WOW</Value>
+    </Setting>
+    <Setting Name="SqlQuery" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DECLARE @state int; DECLARE @mode int; select top 1 @state = ApplicationState from [dbo].[Scenario] WHERE ApplicationState IS NOT NULL GROUP BY ApplicationState ORDER BY COUNT(ApplicationState) DESC; select top 1 @mode = PremiumMode from [dbo].[Scenario] WHERE PremiumMode IS NOT NULL GROUP BY PremiumMode ORDER BY COUNT(PremiumMode) DESC; insert into dbo.Scenario select [ScenarioID], null, null, [ProspectID], @state, null, @mode, null from [dbo].[ScenePointer] where [ScenarioID] not in (select [ScenarioID] from [dbo].[Scenario]);</Value>
+    </Setting>
+    <Setting Name="ObjRefSql" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DECLARE @NullScenario TABLE (SceneID UNIQUEIDENTIFIER, NewGuid UNIQUEIDENTIFIER);INSERT INTO @NullScenario SELECT [SceneID], NEWID() as NewGuid FROM [ScenePointer] where typecode = 32 and ScenarioID is null; Insert into [Scenario] ([ScenarioID],[OwnerType],[OrgOwnerID],[PersonOwnerID],[ApplicationState],[EffectiveDate],[PremiumMode],[SignedDate]) Select NewGuid, 1, null, null, 17, null, 1, null from @NullScenario; Update sp Set sp.ScenarioID = ns.NewGuid from [ScenePointer] sp inner join @NullScenario ns on sp.SceneID = ns.SceneID;</Value>
+    </Setting>
+    <Setting Name="LpaConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=(LocalDB)\v11.0;Initial Catalog=WOWLPES;AttachDBFilename=C:\\LPLADesktop\\WOW\\Databases\\WOWLPES.mdf;Integrated Security=True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

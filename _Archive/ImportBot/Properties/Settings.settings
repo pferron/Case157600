@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.ISU.ImportBot.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LoggingFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Installation_Logs</Value>
+    </Setting>
+    <Setting Name="LifePortraitsRegKeyPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SOFTWARE\StoneRiver\ACL\WOW</Value>
+    </Setting>
+    <Setting Name="LifePortraitsRegKeyName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ApplicationPath</Value>
+    </Setting>
+    <Setting Name="MigrationUtilityRelativePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\LifePortraits\bin\ConvertIEWToAccelerate.exe</Value>
+    </Setting>
+    <Setting Name="MigrationUtilityTimeOut" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">14400000</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

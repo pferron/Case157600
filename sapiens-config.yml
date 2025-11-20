@@ -1,0 +1,101 @@
+name: UNIT_Illustrations_Sapiens_Config_$(Date:yyyyMMdd)_$(Build.BuildId)
+
+trigger: none
+
+parameters:
+- name: revert
+  displayName: 'Revert Sapiens Config?'
+  type: boolean
+  default: false
+
+stages:
+
+- ${{ if eq(parameters.revert, false) }}:
+  - stage: Configure_WIS_for_Sapiens
+    displayName: 'Configure WIS for Sapiens'
+    variables:
+      - group: 'UNIT_TEST_Illus_Sapiens'
+    jobs:
+
+      - deployment: Configure_WIS_for_Sapiens
+        displayName: 'Configure WIS for Sapiens'
+        environment: 'UNIT_TEST.TST-LPA-MW-1'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: none
+
+                - task: DownloadPipelineArtifact@2
+                  displayName: 'Download WOW.WoodmenIntegrationService.exe.config artifact'
+                  inputs:
+                    buildType: 'specific'
+                    project: 'WoodmenLife Enterprise'
+                    definition: 'UNIT_Illustrations_PR_CI_CD'
+                    specificBuildWithTriggering: false
+                    buildVersionToDownload: 'latestFromBranch'
+                    branchName: 'refs/heads/main'
+                    artifactName: 'msi_release'
+                    itemPattern: 'WOW.WoodmenIntegrationService.exe.config'
+                    targetPath: $(Agent.BuildDirectory)
+
+
+                - script: 'net stop WoodmenIntegrationService'
+                  displayName: 'Stop WoodmenIntegrationService'
+
+                - script: 'COPY /Y $(Agent.BuildDirectory)\WOW.WoodmenIntegrationService.exe.config "D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config"'
+                  displayName: 'Copy fresh WOW.WoodmenIntegrationService.exe.config to installation directory.'
+
+                - task: replacetokens@5
+                  displayName: 'Transform WOW.WoodmenIntegrationService.exe.config'
+                  inputs:
+                    targetFiles: 'D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config'
+                    actionOnMissing: 'fail'
+                    actionOnNoFiles: 'fail'
+
+                - script: 'net start WoodmenIntegrationService'
+                  displayName: 'Start WoodmenIntegrationService'
+- ${{ else }}:
+  - stage: Revert_WIS_for_Sapiens
+    displayName: 'Revert WIS for Sapiens'
+    variables:
+      - group: 'UNIT_TEST_Illus'
+    jobs:
+
+      - deployment: Revert_WIS_for_Sapiens
+        displayName: 'Revert WIS for Sapiens'
+        environment: 'UNIT_TEST.TST-LPA-MW-1'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: none
+
+                - task: DownloadPipelineArtifact@2
+                  displayName: 'Download WOW.WoodmenIntegrationService.exe.config artifact'
+                  inputs:
+                    buildType: 'specific'
+                    project: 'WoodmenLife Enterprise'
+                    definition: 'UNIT_Illustrations_PR_CI_CD'
+                    specificBuildWithTriggering: false
+                    buildVersionToDownload: 'latestFromBranch'
+                    branchName: 'refs/heads/main'
+                    artifactName: 'msi_release'
+                    itemPattern: 'WOW.WoodmenIntegrationService.exe.config'
+                    targetPath: $(Agent.BuildDirectory)
+
+                - script: 'net stop WoodmenIntegrationService'
+                  displayName: 'Stop WoodmenIntegrationService'
+
+                - script: 'COPY /Y $(Agent.BuildDirectory)\WOW.WoodmenIntegrationService.exe.config "D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config"'
+                  displayName: 'Copy fresh WOW.WoodmenIntegrationService.exe.config to installation directory.'
+
+                - task: replacetokens@5
+                  displayName: 'Transform WOW.WoodmenIntegrationService.exe.config'
+                  inputs:
+                    targetFiles: 'D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config'
+                    actionOnMissing: 'fail'
+                    actionOnNoFiles: 'fail'
+
+                - script: 'net start WoodmenIntegrationService'
+                  displayName: 'Start WoodmenIntegrationService'

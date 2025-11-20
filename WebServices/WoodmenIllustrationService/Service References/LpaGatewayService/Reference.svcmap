@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="59be6b7a-0526-4b50-b98d-0da9cb30bf0f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://lpa-test.woodmen.net/GatewayService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GatewayService6.xsd" MetadataType="Schema" ID="46827a45-818d-4136-91df-dd5b1f9b308c" SourceId="1" SourceUrl="https://lpa-test.woodmen.net/GatewayService?xsd=xsd4" />
+    <MetadataFile FileName="GatewayService61.xsd" MetadataType="Schema" ID="e3c22e3a-a977-49b7-a1b5-6b5097e840cb" SourceId="1" SourceUrl="https://lpa-test.woodmen.net/GatewayService?xsd=xsd1" />
+    <MetadataFile FileName="GatewayService62.xsd" MetadataType="Schema" ID="57b6d045-5b8a-4558-a6ff-7fb3dbcf5c30" SourceId="1" SourceUrl="https://lpa-test.woodmen.net/GatewayService?xsd=xsd3" />
+    <MetadataFile FileName="GatewayService63.xsd" MetadataType="Schema" ID="b7c06c26-c98e-44d3-9a84-f4b42b3fa34a" SourceId="1" SourceUrl="https://lpa-test.woodmen.net/GatewayService?xsd=xsd5" />
+    <MetadataFile FileName="GatewayService64.xsd" MetadataType="Schema" ID="f1442450-ad67-430b-92a3-448e26e11b38" SourceId="1" SourceUrl="https://lpa-test.woodmen.net/GatewayService?xsd=xsd0" />
+    <MetadataFile FileName="GatewayService1.disco" MetadataType="Disco" ID="7bc16461-a8bc-49f9-875e-42bd427943fb" SourceId="1" SourceUrl="https://lpa-test.woodmen.net/GatewayService?disco" />
+    <MetadataFile FileName="GatewayService1.wsdl" MetadataType="Wsdl" ID="b1adabe8-da9b-42dc-aaeb-f77d343910d3" SourceId="1" SourceUrl="https://lpa-test.woodmen.net/GatewayService?wsdl" />
+    <MetadataFile FileName="GatewayService65.xsd" MetadataType="Schema" ID="368a701d-8230-4968-ac91-37c2d8b24700" SourceId="1" SourceUrl="https://lpa-test.woodmen.net/GatewayService?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

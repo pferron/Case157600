@@ -1,0 +1,40 @@
+﻿html {
+    font-size: 100%; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body
+{
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    background-color: #1763A6;
+    color: #FFF;
+    margin: 0;
+    padding: 20px;
+}
+
+fieldset
+{
+    width: 690px;
+    border: 1px solid #FFF;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+legend {
+  padding: 0.2em 0.5em;
+  border: 1px solid #FFF;
+  background-color: #FFF;
+  color: #1763A6;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+table
+{
+    width: 100%;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color: #FFF;
+}

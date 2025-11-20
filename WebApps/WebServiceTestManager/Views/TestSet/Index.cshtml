@@ -1,0 +1,117 @@
+﻿@model IEnumerable<WebServiceTestManager.Models.File>
+@{
+    ViewBag.Title = "Index";
+}
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+            $('.clickable').click(function () {
+                window.location = $(this).find("a").attr("href");
+            });
+            $('.remove').click(function () {
+                console.log("get");
+            });
+        });
+    </script>
+}
+@functions {
+    public string TimeAgo(DateTime dt)
+    {
+        const int SECOND = 1;
+        const int MINUTE = 60 * SECOND;
+        const int HOUR = 60 * MINUTE;
+        const int DAY = 24 * HOUR;
+        const int MONTH = 30 * DAY;
+
+        var ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
+        double delta = Math.Abs(ts.TotalSeconds);
+
+        if (delta < 1 * MINUTE)
+            return ts.Seconds == 1 ? "1 second ago" : ts.Seconds + " seconds ago";
+
+        if (delta < 2 * MINUTE)
+            return "A minute ago";
+
+        if (delta < 60 * MINUTE)
+            return $"{ts.Minutes} minutes ago";
+
+        if (delta < 120 * MINUTE)
+            return $"{ts.Hours} hour and {ts.Minutes} minutes ago";
+
+        if (delta < 24 * HOUR)
+            return $"{ts.Hours} hours ago";
+
+        if (delta < 36 * HOUR)
+            return "Yesterday at " + dt.ToShortTimeString();
+
+        if (delta < 48 * HOUR)
+            return $"{dt.DayOfWeek} at {dt.ToShortTimeString()}";
+
+        if (delta < 30 * DAY)
+            return $"{ts.Days} days ago on {dt.ToShortDateString()} at {dt.ToShortTimeString()}";
+
+        if (delta < 12 * MONTH)
+        {
+            int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
+            return months <= 1 ? $"Last month on {dt.ToShortDateString()} at {dt.ToShortTimeString()}" : $"{Math.Abs(dt.Month - DateTime.Now.Month) - 1} months ago on {dt.ToShortDateString()} at {dt.ToShortTimeString()}";
+        }
+        else
+        {
+            int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
+            return years <= 1 ? "one year ago" : years + " years ago";
+        }
+    }
+}
+<style>
+    .testset {
+        display: grid;
+        grid-template-columns: 90% 10%;
+    }
+
+        .testset:hover {
+            /*background-color: #f8f9fa;*/
+            cursor: pointer;
+        }
+
+    .testset-container:hover {
+        background-color: #e9ecef;
+        cursor: pointer;
+    }
+</style>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("", "home")">Test Sets</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewBag.TestSetName</li>
+    </ol>
+</nav>
+<div class="my-3 p-3 bg-white rounded shadow">
+    <div style="display: flex; justify-content: space-between;">
+        <h1>Test Cases</h1>
+        <a href="@Url.Action("Create" ,"TestSet", new {@id = ViewContext.RouteData.Values["id"] } )" class="btn btn-lg" data-toggle="tooltip" data-placement="left" title="Create a new Test Case"><span class='fas fa-plus text-success'></span></a>
+    </div>
+    <hr style="margin-top: .5rem" />
+    @foreach (var item in Model)
+    {
+        <div class="testset-container clickable rounded" style="padding-top: 5px">
+            <a style="display: none" href="@Url.Action("Detail" ,"testset", new { @id = item.Id } )"></a>
+            <div class="testset">
+                <div>
+                    <h4>@item.Name</h4>
+                </div>
+                <div>
+                    <button type='button' class='btn' data-toggle="tooltip" data-placement="left" title="Edit"> <span class='fas  fa-pencil-alt'></span> </button>
+                    <button type='button' class='btn remove' data-toggle="tooltip" data-placement="left" title="Remove"> <span class='fas  fa-times text-danger'></span> </button>
+                </div>
+
+            </div>
+            <div style="text-align: right">
+                <p class="text-muted">Last modified @string.Format("{0:dddd, MMMM d, yyyy 'at' h:mm tt}", item.DateModified)</p>
+            </div>
+        </div>
+        <hr />
+    }
+</div>
+

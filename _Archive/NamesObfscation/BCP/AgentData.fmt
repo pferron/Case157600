@@ -1,0 +1,42 @@
+14.0
+40
+1       SQLCHAR             0       37      "	"      1     AgentID                                          ""
+2       SQLCHAR             0       200     "	"      2     FirstName                                        SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR             0       200     "	"      3     MiddleName                                       SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR             0       200     "	"      4     LastName                                         SQL_Latin1_General_CP1_CI_AS
+5       SQLCHAR             0       100     "	"      5     Agency                                           SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR             0       12      "	"      6     Type1                                            ""
+7       SQLCHAR             0       12      "	"      7     Type2                                            ""
+8       SQLCHAR             0       12      "	"      8     Type3                                            ""
+9       SQLCHAR             0       12      "	"      9     Type4                                            ""
+10      SQLCHAR             0       40      "	"      10    Code1                                            SQL_Latin1_General_CP1_CI_AS
+11      SQLCHAR             0       100     "	"      11    Code2                                            SQL_Latin1_General_CP1_CI_AS
+12      SQLCHAR             0       40      "	"      12    Code3                                            SQL_Latin1_General_CP1_CI_AS
+13      SQLCHAR             0       40      "	"      13    Code4                                            SQL_Latin1_General_CP1_CI_AS
+14      SQLCHAR             0       100     "	"      14    CompanyAgtID                                     SQL_Latin1_General_CP1_CI_AS
+15      SQLCHAR             0       5       "	"      15    AuthLevel                                        ""
+16      SQLCHAR             0       5       "	"      16    BypassLogin                                      ""
+17      SQLCHAR             0       100     "	"      17    Designation                                      SQL_Latin1_General_CP1_CI_AS
+18      SQLCHAR             0       92      "	"      18    Title                                            SQL_Latin1_General_CP1_CI_AS
+19      SQLCHAR             0       120     "	"      19    EmailAddress                                     SQL_Latin1_General_CP1_CI_AS
+20      SQLCHAR             0       40      "	"      20    DistrictCode                                     SQL_Latin1_General_CP1_CI_AS
+21      SQLCHAR             0       80      "	"      21    ProgramName                                      SQL_Latin1_General_CP1_CI_AS
+22      SQLCHAR             0       5       "	"      22    UseCreditUnion                                   ""
+23      SQLCHAR             0       5       "	"      23    ShowWarnMsg                                      ""
+24      SQLCHAR             0       8       "	"      24    Suffix                                           SQL_Latin1_General_CP1_CI_AS
+25      SQLCHAR             0       37      "	"      25    CurrentProspectID                                ""
+26      SQLCHAR             0       5       "	"      26    SystemAccess                                     ""
+27      SQLCHAR             0       5       "	"      27    CompanyDisclosure                                ""
+28      SQLCHAR             0       5       "	"      28    Status                                           ""
+29      SQLCHAR             0       12      "	"      29    AgtType                                          ""
+30      SQLCHAR             0       24      "	"      30    CreateDate                                       ""
+31      SQLCHAR             0       24      "	"      31    ExpireDate                                       ""
+32      SQLCHAR             0       5       "	"      32    IsBank                                           ""
+33      SQLCHAR             0       37      "	"      33    LastUsedGroupID                                  ""
+34      SQLCHAR             0       60      "	"      34    LanguageSelected                                 SQL_Latin1_General_CP1_CI_AS
+35      SQLCHAR             0       60      "	"      35    ReportLanguageSelected                           SQL_Latin1_General_CP1_CI_AS
+36      SQLCHAR             0       37      "	"      36    ActiveDChannel                                   ""
+37      SQLCHAR             0       37      "	"      37    ActiveAgentRole                                  ""
+38      SQLCHAR             0       600     "	"      38    EmailTO                                          SQL_Latin1_General_CP1_CI_AS
+39      SQLCHAR             0       600     "	"      39    EmailCC                                          SQL_Latin1_General_CP1_CI_AS
+40      SQLCHAR             0       5       "\r\n"   40    UseCallCenter                                    ""

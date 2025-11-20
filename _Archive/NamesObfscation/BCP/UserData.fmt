@@ -1,0 +1,9 @@
+14.0
+7
+1       SQLCHAR             0       37      "	"      1     UserDataID                         ""
+2       SQLCHAR             0       100     "	"      2     UserName                           SQL_Latin1_General_CP1_CI_AS
+3       SQLCHAR             0       100     "	"      3     Password                           SQL_Latin1_General_CP1_CI_AS
+4       SQLCHAR             0       37      "	"      4     LastUsedAgentID                    ""
+5       SQLCHAR             0       200     "	"      5     FirstName                          SQL_Latin1_General_CP1_CI_AS
+6       SQLCHAR             0       200     "	"      6     LastName                           SQL_Latin1_General_CP1_CI_AS
+7       SQLCHAR             0       5       "\r\n"   7     IsUserActive                       ""

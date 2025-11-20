@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.WoodmenReconClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ReportFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Reports</Value>
+    </Setting>
+    <Setting Name="ReportDeletionInterval" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">14.00:00:00</Value>
+    </Setting>
+    <Setting Name="ReportGenerationInterval" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">12:00:00</Value>
+    </Setting>
+    <Setting Name="ReportWebServiceEndpoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">api/Recon/SubmitReport</Value>
+    </Setting>
+    <Setting Name="ReportTransmissionRetryInterval" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:05:00</Value>
+    </Setting>
+    <Setting Name="DesktopReportEnabled" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ServerReportEnabled" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MiddlwareReportEnabled" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ReportWebServiceUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://mobilewebapi.woodmen.net/ReconService/</Value>
+    </Setting>
+    <Setting Name="RegKeyPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SOFTWARE\WOW6432Node\StoneRiver\ACL\WOW</Value>
+    </Setting>
+    <Setting Name="RegKeyVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Version</Value>
+    </Setting>
+    <Setting Name="RegKeyAppPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ApplicationPath</Value>
+    </Setting>
+    <Setting Name="RelativeVersionFilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WOW\LifePortraits\bin\system.ver</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

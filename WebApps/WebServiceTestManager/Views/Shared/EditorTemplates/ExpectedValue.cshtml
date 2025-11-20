@@ -1,0 +1,225 @@
+﻿<script src="/Scripts/jquery-3.3.1.js"></script>
+<script>
+    var groupid = 0;
+    var isDragAllowed = false;
+    $(document).ready(function () {
+        $('#add').click(function (e) {
+            var keyName = "Expected[" + id + "].PropertyName";
+            var key = "<input type='text'class='form-control' name='" + keyName + "' id='" + keyName + "'/>";
+
+            var valueName = "Expected[" + id + "].ExpectedValue";
+            var value = "<input type='text'class='form-control' name='" + valueName + "' id='" + valueName + "'/>";
+
+            var typeName = "Expected[" + id + "].Type";
+            var type = "<input type='text'class='form-control' style='display: none; 'name='" + typeName + "' id='" + typeName + "'/>";
+
+            var dropDown = "<select class='form-control selected' id='selected" + id + "' data-id='" + id + "'></select>";
+
+            var types = {
+                0: 'Integer',
+                1: 'Decimal',
+                2: 'Text',
+                3: 'Boolean'
+            };
+
+            $('#table > tbody:last-child').append("<tr><td>" + key + "</td><td>" + value + "</td><td>" + type + " " + dropDown + "</td></tr>");
+
+            $.each(types, function (key, value) {
+                $('#selected' + id)
+                    .append($("<option></option>")
+                        .attr("value", key)
+                        .text(value));
+            });
+
+            id++;
+        });
+
+        $('#ev').on('change', '.selected', function (e) {
+            $('#Expected\\[0\\]\\.Type').attr("value", e.target.value + "");//text(e.target.dataset.id);
+        });
+        $(".group").on("dragover", '.group-inner', function (e) {
+            e.preventDefault();
+        });
+
+        $('.group').on('click', '.remove', function (e) {
+            $(this).closest('.group-inner-align').remove();
+        });
+
+        $('.group').on('click', '.remove-group', function (e) {
+            var ctrl = $(this);
+            ShowDialog('Are you sure', "Do you really want to remove this group? <strong class='textdanger'>WARNING</strong> This will remove all key value pairs from the group!", function () {
+                ctrl.closest('.secondary-group-content').remove();
+            });
+        });
+
+
+        $('.group').on('drop', '.group-inner',function (e) {
+            e.preventDefault();
+            console.log(e);
+
+            if (isDragAllowed == false)
+                return false;
+
+            var keyName = "Expected[" + id + "].PropertyName";
+            var key = "<input placeholder='Key' type='text'class='form-control' name='" + keyName + "' id='" + keyName + "'/>";
+
+            var valueName = "Expected[" + id + "].ExpectedValue";
+            var value = "<input placeholder='Value' type='text'class='form-control' name='" + valueName + "' id='" + valueName + "'/>";
+
+            var typeName = "Expected[" + id + "].Type";
+            var type = "<input type='text'class='form-control' style='display: none; 'name='" + typeName + "' id='" + typeName + "'/>";
+
+            var dropDown = "<select class='form-control selected' id='selected" + id + "' data-id='" + id + "'></select>";
+
+            //var closeButton = "<button type='button' class='remove' style='margin: 0;'><span class='text-danger fas fa-window-close'></span></span></button>";
+
+            var closeButton = "<button type='button' class='btn remove' aria-label='Left Align'> <span class='fa fa-times fa-lg text-danger' aria-hidden='true'></span> </button>"
+
+            var types = {
+                0: 'Integer',
+                1: 'Decimal',
+                2: 'Text',
+                3: 'Boolean'
+            };
+
+            var ctrl = $(this);
+            var data = e.originalEvent.dataTransfer.getData("text");
+            var newCtrl = $("#" + data).append(closeButton);
+
+            ctrl.append(newCtrl);
+            $('#newItem').append("<div class='group-inner-align' id=" + id + ">" + key + value + type + dropDown + "</div>");
+
+            $.each(types, function (key, value) {
+                $('#selected' + id)
+                    .append($("<option></option>")
+                        .attr("value", key)
+                        .text(value));
+            });
+            id++;
+        });
+
+        $('.addGroup').click(function (e) {
+            console.log('e');
+            groupid++;
+            //"<div class='card-header' id='group" + groupid + "' data-toggle='collapse' data-target='#groupinner" + groupid + "'> Group " + groupid + " > </div> <div class="group - inner" id='groupinner' + " + groupid +" data - id='0' > <h1></h1> </div > ";
+            $('#group').append("<div class='secondary-group-content'><div class='card-header secondary-group' id='group" + groupid + "' data-toggle='collapse' data-target='#groupinner" + groupid + "'> <p>Group " + (groupid + 1) + "</p> <button type='button' class='btn remove-group' aria-label='Left Align'> <span class='fa fa-times fa-lg text-danger' aria-hidden='true'></span> </button> </div> <div class='group-inner' id='groupinner" + groupid + "' data-id='1'> <h1></h1> </div></div>")
+        });
+    });
+    var id = 1;
+
+    function doneDrag(e) {
+        isDragAllowed = false;
+    }
+    function drag(e) {
+        isDragAllowed = true;
+        e.dataTransfer.setData("text", $('#newItem :first-child').attr('id'));
+    }
+
+    function removeLastRow() {
+        var table = document.getElementById("table");
+        var count = table.rows.length - 1;
+
+        if (count > 1) {
+            table.deleteRow(count);
+            id--;
+            console.log(id);
+        }
+
+
+    }
+
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    document.querySelector("form").addEventListener("submit", function (e) {
+        var elem = document.getElementById('table');
+
+        var ul = document.getElementById("error");
+        while (ul.firstChild) ul.removeChild(ul.firstChild);
+        for (var i = 0; i < id; i++) {
+            var propertyName = document.querySelector("input[name='Expected[" + i + "].PropertyName']").value;
+            var expectedValue = document.querySelector("input[name='Expected[" + i + "].ExpectedValue']").value;
+            var errorList = document.getElementById("error");
+
+
+            if (1 > propertyName.length) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode("Key " + (i + 1) + " can not be empty"));
+                errorList.appendChild(li);
+                e.preventDefault();
+            }
+            if (1 > expectedValue.length) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode("Value " + (i + 1) + " can not be empty"));
+                errorList.appendChild(li);
+                e.preventDefault();
+            }
+        }
+    });
+</script>
+<style>
+    .group {
+        height: 15%;
+        border: 1px solid lightgrey;
+    }
+
+    .group-inner {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .group-inner-align {
+        margin-bottom: 1%;
+        display: flex;
+        flex-direction: row;
+    }
+    .secondary-group{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+</style>
+<p>Drag the plus to a group to add a new entry</p>
+<input type="button" class="btn-sm btn addGroup" value="Add New Group"/>
+<div id="newItem" draggable="true" ondragstart="drag(event)" ondragend="doneDrag(event)">
+    <div class="group-inner-align" id="0">
+        <input type="text" placeholder="Key" class="form-control" data-val="true" id="Expected[0].PropertyName" name="Expected[0].PropertyName" />
+        <input type="text" placeholder="Value" class="form-control" id="Expected[0].ExpectedValue" name="Expected[0].ExpectedValue" />
+        <input type="text" class="form-control" style="display: none;" value="0" id="Expected[0].Type" name="Expected[0].Type" /><select class="form-control selected" id="selected0" data-id="0"><option value="0">Integer</option><option value="1">Decimal</option><option value="2">Text</option><option value="3">Boolean</option></select>
+    </div>
+    @*<h3><span class="fas fa-plus-circle text-success"></span></h3>*@
+</div>
+
+<div id="group" class="group">
+    <div class="card-header" id="group0" data-toggle="collapse" data-target="#groupinner0">
+        <p>Group 1</p>
+    </div>
+    <div class="group-inner" id='groupinner0' data-id="0">
+        <h1></h1>
+    </div>
+</div>
+
+@*<div id="ev">
+    <table id="table" style="margin-bottom: .25em">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+                <th>Data Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="form-control" data-val="true" id="Expected[0].PropertyName" name="Expected[0].PropertyName" /></td>
+                <td><input type="text" class="form-control" id="Expected[0].ExpectedValue" name="Expected[0].ExpectedValue" /></td>
+                <td><input type="text" class="form-control" style="display: none;"value ="0" id="Expected[0].Type" name="Expected[0].Type" /><select class="form-control selected" id="selected0" data-id="0"><option value="0">Integer</option><option value="1">Decimal</option><option value="2">Text</option><option value="3">Boolean</option></select></td>
+            </tr>
+        </tbody>
+    </table>
+        </div>
+
+
+    <a class="btn-sm btn" id="add">Add New Item</a>
+    <input type="button" class="btn-sm btn" id="remove" value="Remove Last Item" onclick="removeLastRow()" />*@
+<ul id="error"></ul>

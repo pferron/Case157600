@@ -1,0 +1,189 @@
+﻿@model WOW.WoodmenIllustrationService.SharedModels.ServiceStatus
+
+<fieldset>
+    <legend>Woodmen Illustration Service</legend>
+    <table>
+        <tr>
+            <td style="width: 18%">Web API:</td>
+            <td>ONLINE</td>
+        </tr>
+        <tr>
+            <td>Database:</td>
+            <td>@Model.Result</td>
+        </tr>
+    </table>
+</fieldset>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <br />
+    <fieldset>
+        <legend>Error Message</legend>
+        <p>@ViewBag.ErrorMessage</p>
+    </fieldset>
+}
+
+<div class="simpleTabs">
+    <ul class="simpleTabsNavigation">
+        <li><a href="#">FIP to ACORD Debugging</a></li>
+        <li><a href="#">LifePortraits Search</a></li>
+        <li><a href="#">Download Illustrations</a></li>
+        <li><a href="#">Rater Functions</a></li>
+        <li><a href="#">Maintenance</a></li>
+    </ul>
+    <div class="simpleTabsContent">
+        <h3>FIP File Test Submission</h3>
+        <p>Upload a FIP File using this form. An Illustration Values model will be returned.</p>
+
+        @using (Html.BeginForm("GenerateIllustrationViaFip", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+
+        <br />
+
+        <h3>Convert FIP File to ACORD</h3>
+        <p>Upload a FIP File using this form. An ACORD TX111 Illustration Request XML document will be returned.</p>
+
+        @using (Html.BeginForm("ConvertFipFile", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+
+        <br />
+
+        <h3>Convert FIP File to WIM</h3>
+        <p>Upload a FIP File using this form. A Woodmen Illustration Model JSON document will be returned.</p>
+
+        @using (Html.BeginForm("ConvertFipFileToWIM", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+
+        <br />
+
+        <h3>Submit ACORD to LifePortraits</h3>
+        <p>Upload an ACORD TX111 Illustration Request directly to the LifePortraits backend.</p>
+
+        @using (Html.BeginForm("GenerateIllustrationViaAcord", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+    </div>
+
+    <div class="simpleTabsContent">
+        <h3>Submit Search Request to LifePortraits</h3>
+        <p>Submit a test search.</p>
+
+        @using (Html.BeginForm("Search", "api/Search", FormMethod.Post))
+        {
+            <div>
+                <div>
+                    <label for="firstName">First Name:</label><br />
+                    <input type="text" name="firstName" />
+                </div>
+                <div>
+                    <label for="lastName">Last Name:*</label><br />
+                    <input type="text" name="lastName" />
+                </div>
+                <div>
+                    <label for="age">Age:</label><br />
+                    <input type="number" name="age" />
+                </div>
+                <div>
+                    <label for="userName">User Name:*</label><br />
+                    <input type="text" name="userName" value="DAD7443" />
+                </div>
+                <div>
+                    <input type="submit" name="btnSubmit" value="Submit" />
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="simpleTabsContent">
+        <h3>Download Illustration PDF</h3>
+        <p>Upload a FIP File using this form. An Illustration PDF will be downloaded.</p>
+
+        @using (Html.BeginForm("FetchIllustrationPdf", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+
+        <br />
+
+        <p>Upload a WIM JSON file using this form. An Illustration PDF will be downloaded.</p>
+
+        @using (Html.BeginForm("FetchIllustrationPdfViaWIM", "api/Illustrations", FormMethod.Post))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+
+        <br />
+
+        <p>Upload an ACORD XML File using this form. An Illustration PDF will be downloaded.</p>
+
+        @using (Html.BeginForm("FetchIllustrationPdfViaAcord", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+
+        <br />
+
+        <h3>Download Illustration Values</h3>
+        <p>Upload a FIP File using this form. An Illustration Values text file will be returned.</p>
+
+        @using (Html.BeginForm("FetchIllustrationValues", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+
+        <br />
+
+        <p>Upload a WIM JSON File using this form. An Illustration Values text file will be returned.</p>
+
+        @using (Html.BeginForm("FetchIllustrationValuesViaWIM", "api/Illustrations", FormMethod.Post))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+
+        <br />
+
+        <p>Upload an ACORD XML File using this form. An Illustration Values text file will be returned.</p>
+
+        @using (Html.BeginForm("FetchIllustrationValuesViaAcord", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+    </div>
+
+    <div class="simpleTabsContent">
+        <h3>Rater Functions</h3>
+        <p>Upload a rate request using a JSON File using this form.</p>
+
+        @using (Html.BeginForm("FetchRateViaJson", "api/Rater", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="testfile" />
+            <input type="submit" name="btnSubmit" value="Submit" />
+        }
+    </div>
+
+    <div class="simpleTabsContent">
+        <h3>Maintenance</h3>
+        <p>A manual purge of files can be triggered, if needed.</p>
+        <p><a style="color:#FFF;" href="@Url.HttpRouteUrl("DefaultApi", new { controller = "Service", action = "PurgeUploads" })" onclick="return confirm('This will remove all uploads and results from the server. Continue?');">Purge AppData Files &raquo;</a></p>
+    </div>
+</div>
+
+
+

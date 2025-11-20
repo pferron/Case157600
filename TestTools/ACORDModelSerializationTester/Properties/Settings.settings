@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.Illustration.TestTools.ACORDModelSerializationTester.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LastTestSampleLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G:\ProjOfc\Projects\W3\Illustration System Upgrade\03_Design\04_Micro Design\ACORD Message Model\TestCases\</Value>
+    </Setting>
+    <Setting Name="LastOutputLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Temp\Output</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

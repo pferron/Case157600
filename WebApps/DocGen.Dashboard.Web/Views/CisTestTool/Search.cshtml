@@ -1,0 +1,269 @@
+﻿@model LPA.Dashboard.Web.ViewModels.TestResultCimSearchViewModel
+
+@{
+    ViewBag.Title = "CIS Test Result Search";
+}
+
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+
+    })
+</script>
+
+@Html.AntiForgeryToken()
+
+@{
+    if (!Model.ErrorMessage.IsEmpty())
+    {
+        <div class="error">
+            @Model.ErrorMessage
+        </div>
+    }
+}
+<div>
+
+        <div class="card my-4" style="display:flex;">
+            <div class="card-body">
+                <div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12 d-flex flex-row">
+                                <h4 class="text-muted mb-2 mt-auto mr-auto">
+                                    CIS Test Result Search
+                                </h4>
+                            </div>
+                        </div>
+                        <hr class="mt-0" />
+                        <div id="alert" class="alert" role="alert" style="display:none;">
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                        <label for="beginCreatedDate">Created Date Beginning* </label>
+                                        <input type="date" class="form-control" id="beginCreatedDate" name="searchDto.DateCreatedBegin" value="@Model.SearchDto.DateCreatedBegin.ToString("yyyy-MM-dd")">
+                                    </div>
+                                    <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                        <label for="endCreatedDate">Created Date Beginning* </label>
+                                        <input type="date" class="form-control" id="endCreatedDate" name="searchDto.DateCreatedEnd" value="@Model.SearchDto.DateCreatedEnd.ToString("yyyy-MM-dd")">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                        <label for="endCreatedDate">State</label>
+                                        <select class="form-control" id="drpStates" name="searchDto.StateCode">
+                                            <option value="">All States</option>
+                                            @foreach (var state in Model.StateCodes)
+                                            {
+                                                <option value="@state.Value">@state.Text</option>
+                                            }
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                        <label for="drpProductTypeCode">Product Type Code</label>
+                                        <select class="form-control" id="drpProductTypeCode" name="searchDto.ProductTypeCode">
+                                            <option value="">All Type Codes</option>
+                                            @foreach (var productTypeCode in Model.ProductTypeCodes)
+                                            {
+                                                <option value="@productTypeCode">@productTypeCode</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                        <label for="drpTestGroup">Test Group</label>
+                                        <select class="form-control" id="drpTestGroup" name="searchDto.TestGroupId">
+                                            <option value="">All Test Groups</option>
+                                            @foreach (var testGroup in Model.TestGroups)
+                                            {
+                                                <option value="@testGroup.Value">@testGroup.Text</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                        <label for="drpIllusReportType">Illustration Report Type</label>
+                                        <select class="form-control" id="drpIllusReportType" name="searchDto.IllustrationReportType">
+                                            <option value="">All Report Types</option>
+                                            @foreach (var illustrationReportType in Model.IllustrationReportTypes)
+                                            {
+                                                <option value="@illustrationReportType">@illustrationReportType</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button type="button" class="btn btn-primary" onclick="SearchCimResults(@Model.Page);">Find</button>
+                                </div>
+                            </div>
+                        </div>
+                        @*<fieldset style="border:none; padding: 10px;">
+                                <div class="legend">
+                                    <div style="margin-right:10px; white-space: nowrap;">
+                                        <div style="float: left;">
+
+                                            <label>Begin Created Date:</label>
+                                            <label class="labelData"><input type="text" class="date-picker" style="width: 108px" id="beginCreatedDate" name="searchDto.DateCreatedBegin" value="@Model.SearchDto.DateCreatedBegin.ToShortDateString()" /></label>
+                                            <label style="padding-left: 40px;">End Created Date:</label>
+                                            <label class="labelData"><input type="text" class="date-picker" style="width: 108px" id="endCreatedDate" name="searchDto.DateCreatedEnd" value="@Model.SearchDto.DateCreatedEnd.ToShortDateString()" /></label>
+                                            <label style="vertical-align: text-top; padding-left: 40px;">
+                                                State:
+                                            </label>
+                                            <span class="labelData">
+                                                <select size="3" style="width: 150px;" id="drpStates" name="searchDto.StateCode">
+                                                    <option value=""></option>
+                                                    @foreach (var state in Model.StateCodes)
+                                                    {
+                                                        <option value="@state.Value">@state.Text</option>
+                                                    }
+                                                </select>
+                                            </span>
+                                            <span>
+                                                <button style="margin-left: 60px; margin-bottom:5px; border-radius: 4px;" type="button" class="btn btn-primary" onclick="SearchCimResults(@Model.Page);">Search</button>
+                                            </span>
+                                            <table>
+                                                <tr>
+                                                    <td style="vertical-align: text-top;">
+                                                        <label>Product Type Code:</label>
+                                                    </td>
+                                                    <td>
+                                                        <div>
+                                                            <span class="labelData">
+                                                                <select size="10" style="width: 200px;" id="drpProductTypeCode" name="searchDto.ProductTypeCode">
+                                                                    <option value=""></option>
+                                                                    @foreach (var productTypeCode in Model.ProductTypeCodes)
+                                                                    {
+                                                                        <option value="@productTypeCode">@productTypeCode</option>
+                                                                    }
+                                                                </select>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td style="vertical-align: text-top; padding-left: 10px;">
+                                                        <label>Test Group:</label>
+                                                    </td>
+                                                    <td>
+                                                        @if (Model.TestGroups.Count > 0)
+                                                        {
+                                                            <span class="labelData">
+                                                                <select size="10" style="width: 200px;" id="drpTestGroup" name="searchDto.TestGroupId">
+                                                                    <option value=""></option>
+                                                                    @foreach (var testGroup in Model.TestGroups)
+                                                                    {
+                                                                        <option value="@testGroup.Value">@testGroup.Text</option>
+                                                                    }
+                                                                </select>
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="labelData">
+                                                                <select size="10" style="width: 200px;" id="drpTestGroup" name="searchDto.TestGroupId">
+                                                                    <option value=""></option>
+                                                                </select>
+                                                            </span>
+                                                        }
+                                                    </td>
+                                                    <td style="vertical-align: text-top; padding-left: 10px;">
+                                                        <label>Illustration Report Type:</label>
+                                                    </td>
+                                                    <td>
+                                                        <span class="labelData">
+                                                            <select size="10" style="width: 200px;" id="drpIllusReportType" name="searchDto.IllustrationReportType">
+                                                                <option value=""></option>
+                                                                @foreach (var illustrationReportType in Model.IllustrationReportTypes)
+                                                                {
+                                                                    <option value="@illustrationReportType">@illustrationReportType</option>
+                                                                }
+                                                            </select>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>*@
+                        <div id="dvSearch">
+
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    //Need to add JS code to set selected value for dropdown
+    $(document).ready(function () {
+        $("#drpProductTypeCode").val('@Model.SearchDto.ProductTypeCode');
+        $("#drpTestGroup").val('@Model.SearchDto.TestGroupId');
+        $("#drpIllusReportType").val('@Model.SearchDto.IllustrationReportType');
+        $("#drpStates").val('@Model.SearchDto.StateCode');
+
+        $("#drpProductTypeCode").change(function () {
+            GetTestGroups();
+        });
+
+        $(document).keypress(function (e) {
+            if (e.keyCode === 13) {
+                SubmitForm('#search');
+            }
+        });
+    });
+
+    function GetTestGroups() {
+        var id = $('#drpProductTypeCode').val();
+        var serviceUrl = baseUrl + 'api/Data/TestGroups?id=' + id;
+
+        if (id = "" ||  id.length > 0) {
+            $.ajax({
+                datatype: "json",
+                type: "GET",
+                url: serviceUrl,
+                async: false,
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $('#drpTestGroup').append($("<option />").val(data[index].Value).text(data[index].Text));
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(textStatus);
+                }
+            });
+        }
+        else {
+            $('#drpTestGroup').empty();
+            $('#drpTestGroup').append($('<option value="">All Test Groups</option>'));
+        }
+    }
+
+    function SearchCimResults(pageNumber) {
+        var productTypeCode = $('#drpProductTypeCode').val();
+        var illustrationType = $('#drpIllustrationType').val();
+        var testGroup = $("#drpTestGroup").val();
+        var stateCode = $("#drpStates").val();
+        var startDate = $("#beginCreatedDate");
+        var endDate = $("#endCreatedDate");
+        var searchDto = {};
+        searchDto.productTypeCode = productTypeCode;
+        searchDto.illustrationType = illustrationType;
+        searchDto.testGroupId = testGroup;
+        searchDto.stateCode = stateCode;
+        searchDto.dateCreatedBegin = startDate.val();
+        searchDto.dateCreatedEnd = endDate.val();
+
+        $.ajax({
+            data: { searchDto: searchDto, pageNumber: pageNumber },
+            datatype: "text/plain",
+            type: "POST",
+            url: baseUrl + 'CisTestTool/DoSearch',
+            cache: false,
+            success: function (data) {
+                $('#dvSearch').html(data);
+            }
+        });
+    }
+</script>

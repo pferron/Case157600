@@ -1,0 +1,54 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.LifePortraitsWebAuthentication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AuthErrorUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:37139/Home/Error</Value>
+    </Setting>
+    <Setting Name="ActiveDirectoryDomainName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HOAD</Value>
+    </Setting>
+    <Setting Name="AllowedFieldOrganizationUnits" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FieldObjects</Value>
+    </Setting>
+    <Setting Name="AllowedHomeOfficeOrganizationUnits" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AllowedFieldGroups" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AllowedFieldUsers" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AllowedHomeOfficeUsers" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DAD7443</Value>
+    </Setting>
+    <Setting Name="FieldRoleCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Default_Agent</Value>
+    </Setting>
+    <Setting Name="LanguageCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">en-us</Value>
+    </Setting>
+    <Setting Name="DistributionChannel" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DIST_WOW_TEST</Value>
+    </Setting>
+    <Setting Name="HomeOfficeRoleCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HO_SeeAll</Value>
+    </Setting>
+    <Setting Name="BypassSSLValidation" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LpaUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://lpa-test.woodmen.net/LifePortraits.aspx</Value>
+    </Setting>
+    <Setting Name="AllowedHomeOfficeGroups" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GRP_LifePortraits-HomeOfficeUsers</Value>
+    </Setting>
+    <Setting Name="LPASessionDBConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Server=uat-sql-db-1;Database=WOWSession_UAT;Trusted_Connection=True;</Value>
+    </Setting>
+    <Setting Name="LPALPESDBConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Server=uat-sql-db-1;Database=WOWLPES_UAT;Trusted_Connection=True;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

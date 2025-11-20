@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Destinations">
+          <Key>
+            <PropertyRef Name="DestinationId" />
+          </Key>
+          <Property Name="DestinationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Url" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExpectedValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PropertyName" Type="varchar(max)" Nullable="false" />
+          <Property Name="ExpectedResult" Type="varchar(max)" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="TestSetId" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Summary" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TestExecutions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TestSetName" Type="varchar(max)" Nullable="false" />
+          <Property Name="DestinationName" Type="varchar(max)" Nullable="false" />
+          <Property Name="DestinationUrl" Type="varchar(max)" Nullable="false" />
+          <Property Name="TestSetId" Type="int" Nullable="false" />
+          <Property Name="Result" Type="int" Nullable="false" />
+          <Property Name="ExecutionDate" Type="datetime" Nullable="false" />
+          <Property Name="TestIdentifier" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Summary" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="TestSets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserDestinations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DestinationId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WindowsUsername" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTestSets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="TestSetId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ExpectedValues_Files">
+          <End Role="Files" Type="Self.Files" Multiplicity="1" />
+          <End Role="ExpectedValues" Type="Self.ExpectedValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Files">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpectedValues">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Files_TestSet">
+          <End Role="TestSets" Type="Self.TestSets" Multiplicity="0..1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="TestSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDestination_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserDestinations" Type="Self.UserDestinations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDestinations">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTestSet_User">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserTestSets" Type="Self.UserTestSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTestSets">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTestSet_UserTestSet">
+          <End Role="TestSets" Type="Self.TestSets" Multiplicity="1" />
+          <End Role="UserTestSets" Type="Self.UserTestSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTestSets">
+              <PropertyRef Name="TestSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBStoreContainer">
+          <EntitySet Name="Destinations" EntityType="Self.Destinations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpectedValues" EntityType="Self.ExpectedValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestExecutions" EntityType="Self.TestExecutions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestSets" EntityType="Self.TestSets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDestinations" EntityType="Self.UserDestinations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTestSets" EntityType="Self.UserTestSets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ExpectedValues_Files" Association="Self.FK_ExpectedValues_Files">
+            <End Role="Files" EntitySet="Files" />
+            <End Role="ExpectedValues" EntitySet="ExpectedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Files_TestSet" Association="Self.FK_Files_TestSet">
+            <End Role="TestSets" EntitySet="TestSets" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDestination_User" Association="Self.FK_UserDestination_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserDestinations" EntitySet="UserDestinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTestSet_User" Association="Self.FK_UserTestSet_User">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserTestSets" EntitySet="UserTestSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTestSet_UserTestSet" Association="Self.FK_UserTestSet_UserTestSet">
+            <End Role="TestSets" EntitySet="TestSets" />
+            <End Role="UserTestSets" EntitySet="UserTestSets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Database" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="FetchTestSetsByUser" ReturnType="Collection(DB.FetchTestSetsByUser_Result)">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="FetchDestinationsByUser" ReturnType="Collection(DB.FetchDestinationsByUser_Result)">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Destinations" EntityType="DB.Destination" />
+          <EntitySet Name="ExpectedValues" EntityType="DB.ExpectedValue" />
+          <EntitySet Name="Files" EntityType="DB.File" />
+          <EntitySet Name="TestExecutions" EntityType="DB.TestExecution" />
+          <EntitySet Name="TestSets" EntityType="DB.TestSet" />
+          <EntitySet Name="UserDestinations" EntityType="DB.UserDestination" />
+          <EntitySet Name="Users" EntityType="DB.User" />
+          <EntitySet Name="UserTestSets" EntityType="DB.UserTestSet" />
+          <AssociationSet Name="FK_ExpectedValues_Files" Association="DB.FK_ExpectedValues_Files">
+            <End Role="File" EntitySet="Files" />
+            <End Role="ExpectedValue" EntitySet="ExpectedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Files_TestSet" Association="DB.FK_Files_TestSet">
+            <End Role="TestSet" EntitySet="TestSets" />
+            <End Role="File" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTestSet_UserTestSet" Association="DB.FK_UserTestSet_UserTestSet">
+            <End Role="TestSet" EntitySet="TestSets" />
+            <End Role="UserTestSet" EntitySet="UserTestSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDestination_User" Association="DB.FK_UserDestination_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserDestination" EntitySet="UserDestinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTestSet_User" Association="DB.FK_UserTestSet_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserTestSet" EntitySet="UserTestSets" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="FetchTestSetsByUser_Result">
+          <Property Type="Int32" Name="TestSetId" Nullable="false" />
+          <Property Type="String" Name="TestSetName" Nullable="false" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="FetchDestinationsByUser_Result">
+          <Property Type="Int32" Name="DestinationId" Nullable="false" />
+          <Property Type="String" Name="DestinationName" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="DestinationUrl" Nullable="false" MaxLength="Max" />
+        </ComplexType>
+        <EntityType Name="Destination">
+          <Key>
+            <PropertyRef Name="DestinationId" />
+          </Key>
+          <Property Name="DestinationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ExpectedValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FileId" Type="Guid" Nullable="false" />
+          <Property Name="PropertyName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExpectedResult" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="File" Relationship="DB.FK_ExpectedValues_Files" FromRole="ExpectedValue" ToRole="File" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TestSetId" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ExpectedValues" Relationship="DB.FK_ExpectedValues_Files" FromRole="File" ToRole="ExpectedValue" />
+          <NavigationProperty Name="TestSet" Relationship="DB.FK_Files_TestSet" FromRole="File" ToRole="TestSet" />
+        </EntityType>
+        <EntityType Name="TestExecution">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileId" Type="Guid" Nullable="false" />
+          <Property Name="TestSetName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DestinationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DestinationUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TestSetId" Type="Int32" Nullable="false" />
+          <Property Name="Result" Type="Int32" Nullable="false" />
+          <Property Name="ExecutionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TestIdentifier" Type="Guid" Nullable="false" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TestSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Files" Relationship="DB.FK_Files_TestSet" FromRole="TestSet" ToRole="File" />
+          <NavigationProperty Name="UserTestSets" Relationship="DB.FK_UserTestSet_UserTestSet" FromRole="TestSet" ToRole="UserTestSet" />
+        </EntityType>
+        <EntityType Name="UserDestination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DestinationId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="DB.FK_UserDestination_User" FromRole="UserDestination" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WindowsUsername" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserDestinations" Relationship="DB.FK_UserDestination_User" FromRole="User" ToRole="UserDestination" />
+          <NavigationProperty Name="UserTestSets" Relationship="DB.FK_UserTestSet_User" FromRole="User" ToRole="UserTestSet" />
+        </EntityType>
+        <EntityType Name="UserTestSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="TestSetId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TestSet" Relationship="DB.FK_UserTestSet_UserTestSet" FromRole="UserTestSet" ToRole="TestSet" />
+          <NavigationProperty Name="User" Relationship="DB.FK_UserTestSet_User" FromRole="UserTestSet" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_ExpectedValues_Files">
+          <End Type="DB.File" Role="File" Multiplicity="1" />
+          <End Type="DB.ExpectedValue" Role="ExpectedValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpectedValue">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Files_TestSet">
+          <End Type="DB.TestSet" Role="TestSet" Multiplicity="0..1" />
+          <End Type="DB.File" Role="File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="TestSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTestSet_UserTestSet">
+          <End Type="DB.TestSet" Role="TestSet" Multiplicity="1" />
+          <End Type="DB.UserTestSet" Role="UserTestSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTestSet">
+              <PropertyRef Name="TestSetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDestination_User">
+          <End Type="DB.User" Role="User" Multiplicity="1" />
+          <End Type="DB.UserDestination" Role="UserDestination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDestination">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTestSet_User">
+          <End Type="DB.User" Role="User" Multiplicity="1" />
+          <End Type="DB.UserTestSet" Role="UserTestSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTestSet">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBStoreContainer" CdmEntityContainer="Database">
+          <EntitySetMapping Name="Destinations">
+            <EntityTypeMapping TypeName="DB.Destination">
+              <MappingFragment StoreEntitySet="Destinations">
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpectedValues">
+            <EntityTypeMapping TypeName="DB.ExpectedValue">
+              <MappingFragment StoreEntitySet="ExpectedValues">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ExpectedResult" ColumnName="ExpectedResult" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="DB.File">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TestSetId" ColumnName="TestSetId" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestExecutions">
+            <EntityTypeMapping TypeName="DB.TestExecution">
+              <MappingFragment StoreEntitySet="TestExecutions">
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="TestIdentifier" ColumnName="TestIdentifier" />
+                <ScalarProperty Name="ExecutionDate" ColumnName="ExecutionDate" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="TestSetId" ColumnName="TestSetId" />
+                <ScalarProperty Name="DestinationUrl" ColumnName="DestinationUrl" />
+                <ScalarProperty Name="DestinationName" ColumnName="DestinationName" />
+                <ScalarProperty Name="TestSetName" ColumnName="TestSetName" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestSets">
+            <EntityTypeMapping TypeName="DB.TestSet">
+              <MappingFragment StoreEntitySet="TestSets">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDestinations">
+            <EntityTypeMapping TypeName="DB.UserDestination">
+              <MappingFragment StoreEntitySet="UserDestinations">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DB.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="WindowsUsername" ColumnName="WindowsUsername" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTestSets">
+            <EntityTypeMapping TypeName="DB.UserTestSet">
+              <MappingFragment StoreEntitySet="UserTestSets">
+                <ScalarProperty Name="TestSetId" ColumnName="TestSetId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

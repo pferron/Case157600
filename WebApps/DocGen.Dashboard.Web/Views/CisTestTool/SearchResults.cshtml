@@ -1,0 +1,158 @@
+﻿@model LPA.Dashboard.Web.ViewModels.TestResultCimSearchViewModel
+
+@{
+    Layout = null;
+}
+
+<fieldset style="border:none; padding: 10px;">
+    <div>
+        <label>Showing Results:</label> @Model.TestResultsCimDaos.Count Out of @Model.RecordTotal (Max allowed: @Model.MaxSearchResults)
+    </div>
+</fieldset>
+
+<fieldset style="border:none; padding: 10px;">
+    @if (Model.TestResultsCimDaos.Count > 0)
+    {
+        <div class="background" style="padding: 10px; border: 1px solid;">
+            <table class="displayList">
+                <thead>
+                    <tr>
+                        <th style="padding-right: 15px">
+                            Test Result Id
+                        </th>
+                        <th style="padding-right: 15px">
+                            Test Group Id
+                        </th>
+                        <th style="padding-right: 15px">
+                            Product Type Code
+                        </th>
+                        <th style="padding-right: 15px">
+                            Illustration Report Type
+                        </th>
+                        <th style="padding-right: 15px">
+                            State
+                        </th>
+                        <th style="padding-right: 15px">
+                            Date Created
+                        </th>
+                        <th style="padding-right: 15px">
+                            Completed
+                        </th>
+                        <th style="padding-right: 15px">
+                            Cim Json
+                        </th>
+                        <th style="padding-right: 15px">
+                            Illustration
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var testResultCimDao in Model.TestResultsCimDaos)
+                    {
+                        <tr>
+                            <td style="padding-right: 20px">
+                                @testResultCimDao.TestResultId
+                            </td>
+                            <td style="padding-right: 20px">
+                                @testResultCimDao.TestGroupId
+                            </td>
+                            <td style="padding-right: 30px">
+                                @testResultCimDao.ProductTypeCode
+                            </td>
+                            <td style="padding-right: 30px">
+                                @testResultCimDao.IllustrationReportType
+                            </td>
+                            <td style="padding-right: 30px">
+                                @testResultCimDao.StateCode
+                            </td>
+                            <td style="padding-right: 30px">
+                                @(testResultCimDao.DateCreated != null ? testResultCimDao.DateCreated.Value.ToShortDateString() : "")
+                            </td>
+                            <td style="padding-right: 15px">
+                                @testResultCimDao.Completed
+                            </td>
+                            <td style="padding-right: 20px">
+                                <span><a class="btn btn-xs btn-primary" href="#" style="font-size: 14px" onclick="DisplayCimJson('@testResultCimDao.TestResultId'); return false;">Show JSON Format</a></span>
+                            </td>
+                            <td style="white-space: nowrap;">
+                                <span>@Html.ActionLink("Display Illustration", "DisplayIllustration", new { controller = "CisTestTool", testResultId = testResultCimDao.TestResultId }, new { target = "_blank", @class = "btn btn-primary btn-xs" })</span>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    }
+</fieldset>
+
+@if (Model.RecordTotal > 0)
+{
+    <div id="pagingDiv" runat="server">
+        <nav>
+            <ul class="pagination">
+                @{
+                    int maxVisiblePageNumbers = 3;
+
+                    // Draw Previous link
+                    if (Model.Page == 1)
+                    {
+                        <li class="page-item disabled"><a href="#" class="page-link" tabindex="-1">Previous</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item enabled"><a href="#" onclick="SearchCimResults(@Model.Page - 1)" class="page-link" tabindex="-1">Previous</a></li>
+                    }
+
+                    // Draw leading ellipes if needed
+                    if (Model.Page > 1 && Model.TotalPages > maxVisiblePageNumbers)
+                    {
+                        <li class="page-item enabled"><span class="page-link" style="pointer-events: none;">...</span></li>
+                    }
+
+                    // Determine the largest page number possible to display
+                    int maxPageNumber = Model.Page + maxVisiblePageNumbers - 1 > Model.TotalPages ? Model.TotalPages : Model.Page + maxVisiblePageNumbers - 1;
+
+                    // Determine starting page number to display
+                    int startingPageNumber = Model.Page + maxVisiblePageNumbers - 1 > Model.TotalPages ? Model.TotalPages - maxVisiblePageNumbers + 1 : Model.Page;
+
+                    // Draw visible page links up to max count
+                    for (int i = startingPageNumber; i <= maxPageNumber; i++)
+                    {
+                        if (i == Model.Page)
+                        {
+                            <li class="page-item active"><span class="page-link">@Model.Page</span></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a href="#" onclick="SearchCimResults(@i);" class="page-link">@i</a></li>
+                        }
+                    }
+
+                    // Draw following ellipes if needed
+                    if (Model.Page + maxVisiblePageNumbers - 1 < Model.TotalPages)
+                    {
+                        <li class="page-item"><span class="page-link" style="pointer-events: none;">...</span></li>
+                    }
+
+                    // Draw Next link
+                    if (Model.Page + maxVisiblePageNumbers - 1 < Model.TotalPages)
+                    {
+                        <li class="page-item enabled"><a href="#" onclick="SearchCimResults(@Model.Page + 1)" class="page-link">Next</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item disabled"><a href="#" class="page-link">Next</a></li>
+                    }
+                }
+            </ul>
+        </nav>
+    </div>
+}
+else
+{
+    <div>
+        <label>No Search Results Found</label>
+    </div>
+}

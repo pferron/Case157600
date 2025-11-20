@@ -1,0 +1,130 @@
+﻿@model LPA.Dashboard.Web.ViewModels.TestGroupSearchViewModel
+
+@{
+    Layout = null;
+}
+
+<fieldset style="border:none; padding: 10px;">
+    <div>
+        <label>Showing Results:</label> @Model.TestGroups.Count Out of @Model.RecordTotal (Max allowed: @Model.MaxSearchResults)
+    </div>
+</fieldset>
+
+<fieldset class="background, rounded, border-light" margin-top: 10px;">
+    <table class="table table-striped thead-light">
+        <thead>
+        <thead>
+            <tr>
+                <th style="width: 100px;">
+                    Test Group Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Product Type Code
+                </th>
+                <th>
+                    Illustration Type
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Add File
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var testGroupDao in Model.TestGroups)
+            {
+                <tr>
+                    <td style="width: 100px;">
+                        @testGroupDao.TestGroupId
+                    </td>
+                    <td>
+                        @testGroupDao.Name
+                    </td>
+                    <td>
+                        @testGroupDao.ProductTypeCode
+                    </td>
+                    <td>
+                        @testGroupDao.IllustrationType
+                    </td>
+                    <td>
+                        @testGroupDao.Description
+                    </td>
+                    <td>
+                        @Html.ActionLink("+", "CreateCim", new { controller = "TestGroup", id = testGroupDao.TestGroupId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div id="pagingDiv" runat="server">
+        <nav>
+            <ul class="pagination">
+                @{
+                    int maxVisiblePageNumbers = 3;
+
+                    // Draw Previous link
+                    if (Model.Page == 1)
+                    {
+                        <li class="page-item disabled"><a href="#" class="page-link" tabindex="-1">Previous</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item enabled"><a href="#" onclick="SearchTestGroups(@Model.Page - 1)" class="page-link" tabindex="-1">Previous</a></li>
+                    }
+
+                    // Draw leading ellipes if needed
+                    if (Model.Page > 1 && Model.TotalPages > maxVisiblePageNumbers)
+                    {
+                        <li class="page-item enabled"><span class="page-link" style="pointer-events: none;">...</span></li>
+                    }
+
+                    // Determine the largest page number possible to display
+                    int maxPageNumber = Model.Page + maxVisiblePageNumbers - 1 > Model.TotalPages ? Model.TotalPages : Model.Page + maxVisiblePageNumbers - 1;
+
+                    // Determine starting page number to display
+                    int startingPageNumber = Model.Page + maxVisiblePageNumbers - 1 > Model.TotalPages ? Model.TotalPages - maxVisiblePageNumbers + 1 : Model.Page;
+
+                    if (startingPageNumber <= 0)
+                    {
+                        startingPageNumber = 1;
+                    }
+
+                    // Draw visible page links up to max count
+                    for (int i = startingPageNumber; i <= maxPageNumber; i++)
+                    {
+                        if (i == Model.Page)
+                        {
+                            <li class="page-item active"><span class="page-link">@Model.Page</span></li>
+                        }
+                        else
+                        {
+                            <li class="page-item"><a href="#" onclick="SearchTestGroups(@i);" class="page-link">@i</a></li>
+                        }
+                    }
+
+                    // Draw following ellipes if needed
+                    if (Model.Page + maxVisiblePageNumbers - 1 < Model.TotalPages)
+                    {
+                        <li class="page-item"><span class="page-link" style="pointer-events: none;">...</span></li>
+                    }
+
+                    // Draw Next link
+                    if (Model.Page < Model.TotalPages)
+                    {
+                        <li class="page-item enabled"><a href="#" onclick="SearchTestGroups(@Model.Page + 1)" class="page-link">Next</a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item disabled"><a href="#" class="page-link">Next</a></li>
+                    }
+                }
+            </ul>
+        </nav>
+    </div>
+</fieldset>
+

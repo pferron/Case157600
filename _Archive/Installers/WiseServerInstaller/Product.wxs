@@ -1,0 +1,3182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="WiseServer" Language="1033" Version="2.0.0" Manufacturer="WoodmenLife" UpgradeCode="537D7F48-61AD-405C-B015-087F6EE3B4A4">
+    <Package InstallerVersion="400" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="WiseServerInstallerWix" Level="1">
+      <ComponentRef Id="CMP_WiseServer"/>
+    </Feature>
+
+    <UIRef Id="WoodmenWixUI"/>
+
+  </Product>
+
+  <Fragment>
+    <UI Id="WoodmenWixUI">
+      <UIRef Id="WixUI_InstallDir"/>
+      <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+      <!-- skip license page going forward -->
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg"  Order="3">1</Publish>
+      <!-- skip license page on the way back too -->
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg"  Order="3">1</Publish>
+    </UI>
+  </Fragment>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+          <Directory Id="INSTALLFOLDER" Name="WiseServer">
+          </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="CMP_WiseServer">
+        <File Id="FILE_WiseServer.exe"           Name="WiseServer.exe"           KeyPath="yes" Source="\\fservpcv1\DEPTDATA\APPDEV\SHARED\w2kinst\wise\Ver2_0_0_ISU\WiseServer.exe" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+  
+  
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0136956A9A0E0C9357EBBB032815B055" Guid="{DCF255F7-47A3-4C96-B9F9-BD680A6F1E0D}" KeyPath="yes">
+                <RegistryKey Key="Interface\{537FFCF4-3149-4B6A-9A47-48416221BCF2}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp01A543BB89BD8997FCBA357A1E9BA1B1" Guid="{B9D49354-CDD0-4A33-8259-D210465BDBAE}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B43FA0EE-8A58-4E06-B267-BC95317BCA56}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0226D33C96BCA90D992D6B3C857F12A7" Guid="{80F99C94-6731-45A0-951D-E8500A392DFD}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A04D020F-8A35-4FD1-BDD4-B5332D6CBB42}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp02DDCFB71E19607310A49FEC3A753690" Guid="{9933F64A-ADB4-490C-B11D-595B0B8F2347}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsFieldRep\Clsid" Root="HKCR">
+                    <RegistryValue Value="{A20C77D1-6D08-451B-A1EB-71881F416DC9}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0315E328D5FED0F47A3626F98D494DA5" Guid="{E6D2D5AB-862E-4CC2-9386-5BE438911CA0}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsProductDisplay" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProductDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp032B00EB80ED2A1E1087675E4D89BB7F" Guid="{D31F5374-BE63-4E0B-843B-D954E764139B}" KeyPath="yes">
+                <RegistryKey Key="Interface\{BBAD8C26-7D2E-4830-931A-87B73E20E35F}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp04F2333B7E46F267150D6B2E5E74A2B6" Guid="{3C021EF5-C3D3-4A4D-A91E-05A37361111B}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0649984E182EE240CD2EE20D2A625E18" Guid="{5AC1AB84-3892-4F0C-BD3C-22B453A7D1F5}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{67BC1EC0-A309-4820-AD76-CB9052CC1C57}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0679CFE9106A2B14B33E693F762C811F" Guid="{F0B4B630-C275-4B9A-ADE9-315409DCA5C0}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{24C589D1-3E67-4963-8AF0-FA320153570A}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClient" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp06BC081E37D26065C6D323791546BBCF" Guid="{953AABE6-791D-4B93-B1F5-E577A359E89C}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0910B2DCAB9C932A1F14D46E9396E969" Guid="{84981096-DE17-4585-91F6-0EAC326F4D0A}" KeyPath="yes">
+                <RegistryKey Key="Interface\{E0149E0E-C644-48DC-B545-87D54B0C3642}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp097AF23D1142AC886A07EBF7E4D1F492" Guid="{88B82EDA-3245-42CF-A36E-BFCA345A1011}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsLodgeDisplay" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodgeDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0999E081B6283A285E8F657AC09CD4DF" Guid="{5010D29C-F4C5-4636-828E-33A538E1A87F}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{DF9753A7-3269-4432-86CC-9B9B01F835DB}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp09E06295AF33CB3C80AEFA94AEEACA43" Guid="{0887EC5C-7D95-4EE0-93FB-7812C25357B7}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsIEWPros" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0A0461E7E89E32E33D77A19BC6F7DF42" Guid="{80C27DF5-85D5-4AF1-A4E8-E6261823F969}" KeyPath="yes">
+                <RegistryKey Key="Interface\{9C2871A8-0CFF-42D8-A2FF-CF0283539C6E}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0A537C4AB619136E0C2B786E8E6F65BF" Guid="{76C3E162-0E29-49DA-9889-991583D15121}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsLodge\Clsid" Root="HKCR">
+                    <RegistryValue Value="{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0DBD698A2B81E078CF91CA7E2DC434A5" Guid="{D2A4E39A-F748-48EC-A714-DB10C9A49421}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsIEWPros" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsIEWPros" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0EB4DC176397CDDB0D2774601421821D" Guid="{B20D31C3-F500-4E7F-A86F-F52DA68C0635}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{B43FA0EE-8A58-4E06-B267-BC95317BCA56}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp0ECCC8824461D5D84F562FFCFD838798" Guid="{B76E2B92-13F7-462E-A7BB-A2AFE364BBA4}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp101FCEE1F8CFF8036A437DCD9A401015" Guid="{229D6491-ED9A-41E0-9E45-BBB86358775D}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsWise" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsWise" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp111CE0A29D2051F7B6BE3E36075DC50E" Guid="{0FCD0789-6265-42CE-AEA0-ACDD6A24948A}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1142FAE7BDB72DD8BCD26959A2F2661E" Guid="{EB6FAEEE-51E4-42AE-8026-FC1DC4956A58}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsPhysicianDisplay\Clsid" Root="HKCR">
+                    <RegistryValue Value="{A04D020F-8A35-4FD1-BDD4-B5332D6CBB42}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp11732A474B35A60E326D22BA12529B2C" Guid="{61EEB203-32EF-448B-BA48-AD6EFB6908BE}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp13572D29770C6CCC08508C476A2C1509" Guid="{64814E22-9D5D-414F-A9A8-66916DD2DBA8}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C32D493C-103F-4A3F-A571-1A2790DB6FB9}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp13AF85AF9F770A47CE247952A3BBC307" Guid="{C250D24C-E3F3-4982-BA45-3ECE76D64BAD}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{59542CE6-6955-4F05-86F1-41ED648B9BC9}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp16E854EAA8173582C9470215F8C26FCA" Guid="{0FF4FD51-4724-489F-8B0B-597503D9318A}" KeyPath="yes">
+                <RegistryKey Key="Interface\{9947B8CF-C6BC-4276-A170-44F3F03929AE}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1791F29F42641CC9BF094E58A844018A" Guid="{A60FBCA1-634D-4040-A632-71A35F3D91BD}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{DF9753A7-3269-4432-86CC-9B9B01F835DB}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysician" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp17C7CEB82B464ABEA75A8C11BB35634F" Guid="{FD0270D3-C6DE-421F-A350-18E7D1973824}" KeyPath="yes">
+                <RegistryKey Key="Interface\{0BF44FE4-41EB-43DA-9475-9D79912EEE12}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1854F03C83B7AFD2D56AEADFD50BDF71" Guid="{36178574-0AA7-4073-81B6-45CE76F25AF0}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A20C77D1-6D08-451B-A1EB-71881F416DC9}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1AD5D51727D8914C42CC6AC31CBF4389" Guid="{A0BFDD0B-2C91-4B05-9867-27A922935A85}" KeyPath="yes">
+                <RegistryKey Key="Interface\{D14D4633-CB5A-4073-9FBE-1E05ED217AC3}" Root="HKCR">
+                    <RegistryValue Value="clsPhysicians" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1B00B55913E1455CF3C9321858178CBC" Guid="{77D67F29-5665-47C6-8686-F6B88BC75033}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1BA584D9F6A3CDF32C98BA34237A04E0" Guid="{B65269AF-36A7-414C-AAD7-7F0897A64CC8}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1BA6DEED10767A6D6A1334F4D14287B7" Guid="{67A42109-48DA-4795-810F-A28A160E3377}" KeyPath="yes">
+                <RegistryKey Key="Interface\{920968A0-C85D-4B8D-B9E7-C1624856861D}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1BC1EA54C190875155C67FB0EA52546D" Guid="{7558A993-62A7-4B51-A4D1-EE695CE799E1}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsProduct" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProduct" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1D30A0C237CEE2644C26CACDBA117945" Guid="{3FC9E98A-BF66-4EC3-9CE5-720AD8F54DAC}" KeyPath="yes">
+                <RegistryKey Key="Interface\{715AB5A7-E545-43B2-98D5-5BF7EFA79B3E}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1DBB18ECAC5BF9DE9D55F7B7ADA04A98" Guid="{A23D17E2-27C1-4A71-AA56-65D6A005789C}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsAppStateDisplay\Clsid" Root="HKCR">
+                    <RegistryValue Value="{C2299235-9C88-419C-A1A0-D026CF639C24}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1E67BE62AEA1A6D695E3EAFC8360CDAC" Guid="{423023B6-8546-4E76-AA2D-7C9EDF67CF7C}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp1FFDCC2E0FD0AB933F29A11C7038E073" Guid="{11B82AC3-75EB-40CD-8A47-49ABE68F18EF}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C4854663-08B0-44A3-8CC9-17E6AAB07F19}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp204A11A8D84F9BE686ABA448032AC6FA" Guid="{04A3697C-3890-4E77-97EA-1B6B3799B1F7}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{2B83486F-4814-45B8-8A2F-FDD5F63D1008}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp20BAC680C48C9AB0A995CAD54C89C1B6" Guid="{71ECCE3C-5E3D-4780-A489-A62937BD54C2}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsYellowPad" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsYellowPad" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp213143AFC45B8D5AF90F6780C078F52D" Guid="{98931631-4993-4A17-A156-EB562548897F}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{89393927-A035-41B2-B19B-D562E02D9EFC}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2132E13C640DE3E010BF7E5376627B47" Guid="{1E8E45B8-1F6B-499F-A596-41897023DD4D}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A919EA4A-31C1-4358-A987-15C021A312ED}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClients" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp218BE56FD5D581BE7999064A8D7C3E6A" Guid="{F8601686-740E-408F-A5D7-4AE8E1DC2800}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B43FA0EE-8A58-4E06-B267-BC95317BCA56}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2212EF0122BB57462392A85CC7C3E7EE" Guid="{8BC445C7-ABF8-4CAC-AF6E-B9BE99E05843}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{4F627C6B-DF5D-4426-B2EB-7858FFBC8DF0}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClientDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp226163C312815DE86C5253B5DD47966D" Guid="{2FAEA016-5CBA-4719-8F57-8CA563BCF6BB}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C4854663-08B0-44A3-8CC9-17E6AAB07F19}" Root="HKCR">
+                    <RegistryValue Value="clsMailApplication" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp22F8794CE5E120C10DC5592E727FE157" Guid="{34B0A20C-5B83-454C-9359-08F1260FDBB7}" KeyPath="yes">
+                <RegistryKey Key="Interface\{5FA78CDC-B76A-4D99-83E0-04A042F12A10}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp23F454F7D8133D2DF5BB7F478754F285" Guid="{0A182618-61EF-492E-A5F9-7F09AB492715}" KeyPath="yes">
+                <RegistryKey Key="Interface\{2BC7203A-2F14-49E0-A79F-CCA7D144EB0B}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp24C006521555DC0FEEFBE514B92B7453" Guid="{6CD47CD7-4589-4CB3-ADD2-F4C3E03C387B}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A919EA4A-31C1-4358-A987-15C021A312ED}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp250A5C120C63B819264C0CE9F036095E" Guid="{C837B85A-25BE-4551-96E4-209490C0945D}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp257D1B26F7266B2DD857E9F5C0D07A82" Guid="{3B81BFBA-B69D-482C-BBB1-324623DBB0DC}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsClientDisplay\Clsid" Root="HKCR">
+                    <RegistryValue Value="{4F627C6B-DF5D-4426-B2EB-7858FFBC8DF0}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2642F270C0175826811946426B96B385" Guid="{446805A0-A674-4B1D-BA55-16863E9730D4}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsWise" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp279B452A07EA7CC11960C1A8ACE90BC3" Guid="{4559ADE7-35D9-4E43-8219-7BB7BD675E4A}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsMailApplication" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsMailApplication" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp283BABC4711F8D67D1E966371CA1024F" Guid="{AF81542E-13A3-48A1-91C0-AB71429F9B15}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsClients\Clsid" Root="HKCR">
+                    <RegistryValue Value="{A919EA4A-31C1-4358-A987-15C021A312ED}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp28B45C3955B7DFEA7F60A60062CD9E2D" Guid="{1B218BE6-8D22-4A34-837E-2940C910EEBB}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{901F547F-D28A-4000-A959-23B29FDF8E9B}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp29AE90578275898497C645BB9E403D78" Guid="{6250B8E6-CA04-43D6-BA9A-E9A7A6CE6186}" KeyPath="yes">
+                <RegistryKey Key="Interface\{D14D4633-CB5A-4073-9FBE-1E05ED217AC3}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp29F9535640A68CC20B274A272BCF20A7" Guid="{9B4CCE6B-3C90-48E6-A5AC-29D9E54085FC}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2B7218D5B47A28DC6732E3693AEF670D" Guid="{164144C5-1E47-4F49-B441-7C044D75BA22}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B57B711A-104C-4BEC-B1C0-038D385FCEA6}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsMailApplication" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2BC0726D5D9431797C9EF7A687B80B05" Guid="{2C6828A7-9D99-4B7E-9B3C-3FB9A3DADBBD}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{B57B711A-104C-4BEC-B1C0-038D385FCEA6}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2C32C3C1C5F60C9C4774FECFA2ABAAC3" Guid="{5CD26BD4-A871-4888-9910-8DFE8A111D0F}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A20C77D1-6D08-451B-A1EB-71881F416DC9}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2CAE815FE8EE116C59BA5DD1202559C5" Guid="{34C7DD1C-9798-430A-8097-8907E99811FE}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2D27847E1D80C98049AAF88BB6671FF7" Guid="{1DF9D644-EB03-4DE6-B37A-C4642B1937A0}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{C2299235-9C88-419C-A1A0-D026CF639C24}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2D8F2510AC5BE2872F7C674624317067" Guid="{177D2795-6476-4205-9339-030003A56BB0}" KeyPath="yes">
+                <RegistryKey Key="TypeLib\{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}\b.0\HELPDIR" Root="HKCR">
+                    <RegistryValue Value="\\fservpcv1\DEPTDATA\COMMON\DAD7443" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2EBEA0774509AC132028CE5B7C07E298" Guid="{27920BEE-94C2-4A2D-8CCE-85EAFD504A0E}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A04D020F-8A35-4FD1-BDD4-B5332D6CBB42}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysicianDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2ECC3D965CFBC198930D618609758571" Guid="{A3AF2F49-680D-481E-A56C-3BC45E0C7528}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6F196957-E6E6-41A6-AD58-BD829C956CA1}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp2EE784DB9286BD0BCF22BBD91402EBB2" Guid="{FE372C31-A007-49B2-85F4-1A929C0AFD5E}" KeyPath="yes">
+                <RegistryKey Key="Interface\{7DF61D15-DC9A-4F30-8460-128238FF34E4}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp30E1065444B4D9AA3CFCBF628ECB58EB" Guid="{064A4314-4A06-4597-A142-43473A2C5A3F}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C32D493C-103F-4A3F-A571-1A2790DB6FB9}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp317ED9C49BB92C9BB6913FA5D4510951" Guid="{D80BB37E-2B40-4A18-809C-11EA57D57778}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp32F5437BE2DC39D34F8C0FFB390EE191" Guid="{508B5505-8D69-41DD-93D8-BB5134176E39}" KeyPath="yes">
+                <RegistryKey Key="Interface\{0BF44FE4-41EB-43DA-9475-9D79912EEE12}" Root="HKCR">
+                    <RegistryValue Value="clsProduct" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp33CD66C1BF78138FFE4F398A104B50E3" Guid="{E8B61CAE-BDE9-40EC-A287-830F5F2D4302}" KeyPath="yes">
+                <RegistryKey Key="Interface\{537FFCF4-3149-4B6A-9A47-48416221BCF2}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp347157F2C298C670313D80C45E72B90D" Guid="{F635FC16-2FE6-4263-9ADE-2B3B60B209A0}" KeyPath="yes">
+                <RegistryKey Key="Interface\{DAB2A7B4-C21E-48BA-8D6B-EF04751B4693}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp34873B951871B39AB92620F6CD8D91FD" Guid="{5BA07379-995C-42CE-9339-3ADC0E46CE80}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{24C589D1-3E67-4963-8AF0-FA320153570A}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp34C7DFFA850B079D2619B048643C1737" Guid="{8544E453-5DED-4BA3-B605-2E52A3488140}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsProductDisplay\Clsid" Root="HKCR">
+                    <RegistryValue Value="{2B83486F-4814-45B8-8A2F-FDD5F63D1008}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp34F176B22FA573AC7BFAB7F952C08AC0" Guid="{347985E4-F8AD-46A2-9256-57ED3F096228}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsPhysicians" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysicians" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3600D334AF355B630746F21B431AB175" Guid="{1786E0CB-0AB1-43D6-8DFC-E71F96CE5AEE}" KeyPath="yes">
+                <RegistryKey Key="Interface\{2BC7203A-2F14-49E0-A79F-CCA7D144EB0B}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3630EA555DF051E371B7A3F3E7829570" Guid="{3AD1B3E8-AC5D-452F-813B-0BC7BB323A47}" KeyPath="yes">
+                <RegistryKey Key="Interface\{63218768-EB7F-4554-AC78-C88B9CC1EC20}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp36C30773AE9BD04B429B0428B6DCFADE" Guid="{520874C4-B6C0-4717-A0B5-81204F552A5E}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodges" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3743DD713AA5B9FCA49261BE33A08B8E" Guid="{6F1EF1FD-4B05-4808-AB45-438AAEED30E1}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{59542CE6-6955-4F05-86F1-41ED648B9BC9}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsNeedsAnalysis" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp376C4D1A13CC1725CCBBB584B8675A4E" Guid="{C5C9ACA3-24C9-4D4E-9423-0478D891DE49}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{901F547F-D28A-4000-A959-23B29FDF8E9B}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodgeDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3864AE1CA03A61A824F8A18A55FDBB96" Guid="{6D62E243-8513-4926-8CE1-A4B1302AC7E6}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{4F627C6B-DF5D-4426-B2EB-7858FFBC8DF0}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp38873328E359725CA563659631114B8F" Guid="{F966C72D-D4E7-47A3-9C1B-5337406A57EB}" KeyPath="yes">
+                <RegistryKey Key="Interface\{A2CA1AFD-B96D-4DDE-B039-0C419CC764BC}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp39839764B70EA5C547A8FCCD75F5CDDB" Guid="{85822A52-B50D-45E4-BAA3-F9CEAB541178}" KeyPath="yes">
+                <RegistryKey Key="Interface\{342AC966-50E7-4DBA-BD7A-6078B6D1A0D0}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3A35B1DF3C3992FA67DF0923FC094FEE" Guid="{C706FE03-A976-4E23-8F85-8B9BD60C8142}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3A369D95815BC4E2E7AB86BC245B73A6" Guid="{D5526C46-811C-4CC2-AD31-7FBD22794E24}" KeyPath="yes">
+                <RegistryKey Key="Interface\{475A4B87-CCEC-46DA-A3C7-D9B454D1AFE4}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3BBD53858DD8D515C7E656E2BF860E29" Guid="{3CABF628-8673-4B73-9693-6A7B13072A63}" KeyPath="yes">
+                <RegistryKey Key="Interface\{0BF44FE4-41EB-43DA-9475-9D79912EEE12}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3C061F289EA60AA98CDC2497F153E134" Guid="{A0FB5A1A-9B8D-491C-A328-080BE1F64428}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsMailApplication\Clsid" Root="HKCR">
+                    <RegistryValue Value="{B57B711A-104C-4BEC-B1C0-038D385FCEA6}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3CF1C380E9D2A8A4CDB085508EB2D28B" Guid="{E3ED49BC-5F20-43BB-8E63-393C6B542D5D}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{D552C26D-99D8-4355-BA23-C530630B2F57}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3D005B4B92DD7231E81B327927824168" Guid="{CDD9CFCD-CA8E-45BE-BCD9-8F0735476908}" KeyPath="yes">
+                <RegistryKey Key="Interface\{A2CA1AFD-B96D-4DDE-B039-0C419CC764BC}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3DD18A5169D202CF016D9B9989FDCE8F" Guid="{2BB4B9D2-51F0-4DE1-8173-C838620308CA}" KeyPath="yes">
+                <RegistryKey Key="Interface\{7DF61D15-DC9A-4F30-8460-128238FF34E4}" Root="HKCR">
+                    <RegistryValue Value="clsClientDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp3EF82D2133BAD2F4FAEB8E6DDC4712AE" Guid="{1EC47E79-C16D-4710-8643-51A426530345}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp40094A39F516DD913096730CB0317C09" Guid="{1BE9DEA0-322B-48B9-AF87-6E75D54A2D3E}" KeyPath="yes">
+                <RegistryKey Key="Interface\{E0149E0E-C644-48DC-B545-87D54B0C3642}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp40223E93882570D67AA42CBA048AD432" Guid="{7C110BC1-B12E-4639-83AC-E7D271095209}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4095FEFA315BF5C4B7880A15AE449424" Guid="{3D66F1C4-3F2F-4436-9F63-6BCC3106E43C}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C7FFC83-FDF0-435F-8FE7-737819517E46}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4163D5E31BF9FA805CA6A087F3ACF673" Guid="{BE4A8981-FDA7-4A30-90BD-570F9D660FD5}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{9A619D89-427D-4448-98FA-D282E8B29375}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp44B95DB8F0D6437AEA2D3FDF5A1567D6" Guid="{70E73E47-CF64-4A0B-AFBB-5A33886ECC8F}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C4854663-08B0-44A3-8CC9-17E6AAB07F19}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp44CABD787511C68D089BA56404EE07DB" Guid="{FD9C4BC2-D117-4E67-A08E-F10106FB4C8B}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{DF9753A7-3269-4432-86CC-9B9B01F835DB}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp457380D3902CDA927A37E05963E47CBF" Guid="{1C8279FF-BB40-44E0-8584-52E387F1B8EC}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A20C77D1-6D08-451B-A1EB-71881F416DC9}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsFieldRep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp45F6B18A99125F4F1FD081D5A8A0CB12" Guid="{B13BB95F-129C-4C2F-B735-56F4DFA4EFC2}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsIEWPros\Clsid" Root="HKCR">
+                    <RegistryValue Value="{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp46C35AE2D7F3A9413D42A98435FBE4A2" Guid="{EA0E8864-8DE4-4791-8D47-687C69793064}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{24C589D1-3E67-4963-8AF0-FA320153570A}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp47487E41159BBA15860B8BCFA4299EE7" Guid="{298D230B-2855-4370-8764-F37FF88E3949}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{59542CE6-6955-4F05-86F1-41ED648B9BC9}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsNeedsAnalysis" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp47C7E37D841679078EDFB6113B267532" Guid="{5B903152-A1C6-4D78-B174-BD9942707E65}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B43FA0EE-8A58-4E06-B267-BC95317BCA56}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProcessing" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4934E963476DC2BA245CA5C91D09FAE9" Guid="{FDC5BADE-6996-4FCD-BC47-CAC9939FE6A8}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsLodge" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodge" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp49AAC27C6419ABDE16CC306BE38FA6D0" Guid="{EA533E2D-409B-4DFE-AB91-EB1495B1A710}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{89393927-A035-41B2-B19B-D562E02D9EFC}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProducts" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4A62314882EC4612875692365F9C5FE8" Guid="{FC2AEEBC-29E2-428C-86EA-CA34D3A9ECAB}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6E5EBC63-518C-40F0-B736-CA9C61EEAB2B}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4BC409193D1E810115E4989804480ADC" Guid="{0F86A4EA-4F99-4F4D-B515-EF577BEA11F1}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{67BC1EC0-A309-4820-AD76-CB9052CC1C57}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4C4C2F94F31F2885F873E659E9B4EBD6" Guid="{8CD00A23-3C38-40A0-8B9A-0AF22575D9BB}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A919EA4A-31C1-4358-A987-15C021A312ED}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4C9EF670993075361D5A5756AE61D7B1" Guid="{600FAAAE-626C-4446-B430-F226300EC009}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsPhysicianDisplay" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysicianDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4CAD641F8FE084571F7971FD7124AE96" Guid="{6D6759C9-E293-4A5A-91EA-0B2210854605}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="TypeLib\{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4D6349AF8DE9520D1A14A8CC48955724" Guid="{0B1A0C8A-09B2-491B-A3DD-9057DA934035}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C8402B0B-2B29-409D-81A5-EA24807D75EF}" Root="HKCR">
+                    <RegistryValue Value="clsProcessing" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4D7ED1AF1EFEB8DCC6B644E22682A2DB" Guid="{503A0BA3-20D9-44AB-9CE9-3DC732DFFDC6}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4D9D43288FB937F6E2F6C875F6676DE9" Guid="{30899C76-8DA1-44A9-BDCC-F29668E1E4F3}" KeyPath="yes">
+                <RegistryKey Key="TypeLib\{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}\b.0\FLAGS" Root="HKCR">
+                    <RegistryValue Value="0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4EEA094554FF249B636EF5BA5734D7A3" Guid="{AEC00A32-C930-4A7E-AF74-5506BBC5A12E}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A04D020F-8A35-4FD1-BDD4-B5332D6CBB42}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4EF7ADD92E68D3C5F1B07C47DC4B5D80" Guid="{255F2C60-873F-4EAB-90DB-8316CA5FEACD}" KeyPath="yes">
+                <RegistryKey Key="Interface\{3A5AF763-0FBB-4C8A-A803-2675880FEA04}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp4F6C44AF4CDC77DB9D4DF84536E07E38" Guid="{F09F95AC-1FB5-4C7A-9997-C7573908F140}" KeyPath="yes">
+                <RegistryKey Key="Interface\{254F4BE7-496E-492A-B98A-EA7ADAF7FD5E}" Root="HKCR">
+                    <RegistryValue Value="clsProductDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp512ACED2147D532CC83CB8E8B6ED0B5B" Guid="{E78D7236-33DD-4659-BE46-EB4A69FB24EF}" KeyPath="yes">
+                <RegistryKey Key="Interface\{9947B8CF-C6BC-4276-A170-44F3F03929AE}" Root="HKCR">
+                    <RegistryValue Value="clsWise" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp51670914BB9D1081E81DDC868FC95D2A" Guid="{694B8776-D4B2-47F0-9336-F216DA98A2F5}" KeyPath="yes">
+                <RegistryKey Key="Interface\{63218768-EB7F-4554-AC78-C88B9CC1EC20}" Root="HKCR">
+                    <RegistryValue Value="clsProduct" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp519F05C1E1CDC871B0A3924486976027" Guid="{957AB202-0CBD-405B-A0A5-26634B444414}" KeyPath="yes">
+                <RegistryKey Key="Interface\{BBAD8C26-7D2E-4830-931A-87B73E20E35F}" Root="HKCR">
+                    <RegistryValue Value="clsYellowPad" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp529F424EED1C424F079C51EA744939EA" Guid="{E6AC170E-BC57-4E18-A0DA-8351FA7C24A7}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{C2299235-9C88-419C-A1A0-D026CF639C24}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsAppStateDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp53E9D91CC11628125BE53DC287DCEA90" Guid="{735E8014-F6D3-4B7B-9968-ABDEE2063B5E}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5400F9D27D8F3D7A4AB2176793BE579B" Guid="{33D93EAD-45FF-409B-92F2-260004924126}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{D552C26D-99D8-4355-BA23-C530630B2F57}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp54C6E4244C776A29AE2F8D47ABECAD46" Guid="{8E2D26FD-C6A9-4E84-ABB3-DBDF70BC6F4F}" KeyPath="yes">
+                <RegistryKey Key="TypeLib\{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}\b.0\0\win32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5566C73DEB1DD2181E97B0C66AAD6F93" Guid="{D84C8849-CAB6-4787-9301-A713C94F3E72}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2B83486F-4814-45B8-8A2F-FDD5F63D1008}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProductDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp561B099697EF3DDB5160E4C922F2E0F1" Guid="{0EA931EC-53B2-46EB-AC13-87C782DA0A33}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6F196957-E6E6-41A6-AD58-BD829C956CA1}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp56DE790B65905F9BDEC6BC58AC1B5846" Guid="{C549B2DB-3123-4ABA-96A2-7339A5E94DC7}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodge" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp59A5311E72C0CED727025B245EE7699E" Guid="{7108A3C0-99FA-4C1B-ADA6-6497D152B4D0}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{DF9753A7-3269-4432-86CC-9B9B01F835DB}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5A6EEC700412357C3BDEDC42059E1B53" Guid="{96756736-127A-4025-BB8A-2856AE142F1D}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B57B711A-104C-4BEC-B1C0-038D385FCEA6}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5B5C2AAF749CAD83EA03E303DB0F688C" Guid="{A934395A-CA6A-41C0-B873-B2F918DC3F56}" KeyPath="yes">
+                <RegistryKey Key="Interface\{5FA78CDC-B76A-4D99-83E0-04A042F12A10}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5C08CCCE3A4FF34FF7AD9335A43F1E35" Guid="{1F102BFB-3936-41EC-8F42-E0B6882270B9}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{DF9753A7-3269-4432-86CC-9B9B01F835DB}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysician" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5CE2FFA07A03FB77F89F5A2A5865EEB1" Guid="{96FFF122-8FF1-409F-AF43-7F36D3A39EC7}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D552C26D-99D8-4355-BA23-C530630B2F57}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysicians" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5D2A8F532E2748486CE5C15028AE5FD3" Guid="{A4CDFFE2-884C-4DD6-926B-0DE34B818B17}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{67BC1EC0-A309-4820-AD76-CB9052CC1C57}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5D6DCF611BD45DB378194ACEBE8224F2" Guid="{78EBE09F-C85F-4BD5-823F-0D22D17DF2CD}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsIEWDep" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsIEWDep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5F7F16DF6837D850ACE165465402D432" Guid="{2E208144-DC5E-4024-ADA4-AE15807D1943}" KeyPath="yes">
+                <RegistryKey Key="Interface\{FFB21CA8-5BB1-4E0C-BB05-D1834E11F9AF}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp5F99EB22B82F88F3D13FBF22F2F79B39" Guid="{8ED9192B-4F37-4D9F-9452-EB40BF28ACF3}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6E5EBC63-518C-40F0-B736-CA9C61EEAB2B}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp60F47BBE7447CD0FDC68F73EFF9E6B48" Guid="{A03F0CFE-152A-4014-80CA-C443FCEB0260}" KeyPath="yes">
+                <RegistryKey Key="Interface\{5FA78CDC-B76A-4D99-83E0-04A042F12A10}" Root="HKCR">
+                    <RegistryValue Value="clsBrokenRules" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp62093C2B86DD69ED7D6B27902B93097A" Guid="{9703B0E9-94CE-46AE-A399-E2A8487434E4}" KeyPath="yes">
+                <RegistryKey Key="Interface\{2BC7203A-2F14-49E0-A79F-CCA7D144EB0B}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp630F3F03ADAD868F10DE8C783D3FE1CA" Guid="{6D577C8B-174E-460A-8345-5C1ACA940C84}" KeyPath="yes">
+                <RegistryKey Key="Interface\{3A5AF763-0FBB-4C8A-A803-2675880FEA04}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp63B2178DF1408E6DC63EBB5467B4AA0C" Guid="{84411A24-D886-4247-A531-5AB2FA9D9587}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{901F547F-D28A-4000-A959-23B29FDF8E9B}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6540E3799E399ECE37A16C32821ABF6C" Guid="{EB6855DC-6E3D-42AF-AAA2-6E8A6D71FA77}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A919EA4A-31C1-4358-A987-15C021A312ED}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClients" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp65FCE277F84877BF56734ACE107C84BC" Guid="{9A8CC63A-D85A-4833-A81D-9B5AEDD57F12}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B57B711A-104C-4BEC-B1C0-038D385FCEA6}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsMailApplication" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp668DD17CC12CFA549519EFE26721C380" Guid="{7EE40131-E414-4C06-847B-14D6E7DEA34B}" KeyPath="yes">
+                <RegistryKey Key="Interface\{DAB2A7B4-C21E-48BA-8D6B-EF04751B4693}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp670ED269FEA8D1C84F750682E78B7369" Guid="{1C69DF49-A9B7-4037-9DDD-82AFEC114FD5}" KeyPath="yes">
+                <RegistryKey Key="Interface\{CF7E4A80-347C-4FCF-AAB9-28AA4A0E8D61}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp67672FB518B93BB5826CB401205994B6" Guid="{F711B084-19FE-43CD-B903-F864BE474AAA}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A04D020F-8A35-4FD1-BDD4-B5332D6CBB42}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysicianDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp69478765B0FB06FDB660719A2536F721" Guid="{B9E92D7B-08F1-42A2-86C2-6414FA2D6D5E}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{67BC1EC0-A309-4820-AD76-CB9052CC1C57}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6A341062E77342760D1052B60807ED66" Guid="{AEA8AFA2-F990-4979-8C4D-5B551AF5DA7E}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsFieldRep" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsFieldRep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6A742978A5DBAABA5333A8C1C46C29D9" Guid="{E2DF835B-5840-482A-85C0-3A0C8A10F0D4}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A04D020F-8A35-4FD1-BDD4-B5332D6CBB42}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6B724B363735DC0A952C6CC0719AE896" Guid="{504E0703-1692-4F89-BFC9-1D05D0EDC372}" KeyPath="yes">
+                <RegistryKey Key="Interface\{254F4BE7-496E-492A-B98A-EA7ADAF7FD5E}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6B97E0545E851F02DE73814455FD113E" Guid="{CDB4B1B5-ED28-4CB9-96C6-1137811DEA2B}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{67BC1EC0-A309-4820-AD76-CB9052CC1C57}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsIEWDep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6BE8E2692F4D652CDD82A145B253E7CB" Guid="{7C4D434B-846C-4E00-8AA5-02DB9DD306D0}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{DF9753A7-3269-4432-86CC-9B9B01F835DB}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6CFE624AA4FBCA4E409CB14A1328DEF3" Guid="{BEA191BC-B479-4D5E-A26B-5E9E78B31645}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{24C589D1-3E67-4963-8AF0-FA320153570A}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6D45AAB9BB11493F1A4F3F4BC4E5FE8E" Guid="{7FC21133-1400-4B2F-AFF4-B259E5575C82}" KeyPath="yes">
+                <RegistryKey Key="Interface\{9947B8CF-C6BC-4276-A170-44F3F03929AE}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6DA6435C41DB148A1D2A0392F18D6413" Guid="{26823C65-ED88-4D46-97BE-318B8E76FDF3}" KeyPath="yes">
+                <RegistryKey Key="Interface\{DAB2A7B4-C21E-48BA-8D6B-EF04751B4693}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6E64769675F7553D22BF0245BD06A834" Guid="{1C5C9859-F452-4E1A-BA61-D29A9D5FB7EB}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodge" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6EB85DC6A3365A39104EA1D70ABD0C5C" Guid="{D26479B3-E6AE-4B05-8C28-375BB0DC9E7F}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A20C77D1-6D08-451B-A1EB-71881F416DC9}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6EE713D81B6F6B440AA78017A928AD5A" Guid="{202BBC41-7541-40F2-88E0-C7D1A04868B8}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsYellowPad\Clsid" Root="HKCR">
+                    <RegistryValue Value="{9A619D89-427D-4448-98FA-D282E8B29375}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp6F0BFC5E43743AD26087A92468F54067" Guid="{B4D728EB-6A5A-4CC0-B315-C19D7C2A23D9}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp705F8EC2559AA7E808B408A516E71ED0" Guid="{F9415AEE-B01C-42D5-B247-705372F36B8C}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7155EA7E1431522E7F76C943250D2839" Guid="{0D452382-A304-4FC3-80E6-18640E22F1F8}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2B83486F-4814-45B8-8A2F-FDD5F63D1008}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7397E904F6728D393BAEDEF6744F86BA" Guid="{B43DE881-E832-4BA8-9C52-47F5F1404B22}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsClient\Clsid" Root="HKCR">
+                    <RegistryValue Value="{24C589D1-3E67-4963-8AF0-FA320153570A}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp73E92A2AF18B11AD0D0FEADB2C06E6B5" Guid="{8AA9CC30-E7BD-4A08-82FE-5A694F761768}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D552C26D-99D8-4355-BA23-C530630B2F57}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp740255AFD5CC0AC73B9932EEF6742B1D" Guid="{67FE02FA-3EA6-45D6-9A6E-3E820D681786}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B57B711A-104C-4BEC-B1C0-038D385FCEA6}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp742B7D259E8DD4D68D4E69EB3B862124" Guid="{EADC1E45-DF81-468C-BE66-21E874FD230B}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A20C77D1-6D08-451B-A1EB-71881F416DC9}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp742CA18443F43147D622A77041DAD2C7" Guid="{A21C6BBD-EBF0-4A4B-A50C-81770780C43C}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsBrokenRules" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsBrokenRules" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7445B70C67B20533322C6E0B8927687B" Guid="{9E7EB04E-982F-4D42-BB06-C1D5B9A2C45A}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsClient" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClient" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp747242AB61EF7AD2CB7BE3C81307BA9D" Guid="{BBE9279A-DA3B-4007-8DB8-5CF3F379F879}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsProcessing" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProcessing" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp748E5B1B15DFCF069E446CEBB3F6FA6C" Guid="{24442350-DA97-421C-A561-446063D731B8}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp748E97E1649871EAC4EEF2DF66CFAD86" Guid="{4BEE9044-BEDE-4413-8D1C-67E63359E22C}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsBrokenRules" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp74A6C1055411827CBD373C808F43B3EC" Guid="{B2EB8D92-4AE4-4E29-A9CB-5D8CF0647DF6}" KeyPath="yes">
+                <RegistryKey Key="Interface\{7DF61D15-DC9A-4F30-8460-128238FF34E4}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp750D1C8E72178257377AEF1F996FC58D" Guid="{F62F4E6D-56B1-452C-B79B-C1845E8CD42C}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsWiseInitializer" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsWiseInitializer" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7647F04B16EFCEF761A6752DE8B4742E" Guid="{11E63B89-12C0-4337-B445-E04A778B9545}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp767EE0038B9A75C52ADC1665B1728EC1" Guid="{ED2CE5D5-5CE8-400A-B295-38FA17BBAFEB}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{901F547F-D28A-4000-A959-23B29FDF8E9B}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp77DE48F90BAE99285973E255B4487EFF" Guid="{3DE67F6C-2D81-48E0-A047-0971E0F2683F}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C32D493C-103F-4A3F-A571-1A2790DB6FB9}" Root="HKCR">
+                    <RegistryValue Value="clsFieldRep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7804EF20B0C3D9C59218D5BB9FF6856A" Guid="{06D9F26C-8B11-45EC-8159-D0FCAEFA63EA}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{89393927-A035-41B2-B19B-D562E02D9EFC}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProducts" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp786740B7AB111840BA7232E1B2C7B6C5" Guid="{A9A0B997-613E-4490-8A45-E4D52A48132F}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsIEWPros" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp79402EEFDC4F1DEF0CCA194DDBFA4BAA" Guid="{169BE368-5E59-4DAC-B55E-5B42E2611239}" KeyPath="yes">
+                <RegistryKey Key="Interface\{CF7E4A80-347C-4FCF-AAB9-28AA4A0E8D61}" Root="HKCR">
+                    <RegistryValue Value="clsClient" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp79A941A01BC6E1161431A7782DF530D0" Guid="{60152D10-056F-4BEE-9D21-A162128F0ABC}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B43FA0EE-8A58-4E06-B267-BC95317BCA56}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProcessing" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp79FCA3042D010D96AC25A7143EA06F4A" Guid="{B96D5191-E0EE-4652-8017-A890242701E9}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2B83486F-4814-45B8-8A2F-FDD5F63D1008}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7B4CF00F26B4A3F0326E790B3648D9DC" Guid="{FCB24204-97E0-49AB-A911-8CAC74882F20}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6E5EBC63-518C-40F0-B736-CA9C61EEAB2B}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7B74CA5716064842B5CFBC0014D9AB44" Guid="{D0483DB9-2972-4FD3-ACAC-C9C63544618D}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{9A619D89-427D-4448-98FA-D282E8B29375}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsYellowPad" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7BEB2A982EBFC24A8F21C83425A2155F" Guid="{2865A6EB-5E25-41D5-8188-180432055845}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{C2299235-9C88-419C-A1A0-D026CF639C24}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsAppStateDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7CB9EFB0776E1854C5D2C0ABCC3ECA32" Guid="{67C75600-09FA-4EBA-B61E-55A255EA653F}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7CD52326A5DD91CA48F2128E65BD8362" Guid="{FE4247F0-4882-4D61-A74D-5ED443CB4EA4}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7DFCC160756FDE56CB741B498C793AC3" Guid="{247A916B-0577-4DCD-8123-BC8ED48C8271}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsBrokenRules\Clsid" Root="HKCR">
+                    <RegistryValue Value="{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7E1237368E23AA7079E36862DA99ED2F" Guid="{5D4A3ED0-7253-4CAD-8A11-B374BDB8948C}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsClientDisplay" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClientDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7E2844C0C4E4BA5BC76325148E22702F" Guid="{5160D61F-04C4-471F-A91F-2D2062EB3261}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsPhysicians\Clsid" Root="HKCR">
+                    <RegistryValue Value="{D552C26D-99D8-4355-BA23-C530630B2F57}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7E6C4082CA6DE33272930C76D89D67FE" Guid="{D5D1CC17-2740-4AE3-BABB-6B5833606856}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A919EA4A-31C1-4358-A987-15C021A312ED}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7EB33A04ED53A73939530EBD2BB3CA73" Guid="{9239FA63-3B3D-4D11-979F-2BF83858FAB1}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{89393927-A035-41B2-B19B-D562E02D9EFC}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7F83A6FB68AFAE1124FF9C08A3DB1D14" Guid="{BA6201F2-6CA9-4F60-BF31-0C38D5258FCE}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{24C589D1-3E67-4963-8AF0-FA320153570A}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7F951D94849641E05067AF2656BC909D" Guid="{CD50BD9E-A1AC-44FF-9A47-D4FC2E66BDE6}" KeyPath="yes">
+                <RegistryKey Key="Interface\{FFB21CA8-5BB1-4E0C-BB05-D1834E11F9AF}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp7F96A7B7A89683433FA983A60CC6CE17" Guid="{BB53EA49-AFF9-4452-93EB-E28E90091C01}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsNeedsAnalysis" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsNeedsAnalysis" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp80C3636C061FEF5B91BB20471761C0AA" Guid="{14926F38-B978-4DCD-8128-985D3F1D3602}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{C2299235-9C88-419C-A1A0-D026CF639C24}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp813B1C0649DF3B426487CA5369D1DC08" Guid="{22318080-1401-455E-BF07-3D3D745ACDC0}" KeyPath="yes">
+                <RegistryKey Key="Interface\{3A5AF763-0FBB-4C8A-A803-2675880FEA04}" Root="HKCR">
+                    <RegistryValue Value="clsLodgeDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp819A2159D8BAA18DBC7DA67713813633" Guid="{6DF60981-3D90-439B-93EC-482DFD4DC9F5}" KeyPath="yes">
+                <RegistryKey Key="Interface\{342AC966-50E7-4DBA-BD7A-6078B6D1A0D0}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp81EA788EA468394830484CE24CFDA9C8" Guid="{BB2F8840-5FFA-4A8E-A0E5-45E392DC56D2}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{DF9753A7-3269-4432-86CC-9B9B01F835DB}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp82359D2E650767D5AE061377F030D9D6" Guid="{DFE6469A-8067-4742-99E1-BC7897559C5B}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{B43FA0EE-8A58-4E06-B267-BC95317BCA56}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp82CA0110D23E1C71A24C0F0E51E22760" Guid="{B712B59D-B165-4A11-9106-064BB574A13C}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{2B83486F-4814-45B8-8A2F-FDD5F63D1008}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8335BF6E025A1DD04E1717A7F6245F4D" Guid="{59E770EE-6C2A-4482-A593-3CA4BB8D755F}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{D552C26D-99D8-4355-BA23-C530630B2F57}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8768C34426F8D72C645E5CA77F611B28" Guid="{FD5C7D9C-493D-4FD1-A690-DCF519C76417}" KeyPath="yes">
+                <RegistryKey Key="Interface\{A2CA1AFD-B96D-4DDE-B039-0C419CC764BC}" Root="HKCR">
+                    <RegistryValue Value="clsPhysician" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8AF8AE2204E5FDF9CAD5E14545117746" Guid="{D039C0A0-121C-4787-A85E-138F878EA78B}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{59542CE6-6955-4F05-86F1-41ED648B9BC9}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8CF8D20BD4DC6B618AAD702603287590" Guid="{9D64E5FA-26AB-41CA-B88E-82CE67653E4A}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{67BC1EC0-A309-4820-AD76-CB9052CC1C57}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8DAF835DD65C00A50D31D8C91ED7A9B7" Guid="{6B7F5A0A-BA47-4259-A25C-6DB9D675B6FC}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsWise\Clsid" Root="HKCR">
+                    <RegistryValue Value="{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8EFFA91986AF34AF23C0A0585323AFFD" Guid="{B2F3C276-BF71-4009-9326-AD25756FA545}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsPhysician\Clsid" Root="HKCR">
+                    <RegistryValue Value="{DF9753A7-3269-4432-86CC-9B9B01F835DB}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8F4A342E026475D83FD8AC0AAD7A0C1A" Guid="{1D295250-1ABC-407C-9009-A477E3AC4597}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C7D80A8-8326-437A-A811-4C35D25B1618}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8F6FFA36C5711648F1BB34F9D34F2A12" Guid="{82941CE7-319D-4C30-9EB5-98A712BEBC0D}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C9B6B6E2-4ADD-4BAB-B11A-C5B786125ECE}" Root="HKCR">
+                    <RegistryValue Value="clsYellowPad" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8F894FEF0CDEB4557B3A912AAFEB27F4" Guid="{098B9B3E-9267-4A2F-90F5-3914573500C7}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp8F9895BDB5851E9538F53BA2FAD621A1" Guid="{C6EF9B70-5AFC-406D-ABBC-4443CB779BF5}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{59542CE6-6955-4F05-86F1-41ED648B9BC9}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp901EA7493D1204E6347DDAA529646BA9" Guid="{4BAE1359-82D3-4319-B747-D4479B0EAFF2}" KeyPath="yes">
+                <RegistryKey Key="Interface\{F34516E8-6EFD-479A-90E9-F71106622904}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp90A80B965CE29089C00CECF9CC0FBC77" Guid="{134B4FB0-9620-4634-8FDE-A7872069FB0A}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{4F627C6B-DF5D-4426-B2EB-7858FFBC8DF0}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp91397C9172D98FB56E5D8C65694DFC0E" Guid="{79A6706B-E51A-41BE-999E-937F8D32A962}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsAppStateDisplay" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsAppStateDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp926BCB6AE3311751CBD31C36F15BF850" Guid="{4EF69023-5313-4222-99C8-5CE36DCB8236}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="TypeLib\{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}\b.0\0" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp92B4666E5ECA65A08A7F7F8E30192ED4" Guid="{E16D52A9-BB78-4898-82AC-F34F53A7CFA6}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B57B711A-104C-4BEC-B1C0-038D385FCEA6}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp93578070138F9F734F98B2B409BE607F" Guid="{711855A2-4EA6-4E42-8D75-9B159A1E959C}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsClients" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClients" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp946A3D49B7476B9C4D1A79FDB9444DE4" Guid="{C04CAC9F-B053-4B1E-8584-8B016891D2F8}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C1C5080-82AF-4836-B14A-7459F26FC083}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp960B9B10A9D98E20BC9E1971E93B8B41" Guid="{3444A286-698F-4E8B-8B86-29D632609926}" KeyPath="yes">
+                <RegistryKey Key="Interface\{475A4B87-CCEC-46DA-A3C7-D9B454D1AFE4}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp963BECA86BA89F7684F0C9FDB1524F20" Guid="{E109210C-80D8-49E1-AF26-B774255200DC}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9675568CE5DFFCD53CDC4BD42B092A19" Guid="{4C43925A-7021-4F4B-8F4A-A9B700832B7E}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C7FFC83-FDF0-435F-8FE7-737819517E46}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp96A2479B2C468D7702E02EB87A2633F5" Guid="{F7576BD6-9788-4B6D-96AB-30283C2F6368}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{67BC1EC0-A309-4820-AD76-CB9052CC1C57}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsIEWDep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp96E3EBDC9FD4A8849C2887FE409094DD" Guid="{C606557D-6DED-4DAA-8211-D43398CC6C14}" KeyPath="yes">
+                <RegistryKey Key="Interface\{E0149E0E-C644-48DC-B545-87D54B0C3642}" Root="HKCR">
+                    <RegistryValue Value="clsNeedsAnalysis" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9773725C379DEE636DF43264D430135A" Guid="{F23AD4C8-7B17-4500-9C0A-FAC16EEA1B79}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D552C26D-99D8-4355-BA23-C530630B2F57}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysicians" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp97F158076BF22092F0264DB18FCB20A8" Guid="{7B6CCA90-0840-4F37-87F8-4AB341FEB6F7}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{89393927-A035-41B2-B19B-D562E02D9EFC}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp99D82B1EC12B5F9A4440AD4A1D2F1AAD" Guid="{86A38D83-D9D7-4529-ACCE-520626BC80FA}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{24C589D1-3E67-4963-8AF0-FA320153570A}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9BEB28470A97FA62C5B96307F9C6C933" Guid="{66FE5A5D-7E56-4974-BF3E-C6BD6A58CE3F}" KeyPath="yes">
+                <RegistryKey Key="Interface\{F34516E8-6EFD-479A-90E9-F71106622904}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9C68F8BCC318A91A065D545AF827A00F" Guid="{DC455F0B-EA8C-4725-96FC-45D416901C15}" KeyPath="yes">
+                <RegistryKey Key="Interface\{715AB5A7-E545-43B2-98D5-5BF7EFA79B3E}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9C8E184A6A1A3A5C5CC465079F39D2DD" Guid="{89DEADFC-1AEF-462F-A8BA-489329015B2A}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9D222FB9E0440636D59DAC83138C6C14" Guid="{5788A2CA-6318-49D8-8D50-10BEB884BE96}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9D9C0B44082BFD136CA346E5AB0E683B" Guid="{60F3F566-324A-4394-A121-6327D882E057}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9DF80BA064A13EEF2190FFDEB30494BF" Guid="{7EE71712-F505-4077-8C1F-631F049C8515}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C7D80A8-8326-437A-A811-4C35D25B1618}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9E59E2302385D3C5C330172A5095D9B0" Guid="{00BADF6A-546C-4C22-BDF0-F42D526EA846}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsProcessing\Clsid" Root="HKCR">
+                    <RegistryValue Value="{B43FA0EE-8A58-4E06-B267-BC95317BCA56}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmp9F0EBF58956FB62EF3658BE24ECC0B38" Guid="{8A67ED1C-5C66-4BCB-9F5E-FB4E3B81BB3F}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA03450D2BA393C61E4A936666512C3ED" Guid="{C0A81FAB-0744-4A5A-8628-2A8E08F0D7AF}" KeyPath="yes">
+                <RegistryKey Key="Interface\{254F4BE7-496E-492A-B98A-EA7ADAF7FD5E}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA0E48145E198614F3B1BF23A084B5834" Guid="{10412AE0-BE53-4142-9711-CAE8EA1773D1}" KeyPath="yes">
+                <RegistryKey Key="Interface\{BBAD8C26-7D2E-4830-931A-87B73E20E35F}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA0EB07D8075F428D91BA88C038DA6823" Guid="{74FCE083-6870-46AF-A71A-0A0FB655AFF1}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6F196957-E6E6-41A6-AD58-BD829C956CA1}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA1C1BF5695CB3842EA1D3BFE9E9DB644" Guid="{9B82236A-0336-438F-B8C7-92A1F93962B3}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6F196957-E6E6-41A6-AD58-BD829C956CA1}" Root="HKCR">
+                    <RegistryValue Value="clsWiseInitializer" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA1DEDF8642D595202A2846F41B27B040" Guid="{4C4BF241-AF45-418B-B900-A7368A232D79}" KeyPath="yes">
+                <RegistryKey Key="Interface\{F34516E8-6EFD-479A-90E9-F71106622904}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA252B07598C3540E0E9D4D4BDB06E8A9" Guid="{F69E56BC-8296-4804-9110-17B400620FC7}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6E5EBC63-518C-40F0-B736-CA9C61EEAB2B}" Root="HKCR">
+                    <RegistryValue Value="clsProducts" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA53CA12082AFE1CAC88D9B222C6512D7" Guid="{1225D29C-901C-4A09-8F66-68FE5E807E63}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsLodges" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodges" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA5ADDF36FB30D20D25CF2DA5AE9CAAA1" Guid="{0EE10776-A296-4D0F-AD1A-991D2EB09A26}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{C2299235-9C88-419C-A1A0-D026CF639C24}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA631C51C6C222D2EAB89B2D55FE64423" Guid="{D1C44726-B394-428C-B49E-44E80494112C}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C9B6B6E2-4ADD-4BAB-B11A-C5B786125ECE}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA63B97BB4D3B6A95D1D14E8A6E4A4EAE" Guid="{5071DBB4-3DF4-4685-8D72-684A4C544AB2}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D552C26D-99D8-4355-BA23-C530630B2F57}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA655E849D634F53D880A1889C51B4875" Guid="{6039F114-A203-4DD5-A4C8-A9FD7034D254}" KeyPath="yes">
+                <RegistryKey Key="TypeLib\{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}\b.0" Root="HKCR">
+                    <RegistryValue Value="Wise Server Project" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA6C7DC162D1C7874F391B5F043F81ABC" Guid="{4ACEDC49-BFB5-454D-BD25-F61B47D69DC7}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{59542CE6-6955-4F05-86F1-41ED648B9BC9}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA95514E6B4A9A526C4AB61D59E424273" Guid="{9E28478B-3CE3-4E8A-AB14-D370CDFE498C}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{9A619D89-427D-4448-98FA-D282E8B29375}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA9D63EA23B025D71838758E89083BFB5" Guid="{8621CCC8-85CF-4CE9-9907-B57BCE838DB4}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsWiseInitializer" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpA9F5373AE9E2F98153CCC31C22CE42F8" Guid="{4E4F22C7-5F0F-4B75-B4C1-23F1F1D9841E}" KeyPath="yes">
+                <RegistryKey Key="Interface\{3FB54999-D637-4AB1-B986-796196DBD7A1}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAA77E8E126DFF6FDBEB5792AEDC20CA7" Guid="{229386DB-1A0C-4A9A-BBA4-DBDC572567F2}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsProducts\Clsid" Root="HKCR">
+                    <RegistryValue Value="{89393927-A035-41B2-B19B-D562E02D9EFC}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAB445F54A3777CC4C6D609E6396E2EE1" Guid="{65F4E3FA-38E9-4FE8-9E21-21CA05B57348}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2B83486F-4814-45B8-8A2F-FDD5F63D1008}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProductDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAB949EFDA097188A4BF54ADAFF8B2A62" Guid="{79BBC0D2-7137-4668-93B5-6FFB41D7F41F}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{9A619D89-427D-4448-98FA-D282E8B29375}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAD7AEE3F8ED18472F535EEB7142C954F" Guid="{42C28239-F9BE-4DF9-A171-0AC705DE9FE5}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{9A619D89-427D-4448-98FA-D282E8B29375}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAD9192ADD58D6C375CA9085239896BF2" Guid="{3EA126AB-241D-4B80-BCF9-AE04440E3DF0}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{901F547F-D28A-4000-A959-23B29FDF8E9B}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodgeDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAD91FF7E921296D8B68F5057B8FBA25D" Guid="{8BDE668F-8F09-454A-9449-BBF0573902A9}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{89393927-A035-41B2-B19B-D562E02D9EFC}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAE5EBCFB0DCEE7530F7559B833529401" Guid="{6078C03F-099C-4338-B6AB-EA93A557F896}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{C2299235-9C88-419C-A1A0-D026CF639C24}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAEBC8473E5B6E5DC66227961B6DC68C0" Guid="{3B030A6A-007F-4832-AAF5-A94F1AB8F1C3}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsWiseInitializer" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAF2E806CD3CEF284917C3323F3937A1C" Guid="{C44114DF-A4BE-44AF-9371-6AA7F5D910C6}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAF5AE627897C78F7B9CBCD9421D629CF" Guid="{59A311D3-F4D7-472D-96D5-609F3A799A13}" KeyPath="yes">
+                <RegistryKey Key="Interface\{3FB54999-D637-4AB1-B986-796196DBD7A1}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAF7F76855B849C69662A8416CE27BF05" Guid="{16BEA748-7265-4CE7-8077-60B1E7DDFE31}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{4F627C6B-DF5D-4426-B2EB-7858FFBC8DF0}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpAFCEC95ABB13640B8CABEB67C27468A6" Guid="{92B68551-D73C-4C3C-9AA0-7917A5C262BC}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB084C2327E3D8945B800AA24FFF0E308" Guid="{A22A9AFA-43BF-46E7-9348-4E89EA873464}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{C2299235-9C88-419C-A1A0-D026CF639C24}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB10A0F47C50FC21FF0D74BD6C98E488F" Guid="{5EF75BDE-D217-4C06-BDBB-1F3DFF7B42E2}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{4F627C6B-DF5D-4426-B2EB-7858FFBC8DF0}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB14BF886D2CA871FF16D5EC456F05CFB" Guid="{1CA695FE-6FB9-4F88-A89E-C1906BC4491F}" KeyPath="yes">
+                <RegistryKey Key="Interface\{BBAD8C26-7D2E-4830-931A-87B73E20E35F}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB3DFE1D70FE4E84504EA342B6FD23379" Guid="{45B54D67-8E4E-41B5-BDAC-E04BF904CA73}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D552C26D-99D8-4355-BA23-C530630B2F57}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB3FC3E073337F37F0251870DED17534B" Guid="{118CEFD0-A121-49A6-B37B-BE3215BB0935}" KeyPath="yes">
+                <RegistryKey Key="Interface\{254F4BE7-496E-492A-B98A-EA7ADAF7FD5E}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB42F534C86A7D14D4B25DB0B01E74BA7" Guid="{683D261D-2941-454A-A55C-FDE08174B207}" KeyPath="yes">
+                <RegistryKey Key="Interface\{537FFCF4-3149-4B6A-9A47-48416221BCF2}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB4A1D066F8688DE1405321063A31369A" Guid="{DDD2DF23-4CEA-43E7-BF0A-AD9138145B69}" KeyPath="yes">
+                <RegistryKey Key="Interface\{FFB21CA8-5BB1-4E0C-BB05-D1834E11F9AF}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB64AAAAD7CEC77BE13ACA91430DD0B67" Guid="{98EBF65A-5338-428D-94CF-57B54391108F}" KeyPath="yes">
+                <RegistryKey Key="Interface\{342AC966-50E7-4DBA-BD7A-6078B6D1A0D0}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB676AA2D27F7643A47B3A4262AC60CAA" Guid="{E826615B-D63A-402F-84E4-C41A64E97B91}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{B57B711A-104C-4BEC-B1C0-038D385FCEA6}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB6B658F07B91BBA663A36577F5279D97" Guid="{D7D716AC-F91D-40AE-B0B0-6BE6DB261510}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB7BA6D3CE67B01F6821AC62BDD8EFFAB" Guid="{8E90706E-063A-44FB-A866-BEC9C66F251A}" KeyPath="yes">
+                <RegistryKey Key="Interface\{DAB2A7B4-C21E-48BA-8D6B-EF04751B4693}" Root="HKCR">
+                    <RegistryValue Value="clsLodges" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB8080D62FFFB7020B2129AD165E3BEC9" Guid="{65DA78DD-E9CA-4109-B811-322910A2FC16}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{B43FA0EE-8A58-4E06-B267-BC95317BCA56}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpB97ECA36B86D7E5B00394006B7375664" Guid="{9BB0F99C-E9E7-404C-853E-E408F14DF308}" KeyPath="yes">
+                <RegistryKey Key="Interface\{920968A0-C85D-4B8D-B9E7-C1624856861D}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBAE4B0F0894B78F0DBEA600362181A57" Guid="{57924EC8-A657-48C6-8D4E-F0DA32470CAE}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{B43FA0EE-8A58-4E06-B267-BC95317BCA56}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBB4908EC67B56809DE1AD7B917653078" Guid="{E5428064-CB5C-4837-9475-5A9076D806A0}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProduct" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBBC76A965D4D00114A78C8790327FBFF" Guid="{9D62698C-0C9A-4267-A6EA-DC2C1353539A}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{24C589D1-3E67-4963-8AF0-FA320153570A}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClient" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBD325D0367EE3A774D83276347A8AA8A" Guid="{8B5DDA81-B957-496A-85EB-6E3898585B44}" KeyPath="yes">
+                <RegistryKey Key="Interface\{9C2871A8-0CFF-42D8-A2FF-CF0283539C6E}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBE16C34004FC697B0CE155227AC3A12B" Guid="{BBA5C453-F6D8-45A8-ADBB-65DF53B9E780}" KeyPath="yes">
+                <RegistryKey Key="Interface\{D14D4633-CB5A-4073-9FBE-1E05ED217AC3}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBE233377C6A4C669508098955011589D" Guid="{5F535EB3-162B-4242-8E49-F8E16F0C384A}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{59542CE6-6955-4F05-86F1-41ED648B9BC9}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBE24319DAD8D65EAEAF9B93C04938ADE" Guid="{6DB918AB-A3C3-4B07-8C09-C895BDCEF6E1}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{67BC1EC0-A309-4820-AD76-CB9052CC1C57}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBE672ABBFB0C791FC99FB30B75DE3563" Guid="{26AAA3E3-A43E-459F-992F-28DD2B29E8A3}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C1C5080-82AF-4836-B14A-7459F26FC083}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpBEFDCD8FD12ECED291B5FEBDFDF5703E" Guid="{2A25CD6B-51FC-461A-802F-D647A0314E22}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{9A619D89-427D-4448-98FA-D282E8B29375}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC0ACC8216A209B5B2984B80D02A31FE3" Guid="{E8E14FCE-C789-4F31-8A2F-468A9E550C22}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsProducts" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProducts" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC0E3451525F2E9BA18D102F66BE8C4A0" Guid="{38D8A0FF-065F-441C-B640-35B34997C822}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsPhysician" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsPhysician" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC1BBAC3E2BD9D988F88B7F6080DB8343" Guid="{FD5B6C1A-0C07-43BD-B4C6-5BE2E04204F9}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A919EA4A-31C1-4358-A987-15C021A312ED}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC24337419E6E2821B020C6048D297294" Guid="{1D9C652B-D7C9-46E3-A94B-E43955AEECF6}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C8402B0B-2B29-409D-81A5-EA24807D75EF}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC3653F799E2E91C296A93CA71FF6F6F1" Guid="{7A00CF03-EBBF-429A-AC64-1FA51610B3D6}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC4A850DCBE6C5CC792A145443304994B" Guid="{4D84ECA1-FC2B-4B45-B67A-97DCCC78367E}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{2B83486F-4814-45B8-8A2F-FDD5F63D1008}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC517CD26605DC9DFE635198C8DA7ADE5" Guid="{0D890072-9B21-477A-8FB3-78A89D0CB6CB}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A919EA4A-31C1-4358-A987-15C021A312ED}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC5B7DAE76B6AA9F8BDEB393A7E4D6830" Guid="{080A834E-AADC-4667-BDA9-2E12F03C1B1F}" KeyPath="yes">
+                <RegistryKey Key="Interface\{715AB5A7-E545-43B2-98D5-5BF7EFA79B3E}" Root="HKCR">
+                    <RegistryValue Value="clsBrokenRules" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC5EA75D86DB54AF819DA492D5737EE12" Guid="{D4FD48B4-F21D-4A7A-B8A5-C243A8100CAC}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C1C5080-82AF-4836-B14A-7459F26FC083}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC6D01A8867A391658AAB40230E171ADD" Guid="{16349A11-E0F8-452A-9958-C2E2E4173CB3}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{89393927-A035-41B2-B19B-D562E02D9EFC}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC7734EB4607116B3E3CBC586BA00E42B" Guid="{37DE0E4D-F316-4691-AF34-E1DB99C1FF93}" KeyPath="yes">
+                <RegistryKey Key="Interface\{D14D4633-CB5A-4073-9FBE-1E05ED217AC3}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC7967125CC1EACFE2EBEA7604079A917" Guid="{C14D6DA5-79F2-4FD2-91E7-6DC196BF9AB3}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{9A619D89-427D-4448-98FA-D282E8B29375}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC7C952ABABD290BF8C335636C640B088" Guid="{43565D28-B92B-404A-A796-7147CD8BC437}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A20C77D1-6D08-451B-A1EB-71881F416DC9}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC81C66325952319C723E2454D131482F" Guid="{0E6E4828-9CA1-4064-BEE4-2F87345B22C6}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C7D80A8-8326-437A-A811-4C35D25B1618}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpC97AD5B5625D3D33806B3D3F4B508664" Guid="{B3B2C6A8-4B01-4040-B08B-7C995AF3B5B8}" KeyPath="yes">
+                <RegistryKey Key="Interface\{A2CA1AFD-B96D-4DDE-B039-0C419CC764BC}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpCF59B5BF035A1B75A6FBB06DB24CA40D" Guid="{0349DC33-8D94-4B67-B14D-9C7C1B5355B8}" KeyPath="yes">
+                <RegistryKey Key="Interface\{E0149E0E-C644-48DC-B545-87D54B0C3642}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpCFDC5FB266A31D39DA81A697E1A18D9B" Guid="{B582A6EF-5EC9-49DE-842B-A6B8C02777BA}" KeyPath="yes">
+                <RegistryKey Key="Interface\{475A4B87-CCEC-46DA-A3C7-D9B454D1AFE4}" Root="HKCR">
+                    <RegistryValue Value="clsPhysician" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD00B31C238A20BBCAD4B3B740405AD8F" Guid="{E2E489FB-3754-49A5-A605-67871AA9F361}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A20C77D1-6D08-451B-A1EB-71881F416DC9}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsFieldRep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD1941C7C944E7A9D615CBA278EEFA491" Guid="{36A3C3C0-62EA-4C12-9BC2-A141DA34F87A}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C7FFC83-FDF0-435F-8FE7-737819517E46}" Root="HKCR">
+                    <RegistryValue Value="clsWise" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD281E84E0BFAAD214460B4154F20FCA5" Guid="{A9FA773E-64A0-4A60-A2EB-ADE760A373E5}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{4F627C6B-DF5D-4426-B2EB-7858FFBC8DF0}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsClientDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD28ADFDFD6506574736C00DF37531DDC" Guid="{09673B5E-9CE9-4952-91AD-21142EE83592}" KeyPath="yes">
+                <RegistryKey Key="Interface\{920968A0-C85D-4B8D-B9E7-C1624856861D}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD2EDD75429D0420C73B3BEF1DB6D113A" Guid="{30D2AE18-979C-421E-8AFE-9482853C2C37}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C8402B0B-2B29-409D-81A5-EA24807D75EF}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD40065D67F74AF7D01B90B64BAE591DF" Guid="{5E6FD9E4-6CD5-47C8-B8B2-2F7D4AABE2A3}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A20C77D1-6D08-451B-A1EB-71881F416DC9}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD6381AF84C9B9E47DB9698FB08B116A3" Guid="{73584D8D-2CFD-436A-85CF-5A4202617C95}" KeyPath="yes">
+                <RegistryKey Key="Interface\{63218768-EB7F-4554-AC78-C88B9CC1EC20}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD65DAABADEABE58C9F52F5BB3A42534B" Guid="{05141E8D-46E9-44DD-9DA8-C3B3E620CD3D}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsProduct\Clsid" Root="HKCR">
+                    <RegistryValue Value="{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD6BF69870DFD9A0FB9616C208E92A93F" Guid="{4493B81A-185C-46F2-91B6-85DE50D50C2C}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C7FFC83-FDF0-435F-8FE7-737819517E46}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD7099C4FB199A15465E659762AA0FD8E" Guid="{5C1E4E80-633F-4AB6-91F9-C76EC3C31550}" KeyPath="yes">
+                <RegistryKey Key="Interface\{3FB54999-D637-4AB1-B986-796196DBD7A1}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD72B922FDBEAFE1C74DF5CF0954CB706" Guid="{0A0BE437-573F-4590-A4F3-24BEDE3C6F31}" KeyPath="yes">
+                <RegistryKey Key="Interface\{CF7E4A80-347C-4FCF-AAB9-28AA4A0E8D61}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD82B3C78D8FC75C9FE4C84639B886E06" Guid="{BD4DF04B-866C-4D73-B023-121FC380403E}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C9B6B6E2-4ADD-4BAB-B11A-C5B786125ECE}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD82D0399A759F50AB929377C843D6E61" Guid="{3282B765-5B84-4F8D-BB74-643DBAA78C89}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD8CBAB8F056CD53D879BA3111DE5E8C4" Guid="{28C7DC4E-0366-4F84-B5AF-4669C61B07A4}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{99789F6F-9C30-4774-A61E-4F9AE2F17FB9}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD94B90BFC417CD3897B0A7A192925157" Guid="{09ABCFCA-91AC-4B65-8A27-08FBBAD27445}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsBrokenRules" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpD9AE9FA98871486E1588AB0DA21221AC" Guid="{66B1753C-C316-46F7-AB17-C268501B1E9C}" KeyPath="yes">
+                <RegistryKey Key="Interface\{9947B8CF-C6BC-4276-A170-44F3F03929AE}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpDC26725FBE1F6BF85F001C403DF81693" Guid="{EE3B87C6-CBAA-42F8-AFA2-BC24116E1D28}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{B57B711A-104C-4BEC-B1C0-038D385FCEA6}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpDC6EDE9E5F49769836A0A81120FE2DF7" Guid="{353EC4AA-B5CC-4150-9BF0-39DC8526E342}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{9A619D89-427D-4448-98FA-D282E8B29375}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsYellowPad" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpDD337E3308B8DBDCAC41B3EC50EE4F0D" Guid="{AB7B3E75-F3B3-4FAC-9C9E-0A331B3E7CC9}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{59542CE6-6955-4F05-86F1-41ED648B9BC9}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpDE4149CF7C7B3179525606474B8CB4AC" Guid="{3A80D018-1F6E-4E1E-AE9B-219ABCCD01C3}" KeyPath="yes">
+                <RegistryKey Key="Interface\{FFB21CA8-5BB1-4E0C-BB05-D1834E11F9AF}" Root="HKCR">
+                    <RegistryValue Value="clsFieldRep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpDE938EC59B37A9DCFFDFD07FA2104253" Guid="{DD6C60BD-6344-439A-A07C-3E9443996557}" KeyPath="yes">
+                <RegistryKey Key="Interface\{342AC966-50E7-4DBA-BD7A-6078B6D1A0D0}" Root="HKCR">
+                    <RegistryValue Value="clsLodge" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpDEB55FC7C2DEE7312ACABAD3A9989A57" Guid="{4DF9445E-DAD8-4943-A486-C00F79487DD4}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsWiseInitializer\Clsid" Root="HKCR">
+                    <RegistryValue Value="{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpDFD7E5859CE13A9F13849838E1E9353E" Guid="{50ECEBC8-FDC7-46BD-8194-0E5680370E78}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C8402B0B-2B29-409D-81A5-EA24807D75EF}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE1A335C9B8A747ACFFAAE003E1BCB163" Guid="{0C3ACB99-D709-42F6-8B4F-6DC3E4999E3E}" KeyPath="yes">
+                <RegistryKey Key="Interface\{5FA78CDC-B76A-4D99-83E0-04A042F12A10}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020420-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE1BE96DB723CA7AC6B1BCFC3F64E6EC3" Guid="{7025B1D2-A2B2-4AF5-AAE7-56E27E0E511B}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE36EADEF677501AEAA52627D0FA1378F" Guid="{2707686C-D974-40D0-B883-46CC978FE8F6}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C32D493C-103F-4A3F-A571-1A2790DB6FB9}\ProxyStubClsid" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE402468574F0A203627FADE1EAA5CE3E" Guid="{741770B0-A0E1-4B97-8A33-1341E2002347}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C9B6B6E2-4ADD-4BAB-B11A-C5B786125ECE}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE4A29E6E935B6EA6CCC8FB7C7D92BF19" Guid="{06BB6C0B-C434-4561-BFE1-525E75C252FD}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsWise" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE5E4F3962BB2AE712E266BDFF1C96BCF" Guid="{10EA5ED0-0C85-492A-8518-1883F9A31334}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C1C5080-82AF-4836-B14A-7459F26FC083}" Root="HKCR">
+                    <RegistryValue Value="clsClients" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE6191A78D61F17C25C9E9D7A9BBE0CCC" Guid="{9DEFEDC5-8961-4E4C-90FE-B9FC8FC16A6E}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{A919EA4A-31C1-4358-A987-15C021A312ED}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE668B0CADC85BD3AEF200DAF85F9F8E4" Guid="{40560775-9D01-4114-BF1B-DA55C51BB7F9}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{4F627C6B-DF5D-4426-B2EB-7858FFBC8DF0}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE718E3E49455CDAE5FEBD5BAEDD3D6DD" Guid="{D42469C9-F50E-4DC9-9338-FA801D14093D}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{696BBA65-2CE8-11D5-B1EA-D5E3FEB0A956}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE7775A62F1C653FF94AAFD170229A729" Guid="{8E145C81-D90A-4FC5-8AB4-CB78EBB08E88}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsLodges\Clsid" Root="HKCR">
+                    <RegistryValue Value="{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE7FA28E859D86082AFEA8F055080C6EA" Guid="{9071EB17-CEFF-4E22-92F8-6F63BB5C6250}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsLodgeDisplay\Clsid" Root="HKCR">
+                    <RegistryValue Value="{901F547F-D28A-4000-A959-23B29FDF8E9B}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE84CAB09380C0709161961A01B4301D1" Guid="{4E2C414B-9615-42CA-98D7-E576353B2A85}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A04D020F-8A35-4FD1-BDD4-B5332D6CBB42}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE94A6ABE278E1F1384D0B50A5F56D4F6" Guid="{B69E4459-6D2F-40E2-989D-EC85E2B06350}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{DF9753A7-3269-4432-86CC-9B9B01F835DB}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpE998AA6E690C956F7C37DE3D47EDF136" Guid="{8331416E-80F1-4181-BBD2-CD6F54BD04A3}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsIEWDep\Clsid" Root="HKCR">
+                    <RegistryValue Value="{67BC1EC0-A309-4820-AD76-CB9052CC1C57}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpEA1180404860AF0488014A9AACDD5E24" Guid="{33068063-FADB-458B-B40D-8EB824A84890}" KeyPath="yes">
+                <RegistryKey Key="Interface\{0BF44FE4-41EB-43DA-9475-9D79912EEE12}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpEB29FCFB3C4BA97706FC7A31BB4F7871" Guid="{1CFACCE7-CDAF-431C-A4FC-40192C98BD42}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpEB8FE6F42C5EE4CACE2442AB4D665B30" Guid="{0690B123-44A1-4CE0-8D75-FED331595126}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpEBAD0CCEE7CB7CF2226815E1003F19AC" Guid="{2E5E18EF-F89D-4742-B3C6-C62B6E3D5A7D}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{901F547F-D28A-4000-A959-23B29FDF8E9B}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpED0327555D9A11633EA6FBB2A25F84E2" Guid="{680D6376-670E-41FD-A083-8716AAD43C1A}" KeyPath="yes">
+                <RegistryKey Key="Interface\{3A5AF763-0FBB-4C8A-A803-2675880FEA04}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpED3EDFA06FF84F9C8D6FFC9D708CA398" Guid="{A5402A3D-379E-49E1-8D1C-57F130FEA2E3}" KeyPath="yes">
+                <RegistryKey Key="Interface\{3FB54999-D637-4AB1-B986-796196DBD7A1}" Root="HKCR">
+                    <RegistryValue Value="clsNeedsAnalysis" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpEE396A46971E5397D5DD8D7A6E9547E4" Guid="{3F2219C0-75F6-4E63-88DB-6F3484A6587A}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{24C589D1-3E67-4963-8AF0-FA320153570A}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF0E6303532EC6F0871B9BB5D011661A8" Guid="{51C90A84-1253-491A-B189-B11B4CC90EE1}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsLodges" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF2289D01DB1F60E9F85357B0E4E26925" Guid="{3770EA07-16C8-4147-A87B-78C9C6C7DC6D}" KeyPath="yes">
+                <RegistryKey Key="Interface\{63218768-EB7F-4554-AC78-C88B9CC1EC20}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF3AC24BB5C8F2F18446D5885124583BF" Guid="{A537DC68-59F1-4507-933D-0702D1CD9C3B}" KeyPath="yes">
+                <RegistryKey Key="Interface\{2BC7203A-2F14-49E0-A79F-CCA7D144EB0B}" Root="HKCR">
+                    <RegistryValue Value="clsLodge" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF3DDF5B6AE6935E25467E1E73BEEF8E8" Guid="{5164E17C-55C5-4A4C-BC21-3183C833ABE0}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{A04D020F-8A35-4FD1-BDD4-B5332D6CBB42}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF456026A1E688A162245D6A7F1C63B4F" Guid="{8C084424-6708-4BBA-9A27-27B60D930240}" KeyPath="yes">
+                <RegistryKey Key="Interface\{475A4B87-CCEC-46DA-A3C7-D9B454D1AFE4}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF52C3539A297E476D950B1BDF451AC80" Guid="{C7645820-9DFF-4B35-8FDB-B83FD8DF7D82}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{901F547F-D28A-4000-A959-23B29FDF8E9B}\Implemented Categories" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF55EF0C9AF9EB241C16A2A310E360EAC" Guid="{9FDA126E-8009-452E-9F27-0C838987C922}" KeyPath="yes">
+                <RegistryKey Key="WiseServer.clsNeedsAnalysis\Clsid" Root="HKCR">
+                    <RegistryValue Value="{59542CE6-6955-4F05-86F1-41ED648B9BC9}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF601C587B6C298CC2DAC26F423F932B0" Guid="{311A77AA-7972-4F83-B3AC-98EAA0E1D41F}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="TypeLib" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF76533E37035EF5285CA6ED5B23D9393" Guid="{6D99F70D-2D4F-4F83-838E-1BB65200DFC0}" KeyPath="yes">
+                <RegistryKey Key="Interface\{6C7D80A8-8326-437A-A811-4C35D25B1618}" Root="HKCR">
+                    <RegistryValue Value="clsClient" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF7A0C4B752B2F4463691049224D20E13" Guid="{19338DDB-227F-4CB1-A603-8E5CBC65CB80}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{8215CB4C-973F-4AB3-872A-7ADC16F3AE58}\VERSION" Root="HKCR">
+                    <RegistryValue Value="11.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF7F9514131C184D8179735ED8E10EE8E" Guid="{2ADB9011-0608-4ADC-8C10-458AFA54349E}" KeyPath="yes">
+                <RegistryKey Key="Interface\{CF7E4A80-347C-4FCF-AAB9-28AA4A0E8D61}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF80927408823E0DFB4459C31DE53DA48" Guid="{E53225FE-DAF1-44BD-9FA2-6D06F20C71B2}" KeyPath="yes">
+                <RegistryKey Key="Interface\{715AB5A7-E545-43B2-98D5-5BF7EFA79B3E}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF8F85E06ED1B15A56585B68972029A67" Guid="{9A2EBAD3-98AA-4F0F-8E64-11B9C895AD3E}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{13E83299-5A0A-4C1F-ACE6-A04A14D4AB8C}\Programmable" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpF9CDE7A4B835A075ED809BBE4E6AD5EE" Guid="{3612D113-BD57-4447-A9B5-B9ACD5778BD7}" KeyPath="yes">
+                <RegistryKey Key="Interface\{9C2871A8-0CFF-42D8-A2FF-CF0283539C6E}" Root="HKCR">
+                    <RegistryValue Value="clsIEWDep" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFA77639933383631932F7A4A5DB92196" Guid="{063CF142-5C3A-40A4-92BF-233043668E93}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{E7F41451-1F96-40E3-BAF6-BEAE2A75D64A}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFB55DB63A76EA69191314DF8B2A4D842" Guid="{54483731-3A2F-421F-AFBB-6CB1113650DC}" KeyPath="yes">
+                <RegistryKey Key="Interface\{7DF61D15-DC9A-4F30-8460-128238FF34E4}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFBA608C7982A724DA47D50F98E6B7751" Guid="{43B06B21-F13D-4A94-B121-BB0F0F68A2A4}" KeyPath="yes">
+                <RegistryKey Key="Interface\{C4854663-08B0-44A3-8CC9-17E6AAB07F19}\ProxyStubClsid32" Root="HKCR">
+                    <RegistryValue Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFBEEB3E61CEB13594214DB5FD2059E39" Guid="{B8446073-3275-4F18-9A12-93EF91585B1A}" KeyPath="yes">
+                <RegistryKey Key="Interface\{F34516E8-6EFD-479A-90E9-F71106622904}" Root="HKCR">
+                    <RegistryValue Value="clsIEWPros" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFC449EB8ED4EE6CD7B75A6EBB89A8C5A" Guid="{EA50F73E-5030-4AB0-8BCB-A65B8D193E4A}" KeyPath="yes">
+                <RegistryKey Key="Interface\{9C2871A8-0CFF-42D8-A2FF-CF0283539C6E}\TypeLib" Root="HKCR">
+                    <RegistryValue Value="{696BBA61-2CE8-11D5-B1EA-D5E3FEB0A956}" Type="string" />
+                    <RegistryValue Name="Version" Value="b.0" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFCB0A406619DD772ED57CB780668754F" Guid="{2B2B138E-A468-4990-9CDF-92A03FB41460}" KeyPath="yes">
+                <RegistryKey Key="Interface\{537FFCF4-3149-4B6A-9A47-48416221BCF2}" Root="HKCR">
+                    <RegistryValue Value="clsPhysicianDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFD1F524A943D922C0688848EEC01B070" Guid="{816AB139-A92A-4CF8-A7B3-A09A12E0A481}" KeyPath="yes">
+                <RegistryKey ForceCreateOnInstall="yes" Key="CLSID\{89393927-A035-41B2-B19B-D562E02D9EFC}\Implemented Categories\{40FC6ED5-2438-11CF-A3DB-080036F12502}" Root="HKCR" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFE452A0BCE564546918D2B31C89A3D42" Guid="{978CEDDB-3481-4045-82B6-2C06AA9DCB18}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{D080D5A4-AFD2-4FD3-9107-30D3B9D07723}\ProgID" Root="HKCR">
+                    <RegistryValue Value="WiseServer.clsProduct" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFEDA6FEF5DAAE238441C53C3CC5114BB" Guid="{A55D80AE-3FDA-4EC6-9B8C-13ACF47987D2}" KeyPath="yes">
+                <RegistryKey Key="Interface\{920968A0-C85D-4B8D-B9E7-C1624856861D}" Root="HKCR">
+                    <RegistryValue Value="clsAppStateDisplay" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <DirectoryRef Id="TARGETDIR">
+            <Component Id="cmpFF64829659760416C20EB33C0EB3F15E" Guid="{85999667-2CB6-4462-9E5C-23E5C702F6A8}" KeyPath="yes">
+                <RegistryKey Key="CLSID\{2690F241-FA86-49C1-BB9A-5A63C05F4A5F}\LocalServer32" Root="HKCR">
+                    <RegistryValue Value="[INSTALLDIR]\WiseServer.exe" Type="string" />
+                </RegistryKey>
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+</Wix>

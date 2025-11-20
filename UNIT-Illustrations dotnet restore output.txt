@@ -1,0 +1,7 @@
+PS C:\Users\w600169\source\repos\WoodmenLife Enterprise\UNIT\UNIT-Illustrations> dotnet restore --verbosity detailed
+Restore complete (0.4s)
+    Determining projects to restore...
+    Nothing to do. None of the projects specified contain packages to restore.
+
+Build succeeded in 0.6s
+PS C:\Users\w600169\source\repos\WoodmenLife Enterprise\UNIT\UNIT-Illustrations>

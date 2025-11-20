@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WOW_ILLUS_FACADEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BasePlans">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="HeaderCode" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="120" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConversionIds">
+          <Key>
+            <PropertyRef Name="ConversionId" />
+          </Key>
+          <Property Name="ConversionId" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Conversions">
+          <Key>
+            <PropertyRef Name="ConversionId" />
+            <PropertyRef Name="CommonVal" />
+          </Key>
+          <Property Name="ConversionId" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="CommonVal" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="LpaVal" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="start" Type="date" Nullable="false" />
+          <Property Name="expiration" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HeaderCodes">
+          <Key>
+            <PropertyRef Name="HeaderCode" />
+          </Key>
+          <Property Name="HeaderCode" Type="int" Nullable="false" />
+          <Property Name="Category" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WOW_ILLUS_FACADE.dbo.StateCodes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="StateCodes">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Abbr" />
+            <PropertyRef Name="NAIC" />
+            <PropertyRef Name="IsUnisex" />
+            <PropertyRef Name="PrintAsTobacco" />
+            <PropertyRef Name="Max_Waiver_Age" />
+          </Key>
+          <Property Name="Code" Type="smallint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Abbr" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="NAIC" Type="bit" Nullable="false" />
+          <Property Name="IsUnisex" Type="bit" Nullable="false" />
+          <Property Name="PrintAsTobacco" Type="bit" Nullable="false" />
+          <Property Name="Max_Waiver_Age" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BasePlans_HeaderCodes">
+          <End Role="HeaderCodes" Type="Self.HeaderCodes" Multiplicity="1" />
+          <End Role="BasePlans" Type="Self.BasePlans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeaderCodes">
+              <PropertyRef Name="HeaderCode" />
+            </Principal>
+            <Dependent Role="BasePlans">
+              <PropertyRef Name="HeaderCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversions_ConversionIds">
+          <End Role="ConversionIds" Type="Self.ConversionIds" Multiplicity="1" />
+          <End Role="Conversions" Type="Self.Conversions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConversionIds">
+              <PropertyRef Name="ConversionId" />
+            </Principal>
+            <Dependent Role="Conversions">
+              <PropertyRef Name="ConversionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WOW_ILLUS_FACADEModelStoreContainer">
+          <EntitySet Name="BasePlans" EntityType="Self.BasePlans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConversionIds" EntityType="Self.ConversionIds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Conversions" EntityType="Self.Conversions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HeaderCodes" EntityType="Self.HeaderCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StateCodes" EntityType="Self.StateCodes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [StateCodes].[Code] AS [Code], 
+    [StateCodes].[Name] AS [Name], 
+    [StateCodes].[Abbr] AS [Abbr], 
+    [StateCodes].[NAIC] AS [NAIC], 
+    [StateCodes].[IsUnisex] AS [IsUnisex], 
+    [StateCodes].[PrintAsTobacco] AS [PrintAsTobacco], 
+    [StateCodes].[Max_Waiver_Age] AS [Max_Waiver_Age]
+    FROM [dbo].[StateCodes] AS [StateCodes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BasePlans_HeaderCodes" Association="Self.FK_BasePlans_HeaderCodes">
+            <End Role="HeaderCodes" EntitySet="HeaderCodes" />
+            <End Role="BasePlans" EntitySet="BasePlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversions_ConversionIds" Association="Self.FK_Conversions_ConversionIds">
+            <End Role="ConversionIds" EntitySet="ConversionIds" />
+            <End Role="Conversions" EntitySet="Conversions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WOW_ILLUS_FACADEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BasePlan">
+          <Key>
+            <PropertyRef Name="PlanId" />
+          </Key>
+          <Property Name="PlanId" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HeaderCode" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HeaderCode1" Relationship="Self.FK_BasePlans_HeaderCodes" FromRole="BasePlans" ToRole="HeaderCodes" />
+        </EntityType>
+        <EntityType Name="ConversionId">
+          <Key>
+            <PropertyRef Name="ConversionId1" />
+          </Key>
+          <Property Name="ConversionId1" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Conversions" Relationship="Self.FK_Conversions_ConversionIds" FromRole="ConversionIds" ToRole="Conversions" />
+        </EntityType>
+        <EntityType Name="Conversion">
+          <Key>
+            <PropertyRef Name="ConversionId" />
+            <PropertyRef Name="CommonVal" />
+          </Key>
+          <Property Name="ConversionId" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommonVal" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LpaVal" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="expiration" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="ConversionId1" Relationship="Self.FK_Conversions_ConversionIds" FromRole="Conversions" ToRole="ConversionIds" />
+        </EntityType>
+        <EntityType Name="HeaderCode">
+          <Key>
+            <PropertyRef Name="HeaderCode1" />
+          </Key>
+          <Property Name="HeaderCode1" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BasePlans" Relationship="Self.FK_BasePlans_HeaderCodes" FromRole="HeaderCodes" ToRole="BasePlans" />
+        </EntityType>
+        <EntityType Name="StateCode">
+          <Key>
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Abbr" />
+            <PropertyRef Name="NAIC" />
+            <PropertyRef Name="IsUnisex" />
+            <PropertyRef Name="PrintAsTobacco" />
+            <PropertyRef Name="Max_Waiver_Age" />
+          </Key>
+          <Property Name="Code" Type="Int16" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Abbr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NAIC" Type="Boolean" Nullable="false" />
+          <Property Name="IsUnisex" Type="Boolean" Nullable="false" />
+          <Property Name="PrintAsTobacco" Type="Boolean" Nullable="false" />
+          <Property Name="Max_Waiver_Age" Type="Int16" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BasePlans_HeaderCodes">
+          <End Role="HeaderCodes" Type="Self.HeaderCode" Multiplicity="1" />
+          <End Role="BasePlans" Type="Self.BasePlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HeaderCodes">
+              <PropertyRef Name="HeaderCode1" />
+            </Principal>
+            <Dependent Role="BasePlans">
+              <PropertyRef Name="HeaderCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversions_ConversionIds">
+          <End Role="ConversionIds" Type="Self.ConversionId" Multiplicity="1" />
+          <End Role="Conversions" Type="Self.Conversion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConversionIds">
+              <PropertyRef Name="ConversionId1" />
+            </Principal>
+            <Dependent Role="Conversions">
+              <PropertyRef Name="ConversionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IllusWisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BasePlans" EntityType="Self.BasePlan" />
+          <EntitySet Name="ConversionIds" EntityType="Self.ConversionId" />
+          <EntitySet Name="Conversions" EntityType="Self.Conversion" />
+          <EntitySet Name="HeaderCodes" EntityType="Self.HeaderCode" />
+          <EntitySet Name="StateCodes" EntityType="Self.StateCode" />
+          <AssociationSet Name="FK_BasePlans_HeaderCodes" Association="Self.FK_BasePlans_HeaderCodes">
+            <End Role="HeaderCodes" EntitySet="HeaderCodes" />
+            <End Role="BasePlans" EntitySet="BasePlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversions_ConversionIds" Association="Self.FK_Conversions_ConversionIds">
+            <End Role="ConversionIds" EntitySet="ConversionIds" />
+            <End Role="Conversions" EntitySet="Conversions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WOW_ILLUS_FACADEModelStoreContainer" CdmEntityContainer="IllusWisEntities">
+          <EntitySetMapping Name="BasePlans">
+            <EntityTypeMapping TypeName="WOW_ILLUS_FACADEModel.BasePlan">
+              <MappingFragment StoreEntitySet="BasePlans">
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="HeaderCode" ColumnName="HeaderCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConversionIds">
+            <EntityTypeMapping TypeName="WOW_ILLUS_FACADEModel.ConversionId">
+              <MappingFragment StoreEntitySet="ConversionIds">
+                <ScalarProperty Name="ConversionId1" ColumnName="ConversionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conversions">
+            <EntityTypeMapping TypeName="WOW_ILLUS_FACADEModel.Conversion">
+              <MappingFragment StoreEntitySet="Conversions">
+                <ScalarProperty Name="ConversionId" ColumnName="ConversionId" />
+                <ScalarProperty Name="CommonVal" ColumnName="CommonVal" />
+                <ScalarProperty Name="LpaVal" ColumnName="LpaVal" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="expiration" ColumnName="expiration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeaderCodes">
+            <EntityTypeMapping TypeName="WOW_ILLUS_FACADEModel.HeaderCode">
+              <MappingFragment StoreEntitySet="HeaderCodes">
+                <ScalarProperty Name="HeaderCode1" ColumnName="HeaderCode" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateCodes">
+            <EntityTypeMapping TypeName="WOW_ILLUS_FACADEModel.StateCode">
+              <MappingFragment StoreEntitySet="StateCodes">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Abbr" ColumnName="Abbr" />
+                <ScalarProperty Name="NAIC" ColumnName="NAIC" />
+                <ScalarProperty Name="IsUnisex" ColumnName="IsUnisex" />
+                <ScalarProperty Name="PrintAsTobacco" ColumnName="PrintAsTobacco" />
+                <ScalarProperty Name="Max_Waiver_Age" ColumnName="Max_Waiver_Age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

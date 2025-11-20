@@ -1,0 +1,1 @@
+bcp %3.dbo.%4 %1  C:\Users\w600006\Documents\%4.txt -f %4.fmt -S %2 -T

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/LifeServer.DataModel.response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/LifeServer.DataModel.response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://lpa-test.woodmen.net/PersonSceneSearchService?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/LifeServer.DataModel" />
+  <xs:complexType name="AgentAccountResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/LifeServer.DataModel" base="q1:LifeServerBaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="accountCreateResponseXML" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:any minOccurs="0" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AgentAccountResponse" nillable="true" type="tns:AgentAccountResponse" />
+  <xs:complexType name="AccountSetupResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/LifeServer.DataModel" base="q2:LifeServerBaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AccountSetupResponseElement" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:any minOccurs="0" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AccountSetupResponse" nillable="true" type="tns:AccountSetupResponse" />
+  <xs:complexType name="LoginResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/LifeServer.DataModel" base="q3:LifeServerBaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UserInformation" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LoginResponse" nillable="true" type="tns:LoginResponse" />
+  <xs:complexType name="GatewayServiceResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/LifeServer.DataModel" base="q4:LifeServerBaseResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GetwayServiceResponseElement" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:any minOccurs="0" processContents="lax" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GatewayServiceResponse" nillable="true" type="tns:GatewayServiceResponse" />
+</xs:schema>

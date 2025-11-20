@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CommonIllustrationServiceTester.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IllustrationsLocalWebServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:51781/api/Illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="WebCallDelay" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:00:05</Value>
+    </Setting>
+    <Setting Name="WebCallRetries" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="IllustrationsTestWebServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://lpamw-test.woodmen.net/CIS/api/illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="IllustrationsUatWebServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://lpamw-uat.woodmen.net/CIS/api/illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="IulOutputDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Temp\</Value>
+    </Setting>
+    <Setting Name="IllustrationsModlWebServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://lpamw-modl.woodmen.net/CIS/api/illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="IllustrationsProdWebServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://lpamw.woodmen.net/CIS/api/Illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="IllustrationsIntWebServiceUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://lpamw-int.woodmen.net/CIS/api/illustrations/ProcessIllusRequest</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

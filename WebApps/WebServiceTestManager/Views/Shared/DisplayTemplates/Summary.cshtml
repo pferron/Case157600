@@ -1,0 +1,42 @@
+﻿@using Newtonsoft.Json;
+@{
+    string a = Model;
+    string[] split = new string[0];
+    if(a != null && a.Contains('*'))
+    {
+        split = a.Split('*');
+    }
+    
+}
+
+@functions {
+    string JsonPrettify(string json)
+    {
+        try
+        {
+            using (var stringReader = new StringReader(json))
+            using (var stringWriter = new StringWriter())
+            {
+                var jsonReader = new JsonTextReader(stringReader);
+                var jsonWriter = new JsonTextWriter(stringWriter) { Formatting = Formatting.Indented };
+                jsonWriter.WriteToken(jsonReader);
+                return stringWriter.ToString();
+            }
+        } catch (Exception)
+        {
+            return json;
+        }
+    }
+    }
+
+    @foreach (var item in split)
+    {
+        if (item.Contains("Response"))
+        {
+        <p>@JsonPrettify(item.Replace("Response:", ""))</p>
+        }
+        else
+        {
+        <p style="color: darkred">@item</p>
+        }
+    }

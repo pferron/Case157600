@@ -1,0 +1,28 @@
+﻿@*<input class="form-control-file"type="file" name="File" data-val-required="please select a file" data-val-regex-pattern="(?<=^| )\d+(\.\d+)?(?=$| )" data-val-regex="Please remove any commas or non digits"/>*@
+<script>
+    $(function () {
+
+        $.validator.unobtrusive.adapters.addSingleVal("file");
+        $.validator.addMethod("file", function (value, element, exclude) {
+            if (element.value == "") {
+                $.validator.messages.file = "Please attach a file to upload.";
+                return false;
+            }
+            return true;
+        });
+    });
+
+    $(document).ready(function () {
+
+        $('#customFile').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $('.custom-file-label').html(fileName);
+        })
+    });
+</script>
+<div class="custom-file">
+    <input type="file" id="file" name="File" class="custom-file-input" id="customFile">
+    <label class="custom-file-label" id="custom-file-label" for="customFile">Choose file</label>
+</div>

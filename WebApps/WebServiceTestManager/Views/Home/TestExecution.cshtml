@@ -1,0 +1,141 @@
+﻿@model IEnumerable<WebServiceTestManager.Models.TestExecutionModel>
+@using WebServiceTestManager.Models
+@{
+    ViewBag.Title = "Tests";
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            @*$('.deleteTest').click(function (e) {
+                var $ctrl = $(this);
+                ShowDialog("Are you sure", "Deleting a execution cannot be undone.", function () {
+                    $.ajax({
+                        url: '@Url.Action("RemoveGuid")',
+                        type: 'POST',
+                        data: { modifierType: @((int)ModifierType.ExecutedTest), id: $(this).data('id') }
+                    }).done(function (data) {
+                        if (data == "OK") {
+                            $ctrl.closest('tr').remove();
+                            AddAlert("Successfully removed results", "success");
+                        }
+                        else {
+                            AddAlert(data + "", "danger");
+                        }
+                        }).fail(function () {
+                            AddAlert("There is something wrong. Please try again.", "danger");
+                    })
+                });
+            });*@
+
+            $('.deleteTest').click(function () {
+                var ctrl = $(this);
+                ShowDialog("Are you sure", "Deleting a test set cannot be undone. <strong>WARNING</strong> This will also remove all of the tests in the set.", function () {
+                    $.ajax({
+                        url: '@Url.Action("RemoveGuid")',
+                        type: 'POST',
+                        data: { modifierType: @((int)ModifierType.ExecutedTest) , id: ctrl.data('id') }
+                    }).done(function (data) {
+                        if (data == "OK") {
+                            ctrl.closest('tr').remove();
+                            AddAlert("Successfully removed", "success");
+                        }
+                        else {
+                            AddAlert(data + "", "danger");
+                        }
+                    }).fail(function () {
+                        AddAlert("Something went wrong while trying to process your request. Please contact the help desk if this issue continues.", "danger");
+                    })
+                });
+            });
+        })
+    </script>
+    }
+
+
+    @functions {
+        public string TimeAgo(DateTime dt)
+        {
+            const int SECOND = 1;
+            const int MINUTE = 60 * SECOND;
+            const int HOUR = 60 * MINUTE;
+            const int DAY = 24 * HOUR;
+            const int MONTH = 30 * DAY;
+
+            var ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
+            double delta = Math.Abs(ts.TotalSeconds);
+
+            if (delta < 1 * MINUTE)
+                return ts.Seconds == 1 ? "1 second ago" : ts.Seconds + " seconds ago";
+
+            if (delta < 2 * MINUTE)
+                return "A minute ago";
+
+            if (delta < 60 * MINUTE)
+                return $"{ts.Minutes} minutes ago";
+
+            if (delta < 120 * MINUTE)
+                return $"{ts.Hours} hour and {ts.Minutes} minutes ago";
+
+            if (delta < 24 * HOUR)
+                return $"{ts.Hours} hours ago";
+
+            if (delta < 36 * HOUR)
+                return "Yesterday at " + dt.ToShortTimeString();
+
+            if (delta < 48 * HOUR)
+                return $"{dt.DayOfWeek} at {dt.ToShortTimeString()}";
+
+            if (delta < 30 * DAY)
+                return $"{ts.Days} days ago on {dt.ToShortDateString()} at {dt.ToShortTimeString()}";
+
+            if (delta < 12 * MONTH)
+            {
+                int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
+                return months <= 1 ? $"Last month on {dt.ToShortDateString()} at {dt.ToShortTimeString()}" : $"{Math.Abs(dt.Month - DateTime.Now.Month) - 1} months ago on {dt.ToShortDateString()} at {dt.ToShortTimeString()}";
+            }
+            else
+            {
+                int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
+                return years <= 1 ? "one year ago" : years + " years ago";
+            }
+        }
+    }
+    <h2>Test Sets</h2>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Test Destination</th>
+                <th>Url</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @TimeAgo(item.ExecutionDate)
+                    </td>
+                    <td>
+                        @item.DestinationName
+                    </td>
+                    <td>
+                        @item.Url
+                    </td>
+                    <td>
+                        @Html.ActionLink("View", "ViewExecution", "Home", new { id = item.TestIdentifier }, new { @class = "btn btn-primary" })
+                        | <button type="button" data-id="@item.TestIdentifier" class="btn btn-danger deleteTest">Delete</button>
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>

@@ -1,0 +1,129 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LPA.Dashboard.Web.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CacheExpirationHours" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="WebCallRetries" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="WebCallDelay" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:00:05</Value>
+    </Setting>
+    <Setting Name="IllustrationsTestWebServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://lpamw-test.woodmen.net/CIS/api/illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="IllustrationsUatWebServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://lpamw-uat.woodmen.net/CIS/api/illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="IllustrationsModlWebServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://lpamw-mdl.woodmen.net/CIS/api/illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="IllustrationsProdWebServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://lpamw-prd.woodmen.net/CIS/api/illustrations/ProcessIllusRequest</Value>
+    </Setting>
+    <Setting Name="PageSize" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="MaxSearchResults" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="RateHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Rate'#'</Value>
+    </Setting>
+    <Setting Name="RateCodeHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">RateCode</Value>
+    </Setting>
+    <Setting Name="BandHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Band</Value>
+    </Setting>
+    <Setting Name="AgeHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Age</Value>
+    </Setting>
+    <Setting Name="YearHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">'#'</Value>
+    </Setting>
+    <Setting Name="IllustrationExcelFileDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\fservpcv1\PROCDATA\Illustrations\ExcelFiles</Value>
+    </Setting>
+    <Setting Name="IllustrationSqlFileDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\fservpcv1\PROCDATA\Illustrations\SqlUpdateFiles</Value>
+    </Setting>
+    <Setting Name="FundCodeHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FundCode</Value>
+    </Setting>
+    <Setting Name="FundExpensePctHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FundExpensePct</Value>
+    </Setting>
+    <Setting Name="Rate1Header" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Rate1</Value>
+    </Setting>
+    <Setting Name="StartDateHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Start Date</Value>
+    </Setting>
+    <Setting Name="EndDateHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">End Date</Value>
+    </Setting>
+    <Setting Name="MessageHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Message</Value>
+    </Setting>
+    <Setting Name="ReleaseNoteId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">73F77484-A558-4C1C-82D9-AA7600C0484D</Value>
+    </Setting>
+    <Setting Name="ProductIdHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ProductID</Value>
+    </Setting>
+    <Setting Name="FieldValueHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FieldValue</Value>
+    </Setting>
+    <Setting Name="NamedValueIdHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NamedValueID</Value>
+    </Setting>
+    <Setting Name="PlanCommonIDHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">PlanCommonID</Value>
+    </Setting>
+    <Setting Name="GuarRateHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GuarRate</Value>
+    </Setting>
+    <Setting Name="InitGuarRateHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">InitGuarRate</Value>
+    </Setting>
+    <Setting Name="RateDataIdHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">RateDataID</Value>
+    </Setting>
+    <Setting Name="ReleaseNoteTitleHeader" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ReleaseNoteTitle</Value>
+    </Setting>
+    <Setting Name="SMTPServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">wesg.woodmen.net</Value>
+    </Setting>
+    <Setting Name="SMTPFromAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">autoMessage@woodmen.org</Value>
+    </Setting>
+    <Setting Name="WikiBaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://wiki.woodmen.net</Value>
+    </Setting>
+    <Setting Name="DevEmailAddress" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;unitdevs@woodmen.org&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="ProductionEmailAddress" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;string&gt;unitdevs@woodmen.org&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="IntegrationServer" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">prd-lpi-as-1</Value>
+    </Setting>
+    <Setting Name="PuppetBaseUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://puppet-test.woodmen.net:8143</Value>
+    </Setting>
+    <Setting Name="ProdServerPrefix" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">prd-lpa-as</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

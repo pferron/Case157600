@@ -1,0 +1,18 @@
+﻿
+@{
+    var list = new List<WebServiceTestManager.Models.Destination>();
+    using (var context = new WebServiceTestManager.Models.Database())
+    {
+        var user = context.Users.Where(u => u.WindowsUsername.Contains(User.Identity.Name)).FirstOrDefault();
+
+
+        var results = context.FetchDestinationsByUser(user.Id);
+
+        foreach (var item in results)
+        {
+            list.Add(new WebServiceTestManager.Models.Destination() { Id = item.DestinationId, Name = item.DestinationName, Url = item.DestinationUrl });
+        }
+    }
+}
+
+@Html.DropDownListFor(model => model, new SelectList(list, "Id", "Name"), new { @class = "form-control" })

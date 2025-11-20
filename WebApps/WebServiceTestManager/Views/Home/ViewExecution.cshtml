@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebServiceTestManager.Models.TestExecution>
+@using WebServiceTestManager.Models
+@{
+    ViewBag.Title = "ViewExecution";
+}
+
+<h2>View Execution</h2>
+<hr />
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $('.glyphicon-refresh').each(function (i, obj) {
+                setInterval(refesh, 5000);
+                console.log('hey we need to refesh.');
+            });
+        });
+
+        function refesh() {
+            location.reload();
+        }
+    </script>
+}
+<table class="table  table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Result</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @using (var context = new WebServiceTestManager.Models.Database())
+                    {
+                        var name = context.Files.Find(item.FileId);
+                        <p>@name.Name</p>
+                    }
+                </td>
+                <td>
+                    @if (item.Result == 0)
+                    {
+                        <i class="fas fa-sync-alt"style="color: red; font-size: 20px"></i>
+                    }
+                    else if (item.Result == 1)
+                    {
+                        <span class="fas fa-check text-success"style="color: red; font-size: 20px"></span>
+                    }
+                    else if (item.Result == 2)
+                    {
+                        <span class="fas fs-window-close" style="color: red; font-size: 20px"></span>
+                    }
+                    else if (item.Result == 3)
+                    {
+                        <span class="glyphicon" style="color: red; font-size: 20px"></span>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("View", "ViewDetail", "Home", new { @detailType = (int)DetailType.ExecutedFile, @id = item.Id }, new { @class = "btn btn-primary" })
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>

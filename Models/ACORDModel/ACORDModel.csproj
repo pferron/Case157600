@@ -1,0 +1,1265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F955E8A6-B110-48C5-B88D-A8307D6F6C0B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WOW.Illustration.Model.ACORD</RootNamespace>
+    <AssemblyName>WOW.Illustration.Model.ACORD</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>keyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ACORD\Address.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Annuity_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\ApplicationInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Attachment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\AxisDef_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Axis_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\BenePeriodAccOption_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\BenePeriodSickOption_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\CarrierAppointment_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Client_Type.cs" />
+    <Compile Include="ACORD\ContentClassification_Type.cs" />
+    <Compile Include="ACORD\Coverage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\CoverageProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\CovOptionProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\CovOption_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\CriteriaExpression_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\CRITERIA_OPERATOR.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\CRITERIA_OPERATOR_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Criteria_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\DeathBenefitOptCC_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\DisabilityHealth.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\DisabilityHealthProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\DisabilityHealthProvisions_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\DistributionChannelInfo_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\ElimPeriodAccOption_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\ElimPeriodSickOption_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\EMailAddress.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Employment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\FinancialActivity_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\FinancialStatement_Type.cs" />
+    <Compile Include="ACORD\FormInstance.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\FormInstanceRequest_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\FormResponse_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Height2_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\HOLDING_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\IllustrationReportRequest_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\IllustrationRequest_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\IllustrationResult_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\IllustrationTxn_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Investment_Type.cs" />
+    <Compile Include="ACORD\IssueGenderCC_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\ItemsChoiceType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\KeyedValue_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\KeyValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Key_Type.cs" />
+    <Compile Include="ACORD\License_Type.cs" />
+    <Compile Include="ACORD\Life.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\LifeParticipant.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\LifeProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\LifeUSAProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\LifeUSA_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\MetaData_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLifE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLifEExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ADTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ADTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ANNPAYOUT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ANNPAYOUT_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_ANNPREM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ANNPREM_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_ATTACHLOCATION.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ATTACHLOCATION_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ATTACHMENTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ATTACHMENTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BANKACCTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BANKACCTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BASICATTACHMENTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BASICATTACHMENTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BENEDESIGNATION.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BENEDESIGNATION_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BENEPERIOD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BENEPERIOD_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BOOLEAN.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_BOOLEAN_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_CLIENTLANGUAGES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_CLIENTLANGUAGES_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_COVINDCODE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_COVINDCODE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_COVTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_COVTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_COVUNITTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_COVUNITTYPE_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_CREDCARDTYPE.cs" />
+    <Compile Include="ACORD\OLI_LU_CREDCARDTYPE_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_DISTCHAN.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_DISTCHAN_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_DTHBENETYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_DTHBENETYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ELIMPERIOD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ELIMPERIOD_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_EMPLOYMENTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_EMPLOYMENTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ENCODETYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ENCODETYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_GENDER.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_GENDER_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_GOVTIDTC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_GOVTIDTC_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_HOLDINGFORM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_HOLDINGFORM_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_HOLDSTAT.cs" />
+    <Compile Include="ACORD\OLI_LU_HOLDSTAT_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_HOLDTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_HOLDTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ILLUSREPORTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ILLUSREPORTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_IMAGEFORM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_IMAGEFORMAT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_IMAGEFORMAT_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_IMAGEFORM_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_INCOPTION.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_INCOPTION_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_LINEBUS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_LINEBUS_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_MARSTAT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_MARSTAT_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_MEASUREUNITS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_MEASUREUNITS_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_MIMETYPE.cs" />
+    <Compile Include="ACORD\OLI_LU_MIMETYPE_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_NATION.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_NATION_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_OBJECTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_OBJECTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_OCCUPCLASS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_OCCUPCLASS_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_OPERATION.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_OPERATION_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_OPTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_OPTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ORGFORM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_ORGFORM_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_PARTICROLE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PARTICROLE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PARTY.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PARTY_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_PAYMETHOD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PAYMETHOD_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PAYMODE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PAYMODE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PHONETYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PHONETYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_POLISSUE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_POLISSUE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_POLPROD.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_POLPROD_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_POLSTAT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_POLSTAT_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PREFCOMM.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_PREFCOMM_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_QUALPLAN.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_QUALPLAN_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_RATINGS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_RATINGS_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_REL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_RELDESC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_RELDESC_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_REL_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_RIDERCAT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_RIDERCAT_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_RIDERTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_RIDERTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_SMOKERSTAT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_SMOKERSTAT_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_SOURCEOFFUNDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_SOURCEOFFUNDS_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_STATE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_STATESELL.cs" />
+    <Compile Include="ACORD\OLI_LU_STATESELL_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_STATE_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_STOPOPTION.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_STOPOPTION_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_SUPPSOLVETYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_SUPPSOLVETYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_TAXSTAT.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_TAXSTAT_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_TOBPREMBASIS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_TOBPREMBASIS_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_TRANS_TYPE_CODES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_TRANS_TYPE_CODES_TC.cs" />
+    <Compile Include="ACORD\OLI_LU_TRUSTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_TRUSTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_UNWRITECLASS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\OLI_LU_UNWRITECLASS_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Organization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Participant.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Party.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\PaymentModeMethProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Payment_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Payout_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\PeriodCertainCC_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Person.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Phone.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Policy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\PolicyProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\PolicyStatementDetail_Type.cs" />
+    <Compile Include="ACORD\PolicyStatement_Type.cs" />
+    <Compile Include="ACORD\Producer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\PropertyValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Relation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\ResultBasis_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\ResultInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\RESULT_CODES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\RESULT_CODES_TC.cs" />
+    <Compile Include="ACORD\RESULT_INFO_CODES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\RESULT_INFO_CODES_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Rider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\RiderProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\SignatureInfo_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\SitusInfo_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\SubAccount_Type.cs" />
+    <Compile Include="ACORD\SubstandardRating_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Table_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\TC_ILLUSPRIMTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\TC_ILLUSPRIMTYPE_TC.cs" />
+    <Compile Include="ACORD\TC_ILLUSSECTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\TC_ILLUSSECTYPE_TC.cs" />
+    <Compile Include="ACORD\TC_ILLUSTERTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\TC_ILLUSTERTTYPE_TC.cs" />
+    <Compile Include="ACORD\TransResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\TRANS_SUBTYPE_CODES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\TRANS_SUBTYPE_CODES_TC.cs" />
+    <Compile Include="ACORD\TXLife.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\TXLifeRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\TXLifeResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\UnderwritingClassProduct_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\UserAuthRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\UserAuthResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\UserPswd.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Values_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\Weight2_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ACORD\XTbML_Type.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ANNUITY_RATE_CODE_TYPE.cs" />
+    <Compile Include="LPES\Base\ANNUITY_RATE_CODE_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\Answer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ArrayOfAnswer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ArrayOfInsured.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ArrayOfPage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ArrayOfQuestion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ArrayOfQuestion1.cs" />
+    <Compile Include="LPES\Base\ArrayOfRequiredInsuredRole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ArrayOfSection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AttachFormInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AvailableForms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_ENROLLMENTEVENTTYPE_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\AWD_ERROR_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_APPHIPAAFLAG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_APPHIPAAFLAG_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_BENEFITLEVELCODE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_BENEFITLEVELCODE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_CLASSNAME_TC.cs" />
+    <Compile Include="LPES\Base\AWD_LU_COVEREDINSUREDTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_COVEREDINSUREDTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_DENTALINDUSTRYTYPECODE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_DENTALINDUSTRYTYPECODE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_DENTALPLANTYPECODE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_DENTALPLANTYPECODE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_DIOCCUPATIONCLASSTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_ELIMINATIONCODE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_ELIMINATIONCODE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_ELIMINATIONPERIODTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_ELIMINATIONPERIODTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_GULGIFLAG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_GULGIFLAG_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_HEALTHCOVEREDCLASS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_HEALTHCOVEREDCLASS_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_MULTICOVERAGECALCULATION.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_MULTIPLEOFSALARY.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_MULTIPLEOFSALARY_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_PREMIUMTIERCODE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_PREMIUMTIERCODE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_REFLEXIVEQUESTIONRESPONSE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_REFLEXIVEQUESTIONRESPONSE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_RIDEROPTIONTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_RIDEROPTIONTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_RIDERTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_RIDERTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_RTOAGENTTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_RTOAGENTTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_SCGIAVAILABLETYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_SELFENROLLMENTFLAG.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_SUBRIDERTYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_LU_SUBRIDERTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_OCU_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_REQUESTPRODCODE_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_TEMPLATELOCKED_TYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\AWD_TEMPLATE_CONFIGURATION_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\AWD_TIME_TO_ESTABLISH_OPT.cs" />
+    <Compile Include="LPES\Base\AWD_TIME_TO_ESTABLISH_OPT_TC.cs" />
+    <Compile Include="LPES\Base\BASE_TRANS_TYPE_CODES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\BASE_TRANS_TYPE_CODES_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\BENEFICIARY_RELATIONSHIP_TYPE.cs" />
+    <Compile Include="LPES\Base\BENEFICIARY_RELATIONSHIP_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\BenefitLevelOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\BenefitOptionWithPremium.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\BenefitOptionWithPremiums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\BillingFrequencyList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\CALCULATEDRIDERFACE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Case.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\CasePlanSCGIDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\CCDetail.cs" />
+    <Compile Include="LPES\Base\ClassName.cs" />
+    <Compile Include="LPES\Base\Condition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Conditions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ConfigurationType.cs" />
+    <Compile Include="LPES\Base\ControlInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\COST_BENEFIT_REPORT_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\COST_BENEFIT_REPORT_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\CoverageDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\CoverageDetailsGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\CoveredInsuredOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DATASYNC_TYPE_CODES.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DATASYNC_TYPE_CODES_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DATA_SYNC_MODE_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DATA_SYNC_MODE_TYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DeductionsPerYearList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DEFER_ANNUITY_CERT_YEAR_TYPE.cs" />
+    <Compile Include="LPES\Base\DEFER_ANNUITY_CERT_YEAR_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\DentalIndustryTypeOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DentalPlanTypeOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DIOccupationClassOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\DIOCCUPATIONCLASSTYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EB_ExistingCoverage.cs" />
+    <Compile Include="LPES\Base\EB_ExistingPolicy.cs" />
+    <Compile Include="LPES\Base\ElimPeriodOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerBenefits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerCaseProduct.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerCaseRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerClassPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerEnrollmentMethod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerEnrollmentPeriod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerEnrollmentPeriodPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerGroupEnroll.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerGrpEnrollAffiliate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerGrpEnrollContribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerGrpEnrollSplit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerPriorInsurer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerProduct.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerProductPackage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerSplit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EmployerSplitDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EnrollmentEventType.cs" />
+    <Compile Include="LPES\Base\EnrollmentPeriodDateDetail.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EnrollmentPeriodPackageCGIDetail.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\EnrollmentPeriodView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Expression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\FIP_ILLUS_TXN_SECONDARY_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\FIP_ILLUS_TXN_SECONDARY_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\FIP_ILLUS_TXN_TERTIARY_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\FIP_ILLUS_TXN_TERTIARY_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\FIP_QUAL_PLAN_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\FIP_QUAL_PLAN_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\FIP_REPORTS_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\FIP_ILLUS_VALUES_REQUEST_TYPE.cs" />
+    <Compile Include="LPES\Base\FIP_UW_CLASS_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\FIP_UW_CLASS_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\Form.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\FormCategory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\GatewayLiteData.cs" />
+    <Compile Include="LPES\Base\HealthCoveredClassOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\INCLUDE_GRAPH_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\INIT_GUAR_INT_PERIOD_TYPE.cs" />
+    <Compile Include="LPES\Base\INCLUDE_GRAPH_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\INIT_GUAR_INT_PERIOD_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\Insured.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\INSURED_PERSON_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\INSURED_PERSON_TYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ListItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Location.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\LocationEE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\LocationWritingAgents.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Locked.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\LPNamedValueDetail.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\LPNamedValuePair.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\LumpSumPaymentOptionType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\LumpSumPaymentOptionType_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\MissingRequiredData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\MissingRequiredDataFields.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\MissingRequiredDataForm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\MissingRequiredDataForms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\MissingRequiredForm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\MissingRequiredForms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\MultipleOfSalaryOpt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Page.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\PageItems.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ParticipantQuestionResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\PartySearchCriteria.cs" />
+    <Compile Include="LPES\Base\PLANSPDEPCOVERAGELIMITS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\PolicyWarningMsgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ProductRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ProductRuleCoverage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ProductRules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Question.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\QuestionResponseParty.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\questionResponsePartyGUID.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ReflexiveQuestion.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ReflexiveQuestionData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ReflexiveQuestionResponseData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\REFUNDS_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\REFUNDS_TYPE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Replacement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ReplacementData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ReplacementQuestion.cs" />
+    <Compile Include="LPES\Base\ReplacementQuestionData.cs" />
+    <Compile Include="LPES\Base\ReplacementQuestionResponse.cs" />
+    <Compile Include="LPES\Base\ReplacementQuestionResponseData.cs" />
+    <Compile Include="LPES\Base\REPORT_CODE_TYPE.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\REPORT_CODE_TYPE_TC.cs" />
+    <Compile Include="LPES\Base\RequiredHealthHistory.cs" />
+    <Compile Include="LPES\Base\RequiredHealthHistoryData.cs" />
+    <Compile Include="LPES\Base\RequiredInsuredRole.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Rule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Rules.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SCGI_AVAILABLE_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SecondaryAddressee.cs" />
+    <Compile Include="LPES\Base\Section.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SICGIGILimits.cs" />
+    <Compile Include="LPES\Base\SOLVE_CRITERIA.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SOLVE_CRITERIA_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SOLVE_FOR.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SOLVE_FOR_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SOLVE_INTEREST_BASIS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SOLVE_INTEREST_BASIS_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Solve_Parameters.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SOLVE_START_WHEN.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\SOLVE_START_WHEN_TC.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Template.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\TemplateIssueTypeList.cs" />
+    <Compile Include="LPES\Base\TempTableRatingOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Transaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\Trustee.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ValidValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\ValidValues.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\VoicePinChoiceList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\VoicePinInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Base\VoiceTypeList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Form\dataField.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Form\dataFieldGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Form\form.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Form\forms.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Form\items.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Form\page.cs" />
+    <Compile Include="LPES\Form\pages.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\Form\position.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LPES\OLifeExtensions\AcordAnnuityExtension.cs" />
+    <Compile Include="LPES\OLifeExtensions\AcordCoverageExtension.cs" />
+    <Compile Include="LPES\OLifeExtensions\AcordIllustrationReportRequestExtension.cs" />
+    <Compile Include="LPES\OLifeExtensions\AcordIllustrationRequestExtension.cs" />
+    <Compile Include="LPES\OLifeExtensions\AcordIllustrationTxnExtension.cs" />
+    <Compile Include="LPES\OLifeExtensions\AcordLifeParticipantExtension.cs" />
+    <Compile Include="LPES\OLifeExtensions\AcordPolicyExtension.cs" />
+    <Compile Include="LPES\OLifeExtensions\AcordPolicyStatementDetailExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="keyPair.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

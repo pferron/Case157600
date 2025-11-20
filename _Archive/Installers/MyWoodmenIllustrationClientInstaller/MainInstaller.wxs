@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="MyWoodmenIllustrationClientInstaller" Language="1033" Version="1.0.1.0" Manufacturer="WoodmenLife" UpgradeCode="b43f5c39-8043-4e73-bb61-378ea641fd45">
+		<Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" InstallPrivileges="elevated" />
+
+		<UIRef Id="WixUI_InstallDir"/>
+
+		<Icon Id="ProgramIcon" SourceFile="$(var.MyWoodmenIllustrationClient.TargetDir)favicon.ico"/>
+		<Property Id="ARPPRODUCTICON" Value="ProgramIcon"/>
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="MyWoodmenIllustrationClientInstaller" Level="1">
+			<ComponentRef Id="CMP_log4net"/>
+			<ComponentRef Id="CMP_log4net.config"/>
+			<ComponentRef Id="CMP_Newtonsoft.Json"/>
+			<ComponentRef Id="CMP_WOW.Illustration.Model"/>
+			<ComponentRef Id="CMP_WOW.MyWoodmenIllustrationClient.config"/>
+			<ComponentRef Id="CMP_WOW.MyWoodmenIllustrationClient"/>
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="CompanyFolder" Name="WoodmenLife">
+					<Directory Id="INSTALLFOLDER" Name="MyWoodmen Illustration Client"/>
+				</Directory>
+			</Directory>
+		</Directory>
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+	</Fragment>
+
+	<Fragment>
+		<DirectoryRef Id="INSTALLFOLDER">
+			<Component Id="CMP_log4net">
+				<File Id="FILE_log4net.dll"
+							Name="log4net.dll"
+							KeyPath="yes"
+							Source="$(var.MyWoodmenIllustrationClient.TargetDir)log4net.dll" />
+			</Component>
+			<Component Id="CMP_log4net.config">
+				<File Id="FILE_log4net.config"
+							Name="log4net.config"
+							KeyPath="yes"
+							Source="$(var.MyWoodmenIllustrationClient.TargetDir)log4net.config" />
+			</Component>
+			<Component Id="CMP_Newtonsoft.Json">
+				<File Id="FILE_Newtonsoft.Json.dll"
+							Name="Newtonsoft.Json.dll"
+							KeyPath="yes"
+							Source="$(var.MyWoodmenIllustrationClient.TargetDir)Newtonsoft.Json.dll" />
+			</Component>
+			<Component Id="CMP_WOW.Illustration.Model">
+				<File Id="FILE_WOW.Illustration.Model.dll"
+							Name="WOW.Illustration.Model.dll"
+							KeyPath="yes"
+							Source="$(var.MyWoodmenIllustrationClient.TargetDir)WOW.Illustration.Model.dll" />
+			</Component>
+			<Component Id="CMP_WOW.MyWoodmenIllustrationClient.config">
+				<File Id="FILE_WOW.MyWoodmenIllustrationClient.exe.config"
+							Name="WOW.MyWoodmenIllustrationClient.exe.config"
+							KeyPath="yes"
+							Source="$(var.MyWoodmenIllustrationClient.TargetDir)WOW.MyWoodmenIllustrationClient.exe.config" />
+			</Component>
+			<Component Id="CMP_WOW.MyWoodmenIllustrationClient">
+				<File Id="FILE_WOW.MyWoodmenIllustrationClient.exe"
+							Name="WOW.MyWoodmenIllustrationClient.exe"
+							KeyPath="yes"
+							Source="$(var.MyWoodmenIllustrationClient.TargetDir)WOW.MyWoodmenIllustrationClient.exe" />
+				<ServiceInstall	Id="SI_WOW.MyWoodmenIllustrationClient"
+												Name="WOW.MyWoodmenIllustrationClient"
+												DisplayName="WOW MyWoodmen Illustration Client"
+												Start="auto"
+												ErrorControl="normal"
+												Type="ownProcess"
+												Account="HOAD\SA_LPA"
+												Description="Service for receiving illustration requests from MyWoodmen and translating them for LPA."
+												Vital="yes"/>
+				<ServiceControl	Id="SC_WOW.MyWoodmenIllustrationClient"
+												Name="WOW.MyWoodmenIllustrationClient"
+												Stop="both"
+												Remove="uninstall"
+												Wait="yes"/>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
+</Wix>

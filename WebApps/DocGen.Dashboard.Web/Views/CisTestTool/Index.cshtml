@@ -1,0 +1,181 @@
+﻿@model LPA.Dashboard.Web.ViewModels.TestResultCimIndexViewModel
+
+@{
+    ViewBag.Title = "CIS Test Tool";
+    ViewBag.ActiveTab = "CIS Test Tool";
+}
+
+<div class="card my-4" style="display:flex;">
+    <div class="card-body">
+        <div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 d-flex flex-row">
+                        <h4 class="text-muted mb-2 mt-auto mr-auto">
+                            CIS Test Tool
+                        </h4>
+                    </div>
+                </div>
+                <hr class="mt-0" />
+                <div id="alert" class="alert" role="alert" style="display:none;">
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                       
+                            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                <label for="beginCreatedDate">Product Type Code</label>
+                                <select class="form-control" id="drpProductTypeCode" name="searchDto.ProductTypeCode">
+                                    <option value="">Select a Product Type Code</option>
+                                    @foreach (var productTypeCode in Model.ProductTypeCodes)
+                                    {
+                                        <option value="@productTypeCode">@productTypeCode</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                <label for="beginCreatedDate">Test Group</label>
+                                <select class="form-control" id="drpTestGroup" name="searchDto.TestGroupId">
+                                    <option value="">To see Test Groups select a Product Type Code</option>
+                                    @foreach (var testGroup in Model.TestGroups)
+                                    {
+                                        <option value="@testGroup.Value">@testGroup.Text</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-10 col-sm-4 col-md-4 col-lg-4">
+                                <label for="beginCreatedDate">Region</label>
+                                <select class="form-control" id="drpRegion" name="searchDto.TestGroupId">
+                                    <option value="">Select a Region</option>
+                                    <option value="@Model.IllustrationsTestUrl">Test</option>
+                                    <option value="@Model.IllustrationsUatUrl">User Acceptance Testing</option>
+                                    <option value="@Model.IllustrationsModlUrl">Model</option>
+                                    <option value="@Model.IllustrationsProdUrl">Production</option>
+                                </select>
+                            </div>
+                            </div>
+                    </div>
+                        @*<table>
+                            <tr>
+                                <td style="vertical-align: text-top;">
+                                    <label>Product Type Code:</label>
+                                </td>
+                                <td>
+                                    <div>
+                                        <span class="labelData">
+                                            <select size="6" style="width: 250px;" id="drpProductTypeCode" name="searchDto.ProductTypeCode">
+                                                <option value=""></option>
+                                                @foreach (var productTypeCode in Model.ProductTypeCodes)
+                                                {
+                                                    <option value="@productTypeCode">@productTypeCode</option>
+                                                }
+                                            </select>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td style="vertical-align: text-top; padding-left: 40px;">
+                                    <label>Test Group:</label>
+                                </td>
+                                <td>
+                                    @if (Model.TestGroups.Count > 0)
+                                    {
+                                        <span class="labelData">
+                                            <select size="6" style="width: 250px;" id="drpTestGroup" name="searchDto.TestGroupId">
+                                                <option value=""></option>
+                                                @foreach (var testGroup in Model.TestGroups)
+                                                {
+                                                    <option value="@testGroup.Value">@testGroup.Text</option>
+                                                }
+                                            </select>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="labelData">
+                                            <select size="6" style="width: 250px;" id="drpTestGroup" name="searchDto.TestGroupId">
+                                                <option value=""></option>
+                                            </select>
+                                        </span>
+                                    }
+                                </td>
+                                <td style="vertical-align: text-top; padding-left: 40px;">
+                                    <label>Region:</label>
+                                </td>
+                                <td>
+                                    <select size="6" style="width: 250px;" id="drpRegion" name="searchDto.TestGroupId">
+                                        <option value=""></option>
+                                        <option value="@Model.IllustrationsTestUrl">Test</option>
+                                        <option value="@Model.IllustrationsUatUrl">Uat</option>
+                                        <option value="@Model.IllustrationsModlUrl">Modl</option>
+                                        <option value="@Model.IllustrationsProdUrl">Prod</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>*@
+                        <button type="button" class="btn btn-primary" onclick="GetResults();">Submit</button>
+                        <hr />
+                        <div id="dvTestResults">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<script>
+    //Need to add JS code to set selected value for dropdown
+    $(document).ready(function () {
+        $("#drpProductTypeCode").change(function () {
+            GetTestGroups();
+        });
+    });
+
+    function GetTestGroups() {
+        var id = $('#drpProductTypeCode').val();
+        var serviceUrl = baseUrl + 'api/Data/TestGroups?id=' + id;
+
+        if (id.length > 0) {
+            $.ajax({
+                datatype: "json",
+                type: "GET",
+                url: serviceUrl,
+                async: false,
+                success: function (data) {
+                    $('#drpTestGroup').empty();
+                    $.each(data, function (index, value) {
+                        $('#drpTestGroup').append($("<option />").val(data[index].Value).text(data[index].Text));
+                    });
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(textStatus);
+                }
+            });
+        }
+        else {
+            $('#drpTestGroup').empty();
+            $('#drpTestGroup').append($('<option value="">To see Test Groups select a Product Type Code</option>'));
+        }
+    }
+
+    function GetResults() {
+        var testGroupId = $('#drpTestGroup').val();
+        var cisUrl = $('#drpRegion').val();
+        $('#dvTestResults').empty();
+        ShowScanning();
+
+        $.ajax({
+            data: { testGroupId, cisUrl },
+            datatype: "text/plain",
+            type: "POST",
+            url: baseUrl + 'CisTestTool/ProcessCimFiles',
+            cache: false,
+            success: function (data) {
+                DialogClose();
+                $('#dvTestResults').html(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                DialogClose();
+                alert(textStatus);
+            }
+        });
+    }
+</script>

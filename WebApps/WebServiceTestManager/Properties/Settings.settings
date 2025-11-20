@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebServiceTestManager.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FileUploadLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/App_Data/MobileRaterTests/</Value>
+    </Setting>
+    <Setting Name="CheckFolderPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/App_Data/checkfolder</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

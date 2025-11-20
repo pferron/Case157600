@@ -1,0 +1,63 @@
+﻿@model LPA.Dashboard.Web.ViewModels.TestGroupViewModel
+
+@{
+    ViewBag.Title = "CIS Test Tool";
+}
+
+@{
+    if (!Model.ErrorMessage.IsEmpty())
+    {
+        <fieldset style="border:none;">
+            @*This is used to display server side errors*@
+            <div class="error">
+                @Model.ErrorMessage
+            </div>
+        </fieldset>
+    }
+}
+
+
+@using (Html.BeginForm(new { action = "New" }))
+{
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TestGroupDao.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TestGroupDao.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TestGroupDao.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TestGroupDao.ProductTypeCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TestGroupDao.ProductTypeCode, new SelectList(Model.ProductTypeCodes))
+                    @Html.ValidationMessageFor(model => model.TestGroupDao.ProductTypeCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TestGroupDao.IllustrationType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TestGroupDao.IllustrationType, new SelectList(Model.IllustrationTypes))
+                    @Html.ValidationMessageFor(model => model.TestGroupDao.IllustrationType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TestGroupDao.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TestGroupDao.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TestGroupDao.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary"> Add</button>
+            <hr />
+        </div>
+}
+
+

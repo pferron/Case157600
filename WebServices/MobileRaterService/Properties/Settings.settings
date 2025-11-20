@@ -1,0 +1,50 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.MobileRaterService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PremiumColumn" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1110,</Value>
+    </Setting>
+    <Setting Name="ValuesFileLabelLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="GenerationRequestTimeout" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:05:00</Value>
+    </Setting>
+    <Setting Name="GenerationRequestMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">api/Illustrations/GenerateIllustration</Value>
+    </Setting>
+    <Setting Name="AULViaFIP" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FipGenerateMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">api/Illustrations/GenerateIllustrationViaFip</Value>
+    </Setting>
+    <Setting Name="GeneratePDF" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UploadStorageFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/App_Data/uploads</Value>
+    </Setting>
+    <Setting Name="PayloadStorageFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/App_Data/payloads</Value>
+    </Setting>
+    <Setting Name="DB2ConnectionString" Type="System.String" Scope="Application">
+      <!--<Value Profile="(Default)">Provider=IBMDADB2;Database=LDB2T;Hostname=MFPROD;Protocol=TCPIP;Port=5040;UID=MBRRTTST;PWD=TSTMBRRT;</Value>-->
+      <value>Provider=IBMDADB2;Database=LDB2M;Hostname=MFPROD;Protocol=TCPIP;Port=5080;UID=MBRRTMDL;PWD=MDLMBRRT;</value>
+      <!--<value>Provider=IBMDADB2;Database=LDB2P;Hostname=MFPROD;Protocol=TCPIP;Port=5060;UID=MBRRTPRD;PWD=PRDMBRRT;</value>-->
+    </Setting>
+    <Setting Name="DatabaseQueryTimeout" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:00:30</Value>
+    </Setting>
+    <Setting Name="OverrideDate" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="OverrideDateValue" Type="System.DateTime" Scope="Application">
+      <Value Profile="(Default)">2017-10-01</Value>
+    </Setting>
+    <Setting Name="GenerationRequestBaseUri" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://lpamw-test.woodmen.net:2015/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+   
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Destinations", "", "Destination", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("Test Executions", "TestExecution", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        <div id="alert" class="alert" role="alert" style="display:none;">
+        </div>
+        <div id="modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="modal-title" class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="modal-body" class="modal-body">
+                        <p id="modal-body-content"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="modal-btn-yes">Yes</button>
+                        <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mainContent">
+            @RenderBody()
+        </div>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/alert.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

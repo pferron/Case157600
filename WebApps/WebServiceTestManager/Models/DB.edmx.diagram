@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4565b70f599544b5be8595c335f7a513" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="DB.Destination" Width="1.5" PointX="5.75" PointY="1.5" />
+        <EntityTypeShape EntityType="DB.ExpectedValue" Width="1.5" PointX="5.25" PointY="6.25" />
+        <EntityTypeShape EntityType="DB.File" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="DB.TestExecution" Width="1.5" PointX="7.75" PointY="1.5" />
+        <EntityTypeShape EntityType="DB.TestSet" Width="1.5" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="DB.UserDestination" Width="1.5" PointX="3" PointY="10.125" />
+        <EntityTypeShape EntityType="DB.User" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB.UserTestSet" Width="1.5" PointX="3" PointY="2.625" />
+        <AssociationConnector Association="DB.FK_ExpectedValues_Files" />
+        <AssociationConnector Association="DB.FK_Files_TestSet" />
+        <AssociationConnector Association="DB.FK_UserTestSet_UserTestSet" />
+        <AssociationConnector Association="DB.FK_UserDestination_User" />
+        <AssociationConnector Association="DB.FK_UserTestSet_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,102 @@
+﻿@model LPA.Dashboard.Web.ViewModels.TestGroupViewModel
+@{
+    ViewBag.Title = "CIS Test Tool";
+}
+
+<div class="card my-4" style="display:flex;">
+    <div class="card-body">
+        <div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 d-flex flex-row">
+                        <h4 class="text-muted mb-2 mt-auto mr-auto">
+                            Test Groups
+                        </h4>
+                        <a href="@Url.Action("AddTestGroup", "TestGroup")" class="btn btn-primary mb-2 add-agent">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <hr class="mt-0" />
+                <table>
+                    <tr>
+                        <td style="vertical-align: central; padding-right: 5px;">
+                            <label>Product Type Code: </label>
+                        </td>
+                        <td style="padding-right: 30px;">
+                            <div>
+                                <span class="labelData">
+                                    <select size="3" style="width: 250px;" id="drpProductTypeCode" name="searchDto.ProductTypeCode">
+                                        <option value=""></option>
+                                        @foreach (var productTypeCode in Model.ProductTypeCodes)
+                                        {
+                                            <option value="@productTypeCode">@productTypeCode</option>
+                                        }
+                                    </select>
+                                </span>
+                            </div>
+                        </td>
+
+                        <td style="vertical-align: central; padding-right: 5px;">
+                            <label>Illustration Types: </label>
+                        </td>
+                        <td>
+                            <div>
+                                <span class="labelData">
+                                    <select size="3" style="width: 250px;" id="drpIllustrationType" name="searchDto.IllustrationType">
+                                        <option value=""></option>
+                                        @foreach (var illustrationType in Model.IllustrationTypes)
+                                        {
+                                            <option value="@illustrationType">@illustrationType</option>
+                                        }
+                                    </select>
+                                </span>
+                            </div>
+                        </td>
+                        <td style="vertical-align: central; padding-left: 10px;">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="SearchTestGroups(@Model.Page);">Search</button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div id="dvSearch">
+
+                </div>
+                <hr />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //Need to add JS code to set selected value for dropdown
+    $(document).ready(function () {
+        $("#drpProductTypeCode").val('@Model.TestGroupSearchDto.ProductTypeCode');
+        $("#drpIllustrationType").val('@Model.TestGroupSearchDto.IllustrationType');
+        
+        SearchTestGroups(@Model.Page);
+
+         $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+    });
+
+    function SearchTestGroups(pageNumber) {
+        var productTypeCode = $('#drpProductTypeCode').val();
+        var illustrationType = $('#drpIllustrationType').val();
+        var searchDto = {};
+        searchDto.productTypeCode = productTypeCode;
+        searchDto.illustrationType = illustrationType;
+        
+        $.ajax({
+            data: { searchDto: searchDto, pageNumber: pageNumber },
+            datatype: "text/plain",
+            type: "POST",
+            url: baseUrl + 'TestGroup/DoSearch',
+            cache: false,
+            success: function (data) {
+                $('#dvSearch').html(data);
+            }
+        });
+    }
+</script>

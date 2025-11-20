@@ -1,0 +1,245 @@
+[Illustration]
+AgentId, 0
+GroupId, -1
+ProspectId, 0
+SceneID, 0
+[Agent]
+[AgentData]
+AgtFirstName, SELINA
+AgtMiddleInitial, J
+AgtLastName, MORGAN
+AgtAddr_1, PO Box 71235
+AgtAddr_2, 
+AgtCity, Albany
+AgtState, GA
+AgtZip, 31708
+AgtPhone, (229) 903-1516
+[Group]
+[Prospect]
+[ContactBasicData]
+FirstName, BARBARA
+MiddleInitial, A
+LastName, CASON
+NameSuffix, 
+Age, 43
+Birthdate, 6/22/1971
+Sex, 1
+State, GA
+Country, USA
+[Scene]
+[scenePointers]
+CategoryCode, 3
+ConceptCode, 5
+HeaderCode, 121
+ClassCode, 303
+ClassType, 2
+revisedIllus, 0
+SceneModifyDate, 10/31/2013
+WOWState, GA
+[CommonData]
+PlanUnisex, 0
+RtgAmt, 2
+RtgAmtToAge, 61
+RtgExtra_1, 0
+RtgExtraToAge_1, 42
+RtgExtra_2, 0
+RtgExtraToAge_2, 120
+Lump1035Amt, 0
+loanIntUsage, 0
+wdrlToLoan, 0
+printToAge, 121
+PolicyNumber, 009280346
+StateNAICApproved, 0
+NumberOfOwners, 1
+[PolicyData]
+IssueDate, 2013-10-31
+IssueDateEntered, 1
+IssueAge, 42
+PolicyNumber, 009280346
+Class, 303
+RtgAmt, 2
+RtgAmtToAge, 61
+RtgExtra_1, 0.00
+RtgExtraToAge_1, 42
+RtgExtra_2, 0
+RtgExtraToAge_2, 120
+DataDate, February 6, 2015
+Year, 3
+Month, 4
+AccountValue, 645.59
+SurrCharge, $669.20
+CumPremium, 0
+CumWdrl, 0
+StdLoanBalance, 0
+PrfLoanBalance, 0
+GSP, 0
+CumGLP, 0
+GLP, 0
+MEC, 0
+LoanIntAmt, 0
+G7P, $1,435.37
+G7Pyear, 1
+G7PMonth, 0
+G7PPremium, $790.16
+DivAccums, 0
+PUA, 0
+PUACashValue, 0
+PUARider, 0
+PUARiderCashValue, 0
+repAddInsFromRefunds, 0
+repAddInsOnDeposit, 0
+repPuaInsurance, 0
+RepoRtgAmtPerm, 0
+RepoRtgAmtPerm_ToAge, 35
+StatKind, 6800
+WLPDFB, $0.00
+RefundLast, 0
+AvgLoanBal, 0
+AvgPDFBal, 0
+AvgRefDepBal, 0
+CCVPUA, 0
+BaseCV, 645.59
+LoanBalWithInt, 0
+PDFBalWithInt, 0
+RefDepWithInt, 0
+RefDepIntRate, .00000
+PDFIntRate, .00000
+NLGAccount, 1
+TargetPrem, 0
+PrintAsTobacco, 1
+[AllRiderData]
+type, 105
+code, 10
+level, 1
+subType, 1
+name, 
+age, 0
+sex, 0
+toggle, 0
+toggle2, 0
+amount, 0
+amount2, 0
+issAge, 42
+toAge, 95
+class, 0
+rtgAmt, 0
+rtgAmtToAge, 0
+rtgExtra, 0
+rtgExtraToAge, 0
+planCode, 
+insured, 0
+joint, 0
+[NonLevelData]
+DataTypeCode, 1
+Level, 1
+NLCode_1, 1
+NLCode_2, 0
+NLCode_3, 0
+NLCode_4, 0
+NLRate_1, 0
+NLRate_2, 0
+NLAmt_1, 35000.00
+NLAmt_2, 0
+NlGradePct, 0
+NLAge, 121
+DataTypeCode, 2
+Level, 1
+NLCode_1, 1
+NLCode_2, 6
+NLCode_3, 0
+NLCode_4, 0
+NLRate_1, 0
+NLRate_2, 0
+NLAmt_1, 44
+NLAmt_2, 0
+NlGradePct, 0
+NLAge, 121
+DataTypeCode, 2
+Level, 2
+NLCode_1, 1
+NLCode_2, 1
+NLCode_3, 0
+NLCode_4, 0
+NLRate_1, 0
+NLRate_2, 0
+NLAmt_1, 0
+NLAmt_2, 0
+NlGradePct, 0
+NLAge, 121
+DataTypeCode, 6
+Level, 1
+NLCode_1, 1
+NLCode_2, 0
+NLCode_3, 0
+NLCode_4, 0
+NLRate_1, 0
+NLRate_2, 0
+NLAmt_1, 0
+NLAmt_2, 0
+NlGradePct, 0
+NLAge, 121
+DataTypeCode, 7
+Level, 1
+NLCode_1, 1
+NLCode_2, 0
+NLCode_3, 0
+NLCode_4, 0
+NLRate_1, 0
+NLRate_2, 0
+NLAmt_1, 0
+NLAmt_2, 0
+NlGradePct, 0
+NLAge, 121
+DataTypeCode, 8
+Level, 1
+NLCode_1, 1
+NLCode_2, 0
+NLCode_3, 0
+NLCode_4, 0
+NLRate_1, 0
+NLRate_2, 0
+NLAmt_1, 0
+NLAmt_2, 0
+NlGradePct, 0
+NLAge, 121
+DataTypeCode, 8
+Level, 2
+NLCode_1, 1
+NLCode_2, 0
+NLCode_3, 0
+NLCode_4, 0
+NLRate_1, 0
+NLRate_2, 0
+NLAmt_1, 0
+NLAmt_2, 0
+NlGradePct, 0
+NLAge, 121
+[NonLevelPolicyData]
+DataTypeCode, 0
+Level, 1
+EffectiveDate, 10/31/2014
+EffectiveAge, 43
+EffectiveYear, 3
+EffectiveMonth, 4
+NLAmount_1, 35000.00
+NLAmount_2, 0
+NLAmount_3, 0
+NLAmount_4, 0
+NLAmount_5, 0
+NLAmount_6, 0
+[UlDATA]
+LumpSumUsage, 0
+RefundOpt, 3
+FrDues, 12
+ULTamra, 0
+RtgAmtPerm, 0
+RtgAmtPerm_ToAge, 62
+AdvPremFund, 0
+BillType, 2
+NLGInt, 0
+[Batch]
+output , 1
+outputName , 
+outputPath, C:\Illusfiles\
+outputValues , 1
+saveData , 0

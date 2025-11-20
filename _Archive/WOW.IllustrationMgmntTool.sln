@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebServices", "WebServices", "{62F77E44-D9AB-4997-AE85-56F9BB599F8F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsServices", "WindowsServices", "{2FB92202-8B8B-4906-ADE2-B11748CD1652}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{11A90783-004C-4901-94F0-E6E201550249}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApps", "WebApps", "{F1A1654A-7DCB-4A42-A3D3-671BD5F0AC33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{663B25D6-8E0E-48A9-8058-F6476294BF35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPA.Dashboard.Web", "WebApps\DocGen.Dashboard.Web\LPA.Dashboard.Web.csproj", "{2D316DF3-D5B0-492D-90D0-4D055099BB9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPA.Dashboard.Models", "Models\DocGen.Dashboard.Models\LPA.Dashboard.Models.csproj", "{3309C9E0-F1D8-43AC-82BC-0AAB6D73FE9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScheduleDeploymentService", "WindowsServices\ScheduleDeploymentService\ScheduleDeploymentService.csproj", "{1BC56F66-BD3B-4F2E-8FFA-EF64061269AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{7B0BBA1D-2A0B-4453-8625-F893DDECE948}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOW.IllustrationMgmntTool.Common", "Common\WOW.IllustrationMgmntTool.Common\WOW.IllustrationMgmntTool.Common\WOW.IllustrationMgmntTool.Common.csproj", "{498A03FE-DD9D-40B1-9982-8D84592C7EBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{399D0AE9-4D39-41E1-A9E1-086002723ECC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LPA.Dashboard.Web.Tests", "TestTools\LPA.Dashboard.Web.Tests\LPA.Dashboard.Web.Tests.csproj", "{F90FF4E4-766D-4F8E-B2A8-E07264361231}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D316DF3-D5B0-492D-90D0-4D055099BB9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D316DF3-D5B0-492D-90D0-4D055099BB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D316DF3-D5B0-492D-90D0-4D055099BB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D316DF3-D5B0-492D-90D0-4D055099BB9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3309C9E0-F1D8-43AC-82BC-0AAB6D73FE9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3309C9E0-F1D8-43AC-82BC-0AAB6D73FE9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3309C9E0-F1D8-43AC-82BC-0AAB6D73FE9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3309C9E0-F1D8-43AC-82BC-0AAB6D73FE9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BC56F66-BD3B-4F2E-8FFA-EF64061269AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BC56F66-BD3B-4F2E-8FFA-EF64061269AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BC56F66-BD3B-4F2E-8FFA-EF64061269AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BC56F66-BD3B-4F2E-8FFA-EF64061269AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498A03FE-DD9D-40B1-9982-8D84592C7EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498A03FE-DD9D-40B1-9982-8D84592C7EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498A03FE-DD9D-40B1-9982-8D84592C7EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498A03FE-DD9D-40B1-9982-8D84592C7EBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F90FF4E4-766D-4F8E-B2A8-E07264361231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90FF4E4-766D-4F8E-B2A8-E07264361231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90FF4E4-766D-4F8E-B2A8-E07264361231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90FF4E4-766D-4F8E-B2A8-E07264361231}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D316DF3-D5B0-492D-90D0-4D055099BB9D} = {F1A1654A-7DCB-4A42-A3D3-671BD5F0AC33}
+		{3309C9E0-F1D8-43AC-82BC-0AAB6D73FE9C} = {11A90783-004C-4901-94F0-E6E201550249}
+		{1BC56F66-BD3B-4F2E-8FFA-EF64061269AF} = {2FB92202-8B8B-4906-ADE2-B11748CD1652}
+		{498A03FE-DD9D-40B1-9982-8D84592C7EBC} = {7B0BBA1D-2A0B-4453-8625-F893DDECE948}
+		{F90FF4E4-766D-4F8E-B2A8-E07264361231} = {399D0AE9-4D39-41E1-A9E1-086002723ECC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {372B8603-EACD-41F2-B0EB-BBE1C65008A1}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.woodmen.net/wowcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WindowsServices\\ScheduleDeploymentService\\ScheduleDeploymentService.csproj
+		SccProjectTopLevelParentUniqueName1 = WOW.IllustrationMgmntTool.sln
+		SccProjectName1 = WindowsServices/ScheduleDeploymentService
+		SccLocalPath1 = WindowsServices\\ScheduleDeploymentService
+		SccProjectUniqueName2 = WebApps\\DocGen.Dashboard.Web\\LPA.Dashboard.Web.csproj
+		SccProjectTopLevelParentUniqueName2 = WOW.IllustrationMgmntTool.sln
+		SccProjectName2 = WebApps/DocGen.Dashboard.Web
+		SccLocalPath2 = WebApps\\DocGen.Dashboard.Web
+		SccProjectUniqueName3 = Models\\DocGen.Dashboard.Models\\LPA.Dashboard.Models.csproj
+		SccProjectTopLevelParentUniqueName3 = WOW.IllustrationMgmntTool.sln
+		SccProjectName3 = Models/DocGen.Dashboard.Models
+		SccLocalPath3 = Models\\DocGen.Dashboard.Models
+		SccProjectUniqueName4 = Common\\WOW.IllustrationMgmntTool.Common\\WOW.IllustrationMgmntTool.Common\\WOW.IllustrationMgmntTool.Common.csproj
+		SccProjectTopLevelParentUniqueName4 = WOW.IllustrationMgmntTool.sln
+		SccProjectName4 = Common/WOW.IllustrationMgmntTool.Common/WOW.IllustrationMgmntTool.Common
+		SccLocalPath4 = Common\\WOW.IllustrationMgmntTool.Common\\WOW.IllustrationMgmntTool.Common
+		SccProjectUniqueName5 = TestTools\\LPA.Dashboard.Web.Tests\\LPA.Dashboard.Web.Tests.csproj
+		SccProjectTopLevelParentUniqueName5 = WOW.IllustrationMgmntTool.sln
+		SccProjectName5 = TestTools/LPA.Dashboard.Web.Tests
+		SccLocalPath5 = TestTools\\LPA.Dashboard.Web.Tests
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,458 @@
+name: UNIT_Illustrations_$(Date:yyyyMMdd)_$(Build.BuildId)
+
+trigger:
+  - 'main'
+  - 'release/wis/*'
+    #- 'hotfix/wis/*'
+  # paths:
+  #   exclude:
+  #   - WebServices/MobileRaterService/*
+  #   - azure-pipeline-rater.yml
+
+resources:
+  repositories:
+  - repository: templateSource
+    type: git
+    name: 'WoodmenLife Enterprise/ADO-Templates'
+    #ref: 'refs/tags/v1.0.5'
+
+  - repository: soaTestSource
+    type: git
+    name: 'WoodmenLife Enterprise/UNIT-test-assets-illustrations'
+
+variables:
+  AGENT_POOL_WINDOWS: 'SSIS-Deploy'
+  IMAGE_TAG: $(Build.BuildId)
+  DTP_PROJECT: 'UNIT_Illustrations'
+  SESSION_TAG: 'UNIT_Illustrations-configuration'
+  AGENT_POOL_SOA_NPR: 'Parasoft-SOATest-NPR'
+  AGENT_POOL_SOA_PRD: 'Parasoft-SOATest'
+
+stages:
+
+- stage: MsBuild
+  displayName: 'MsBuild'
+  jobs:
+
+  - job: 'SolutionBuildAndTest'
+    pool: $(AGENT_POOL_WINDOWS)
+    steps:
+
+    - checkout: self
+      path: 's'
+      clean: 'true'
+
+    # Output here goes to web server > SOAtest
+    # Currently this is handled by puppet.
+    - template: task_based/dotnet/msbuild-build.yaml@templateSource
+      parameters:
+        PATH_TO_PROJECTS: '$(Build.SourcesDirectory)/*.sln'
+        PERFORM_VS_TESTS: 'false'
+        USE_NUGET_CONFIG: 'true'
+
+    - ${{ if or(eq(variables['Build.SourceBranchName'], 'main'), contains(variables['Build.SourceBranch'], 'release/wis/')) }}:
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Build.SourcesDirectory)\msi'
+          artifact: 'msi_release'
+          publishLocation: 'pipeline'
+
+    # Output here goes the SSCM route for sales laptops (wis only needed, WoodmenIllustrationServiceInstaller.msi).
+    - template: task_based/dotnet/msbuild-build.yaml@templateSource
+      parameters:
+        BUILD_PLATFORM: 'x86'
+        PATH_TO_PROJECTS: '$(Build.SourcesDirectory)/*.sln'
+        PERFORM_VS_TESTS: 'false'
+        USE_NUGET_CONFIG: 'true'
+
+    - ${{ if or(eq(variables['Build.SourceBranchName'], 'main'), contains(variables['Build.SourceBranch'], 'release/wis/')) }}:
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Build.SourcesDirectory)\msi'
+          artifact: 'msi_x86'
+          publishLocation: 'pipeline'
+
+- ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+  - stage: Deploy_to_BETA
+    displayName: 'Deploy to BETA'
+    dependsOn: MsBuild
+    pool: $(AGENT_POOL_WINDOWS)
+    variables:
+    - group: 'UNIT_BETA_Illus'
+
+    jobs:
+
+    - deployment: Install_WIS
+      displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+      environment: 'UNIT_BETA.BTA-LPA-MW-1'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+              # Checkout template to get access to the .ps1 scripts for puppet.
+              - checkout: templateSource
+                path: 'templateSource'
+                clean: 'true'
+
+              # Get the artifact that contains the installer from the pipeline.
+              - download: current
+                artifact: 'msi_release'
+                displayName: 'Download msi_release artifact'
+
+              # Installation to the proper path (INSTALLFOLDER).
+              - script: 'msiexec /i $(Agent.BuildDirectory)\msi_release\WoodmenIllustrationServiceInstaller.msi INSTALLFOLDER="D:\programfiles\WoodmenLife\Woodmen Illustration Service" /quiet /log $(Agent.BuildDirectory)\msi_release\msi_install.txt'
+                displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+
+              # Reconfigure the service's configuration to point at the proper endpoints.
+              - task: replacetokens@5
+                displayName: 'Transform WOW.WoodmenIntegrationService.exe.config'
+                inputs:
+                  targetFiles: 'D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config'
+                  actionOnMissing: 'fail'
+                  actionOnNoFiles: 'fail'
+
+              # Configure the service to run as the proper user (from variable group).
+              - script: 'sc config "WoodmenIntegrationService" obj= $(WIS_SVC_USER) password= $(WIS_SVC_PSWD) type= own'
+                displayName: 'Adjust run as for WoodmenIntegrationService'
+
+              # Restart the WoodmenIntegrationService service, so the changes take effect.
+              - task: PowerShell@2
+                displayName: 'Restart the WoodmenIntegrationService service.'
+                inputs:
+                  targetType: 'inline'
+                  script: 'Restart-Service -Name WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Kick off puppet job'
+                inputs:
+                  targetType: 'filePath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/RunPuppetDeployCommand.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetEnvironment 'production' -puppetNodeGroupId '$(PUPPET_NODE_GRP_ID)' -jobIdVariableName 'PUPPET_JOB_ID'
+
+              - task: PowerShell@2
+                displayName: 'Wait for puppet job to complete'
+                inputs:
+                  targetType: 'filepath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/WaitForPuppetJobToFinish.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetJobId $(PUPPET_JOB_ID) -checkIntervalSeconds 60
+
+  - stage: 'BetaSoaTest'  
+    displayName: 'Smoke Beta Environment'
+    dependsOn:
+    - Deploy_to_BETA  
+    jobs:
+    - job: 'Smoke_Test_Beta'
+      displayName: 'Smoke Test Beta'
+      pool: '$(AGENT_POOL_SOA_NPR)'      
+      workspace:
+        clean: all
+      steps:
+        - checkout: soaTestSource
+          path: 'UNIT-test-assets-illustrations'
+          clean: "true"
+    
+        - template: task_based/java/parasoft-SOATest-steps.yaml@templateSource
+          parameters:
+            TEST_RESOURCE: 'UNIT-test-assets-illustrations/WIS/WIS_Test.tst'
+            SOA_ENVIRONMENT: 'BETA'
+
+- ${{ if contains(variables['Build.SourceBranch'], 'release/wis/') }}:
+  - stage: Deploy_to_TEST
+    displayName: 'Deploy to TEST'
+    dependsOn: [MsBuild]
+    pool: $(AGENT_POOL_WINDOWS)
+    variables:
+    - group: 'UNIT_TEST_Illus'
+    jobs:
+    - deployment: Install_WIS
+      displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+      environment: 'UNIT_TEST.TST-LPA-MW-1'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+
+              - checkout: templateSource
+                path: 'templateSource'
+                clean: 'true'
+
+              - download: current
+                artifact: 'msi_release'
+                displayName: 'Download msi_release artifact'
+
+              - script: 'msiexec /i $(Agent.BuildDirectory)\msi_release\WoodmenIllustrationServiceInstaller.msi INSTALLFOLDER="D:\programfiles\WoodmenLife\Woodmen Illustration Service" /quiet /log $(Agent.BuildDirectory)\msi_release\msi_install.txt'
+                displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+
+              - task: replacetokens@5
+                displayName: 'Transform WOW.WoodmenIntegrationService.exe.config'
+                inputs:
+                  targetFiles: 'D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config'
+                  actionOnMissing: 'fail'
+                  actionOnNoFiles: 'fail'
+
+              - script: 'sc config "WoodmenIntegrationService" obj= $(WIS_SVC_USER) password= $(WIS_SVC_PSWD) type= own'
+                displayName: 'Adjust run as for WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Restart the WoodmenIntegrationService service.'
+                inputs:
+                  targetType: 'inline'
+                  script: 'Restart-Service -Name WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Kick off puppet job'
+                inputs:
+                  targetType: 'filePath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/RunPuppetDeployCommand.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetEnvironment 'production' -puppetNodeGroupId '$(PUPPET_NODE_GRP_ID)' -jobIdVariableName 'PUPPET_JOB_ID'
+
+              - task: PowerShell@2
+                displayName: 'Wait for puppet job to complete'
+                inputs:
+                  targetType: 'filepath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/WaitForPuppetJobToFinish.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetJobId $(PUPPET_JOB_ID) -checkIntervalSeconds 60
+
+  - stage: 'TestSoaTest'  
+    displayName: 'Smoke Test Environment'
+    dependsOn:
+    - Deploy_to_TEST  
+    jobs:
+    - job: 'Smoke_Test_Test'
+      displayName: 'Smoke Test Test'
+      pool: '$(AGENT_POOL_SOA_NPR)'      
+      workspace:
+        clean: all
+      steps:
+        - checkout: soaTestSource
+          path: 'UNIT-test-assets-illustrations'
+          clean: "true"
+    
+        - template: task_based/java/parasoft-SOATest-steps.yaml@templateSource
+          parameters:
+            TEST_RESOURCE: 'UNIT-test-assets-illustrations/WIS/WIS_Test.tst'
+            SOA_ENVIRONMENT: 'TEST'
+
+  - stage: Deploy_to_UAT
+    displayName: 'Deploy to UAT'
+    dependsOn: [MsBuild,TestSoaTest]
+    pool: $(AGENT_POOL_WINDOWS)
+    variables:
+    - group: 'UNIT_UAT_Illus'
+    jobs:
+    - deployment: Install_WIS
+      displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+      environment: 'UNIT_UAT.UAT-LPA-MW-1'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+
+              - checkout: templateSource
+                path: 'templateSource'
+                clean: 'true'
+
+              - download: current
+                artifact: 'msi_release'
+                displayName: 'Download msi_release artifact'
+
+              - script: 'msiexec /i $(Agent.BuildDirectory)\msi_release\WoodmenIllustrationServiceInstaller.msi INSTALLFOLDER="D:\programfiles\WoodmenLife\Woodmen Illustration Service" /quiet /log $(Agent.BuildDirectory)\msi_release\msi_install.txt'
+                displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+
+              - task: replacetokens@5
+                displayName: 'Transform WOW.WoodmenIntegrationService.exe.config'
+                inputs:
+                  targetFiles: 'D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config'
+                  actionOnMissing: 'fail'
+                  actionOnNoFiles: 'fail'
+
+              - script: 'sc config "WoodmenIntegrationService" obj= $(WIS_SVC_USER) password= $(WIS_SVC_PSWD) type= own'
+                displayName: 'Adjust run as for WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Restart the WoodmenIntegrationService service.'
+                inputs:
+                  targetType: 'inline'
+                  script: 'Restart-Service -Name WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Kick off puppet job'
+                inputs:
+                  targetType: 'filePath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/RunPuppetDeployCommand.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetEnvironment 'production' -puppetNodeGroupId '$(PUPPET_NODE_GRP_ID)' -jobIdVariableName 'PUPPET_JOB_ID'
+
+              - task: PowerShell@2
+                displayName: 'Wait for puppet job to complete'
+                inputs:
+                  targetType: 'filepath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/WaitForPuppetJobToFinish.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetJobId $(PUPPET_JOB_ID) -checkIntervalSeconds 60
+
+  - stage: Deploy_to_MODL
+    displayName: 'Deploy to MODL'
+    dependsOn: [MsBuild,Deploy_to_UAT]
+    pool: $(AGENT_POOL_WINDOWS)
+    variables:
+    - group: 'UNIT_MODL_Illus'
+    jobs:
+    - deployment: Install_WIS
+      displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+      environment: 'UNIT_MODL.MDL-LPA-MW-1'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+
+              - checkout: templateSource
+                path: 'templateSource'
+                clean: 'true'
+
+              - download: current
+                artifact: 'msi_release'
+                displayName: 'Download msi_release artifact'
+
+              - script: 'msiexec /i $(Agent.BuildDirectory)\msi_release\WoodmenIllustrationServiceInstaller.msi INSTALLFOLDER="D:\programfiles\WoodmenLife\Woodmen Illustration Service" /quiet /log $(Agent.BuildDirectory)\msi_release\msi_install.txt'
+                displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+
+              - task: replacetokens@5
+                displayName: 'Transform WOW.WoodmenIntegrationService.exe.config'
+                inputs:
+                  targetFiles: 'D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config'
+                  actionOnMissing: 'fail'
+                  actionOnNoFiles: 'fail'
+
+              - script: 'sc config "WoodmenIntegrationService" obj= $(WIS_SVC_USER) password= $(WIS_SVC_PSWD) type= own'
+                displayName: 'Adjust run as for WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Restart the WoodmenIntegrationService service.'
+                inputs:
+                  targetType: 'inline'
+                  script: 'Restart-Service -Name WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Kick off puppet job'
+                inputs:
+                  targetType: 'filePath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/RunPuppetDeployCommand.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetEnvironment 'production' -puppetNodeGroupId '$(PUPPET_NODE_GRP_ID)' -jobIdVariableName 'PUPPET_JOB_ID'
+
+              - task: PowerShell@2
+                displayName: 'Wait for puppet job to complete'
+                inputs:
+                  targetType: 'filepath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/WaitForPuppetJobToFinish.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetJobId $(PUPPET_JOB_ID) -checkIntervalSeconds 60
+
+  - stage: Deploy_to_PROD
+    displayName: 'Deploy to PROD'
+    dependsOn: [MsBuild,Deploy_to_MODL]
+    pool: $(AGENT_POOL_WINDOWS)
+    variables:
+    - group: 'UNIT_PROD_Illus'
+    jobs:
+    - deployment: Install_WIS
+      displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+      environment: 'UNIT_PROD.PRD-LPA-MW-1'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+
+              - checkout: templateSource
+                path: 'templateSource'
+                clean: 'true'
+
+              - download: current
+                artifact: 'msi_release'
+                displayName: 'Download msi_release artifact'
+
+              - script: 'msiexec /i $(Agent.BuildDirectory)\msi_release\WoodmenIllustrationServiceInstaller.msi INSTALLFOLDER="D:\programfiles\WoodmenLife\Woodmen Illustration Service" /quiet /log $(Agent.BuildDirectory)\msi_release\msi_install.txt'
+                displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+
+              - task: replacetokens@5
+                displayName: 'Transform WOW.WoodmenIntegrationService.exe.config'
+                inputs:
+                  targetFiles: 'D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config'
+                  actionOnMissing: 'fail'
+                  actionOnNoFiles: 'fail'
+
+              - script: 'sc config "WoodmenIntegrationService" obj= $(WIS_SVC_USER) password= $(WIS_SVC_PSWD) type= own'
+                displayName: 'Adjust run as for WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Restart the WoodmenIntegrationService service.'
+                inputs:
+                  targetType: 'inline'
+                  script: 'Restart-Service -Name WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Kick off puppet job'
+                inputs:
+                  targetType: 'filePath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/RunPuppetDeployCommand.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetEnvironment 'production' -puppetNodeGroupId '$(PUPPET_NODE_GRP_ID)' -jobIdVariableName 'PUPPET_JOB_ID'
+
+              - task: PowerShell@2
+                displayName: 'Wait for puppet job to complete'
+                inputs:
+                  targetType: 'filepath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/WaitForPuppetJobToFinish.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetJobId $(PUPPET_JOB_ID) -checkIntervalSeconds 60
+
+  - stage: Deploy_to_PROD_INT
+    displayName: 'Deploy to PROD INT'
+    dependsOn: [MsBuild,Deploy_to_PROD]
+    pool: $(AGENT_POOL_WINDOWS)
+    variables:
+    - group: 'UNIT_PROD_INT_Illus'
+    jobs:
+    - deployment: Install_WIS
+      displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+      environment: 'UNIT_PROD.PRD-LPI-MW-1'
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+
+              - checkout: templateSource
+                path: 'templateSource'
+                clean: 'true'
+
+              - download: current
+                artifact: 'msi_release'
+                displayName: 'Download msi_release artifact'
+
+              - script: 'msiexec /i $(Agent.BuildDirectory)\msi_release\WoodmenIllustrationServiceInstaller.msi INSTALLFOLDER="D:\programfiles\WoodmenLife\Woodmen Illustration Service" /quiet /log $(Agent.BuildDirectory)\msi_release\msi_install.txt'
+                displayName: 'Install WoodmenIllustrationServiceInstaller.msi'
+
+              - task: replacetokens@5
+                displayName: 'Transform WOW.WoodmenIntegrationService.exe.config'
+                inputs:
+                  targetFiles: 'D:\programfiles\WoodmenLife\Woodmen Illustration Service\WOW.WoodmenIntegrationService.exe.config'
+                  actionOnMissing: 'fail'
+                  actionOnNoFiles: 'fail'
+
+              - script: 'sc config "WoodmenIntegrationService" obj= $(WIS_SVC_USER) password= $(WIS_SVC_PSWD) type= own'
+                displayName: 'Adjust run as for WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Restart the WoodmenIntegrationService service.'
+                inputs:
+                  targetType: 'inline'
+                  script: 'Restart-Service -Name WoodmenIntegrationService'
+
+              - task: PowerShell@2
+                displayName: 'Kick off puppet job'
+                inputs:
+                  targetType: 'filePath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/RunPuppetDeployCommand.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetEnvironment 'production' -puppetNodeGroupId '$(PUPPET_NODE_GRP_ID)' -jobIdVariableName 'PUPPET_JOB_ID'
+
+              - task: PowerShell@2
+                displayName: 'Wait for puppet job to complete'
+                inputs:
+                  targetType: 'filepath'
+                  filePath: $(Agent.BuildDirectory)/templateSource/scripts/powershell/WaitForPuppetJobToFinish.ps1
+                  arguments: -puppetUrl '$(PUPPET_ENDPOINT)' -puppetToken '$(PUPPET_TOKEN)' -puppetJobId $(PUPPET_JOB_ID) -checkIntervalSeconds 60

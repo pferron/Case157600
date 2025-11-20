@@ -1,0 +1,72 @@
+﻿@model WOW.WoodmenIllustrationService.SharedModels.ServiceStatus
+
+<fieldset>
+    <legend>Woodmen Common Illustration Service</legend>
+    <table>
+        <tr>
+            <td style="width: 18%">Web API:</td>
+            <td>ONLINE</td>
+        </tr>
+        <tr>
+            <td>Database:</td>
+            <td>@Model.Result</td>
+        </tr>
+    </table>
+</fieldset>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <br />
+    <fieldset>
+        <legend>Error Message</legend>
+        <p>@ViewBag.ErrorMessage</p>
+    </fieldset>
+}
+
+    <div class="simpleTabs">
+        <ul class="simpleTabsNavigation">
+            <li><a href="#">Common to WIM Debugging</a></li>
+            <li><a href="#">Download Illustrations</a></li>
+        </ul>
+        <div class="simpleTabsContent">
+            <h3>Convert Common File to WIM</h3>
+            <p>Upload a Common File using this form. A Woodmen Illustration Model JSON document will be returned.</p>
+
+            @using (Html.BeginForm("ConvertCommonFileToWim", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="testfile" />
+                <input type="submit" name="btnSubmit" value="Submit" />
+            }
+
+            <br />
+
+        </div>
+
+        <div class="simpleTabsContent">
+            <h3>Download Illustration PDF</h3>
+            <p>Upload a Common File using this form. An Illustration PDF will be downloaded.</p>
+
+            @using (Html.BeginForm("FetchIllustrationPdfViaCommonRequest", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="testfile" />
+                <input type="submit" name="btnSubmit" value="Submit" />
+            }
+
+            <br />
+
+            <p>Upload a WIM JSON file using this form. An Illustration PDF will be downloaded.</p>
+
+            @using (Html.BeginForm("FetchIllustrationPdfViaWIM", "api/Illustrations", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" name="testfile" />
+                <input type="submit" name="btnSubmit" value="Submit" />
+            }
+
+            <br />
+
+        </div>
+
+    </div>
+
+
+

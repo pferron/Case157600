@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ViewDetail";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="@Url.Action("", "home")">Test Sets</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("View" ,"TestSet", new { @title = ViewBag.TestName, @id = ViewBag.TestId } )">@ViewBag.TestName</a></li>
+        <li class="breadcrumb-item active"aria-current="page">@ViewBag.FileName</li>
+    </ol>
+</nav>
+<div class="my-3 p-3 bg-white rounded shadow">
+    <h3>Detailed view of @ViewBag.FileName</h3>
+    <hr style="margin-top: 0" />
+</div>
+

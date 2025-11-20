@@ -1,0 +1,121 @@
+﻿@model IEnumerable<WebServiceTestManager.Models.File>
+@using WebServiceTestManager.Models
+@{
+    ViewBag.Title = "View Test";
+}
+
+<h2>Current Test Files</h2>
+@Html.ActionLink("Create a new Rater", "Create", "Home", new { @model = (int)ModifierType.File, @actionName = "CreateRater", @testSet = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-primary" })
+<a id="startTest" href="" class="btn btn-danger">Start Test</a>
+<h3>Destination to test against</h3>
+@Html.Editor("", "DropDown", "destination")
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#destination").append(new Option("Choose a destination", ""));
+            $("#destination").val("");
+            $('.deleteTest').click(function (e) {
+                var $ctrl = $(this);
+                if (confirm('Are you sure you want to delete this item? This action can not be undone.')) {
+                    $.ajax({
+                        url: '@Url.Action("RemoveGuid")',
+                        type: 'POST',
+                        data: { modifierType: @((int)ModifierType.File), id: $(this).data('id') }
+                    }).done(function (data) {
+                        if (data == "OK") {
+                            $ctrl.closest('tr').remove();
+                        }
+                        else {
+                            alert(data);
+                        }
+                    }).fail(function () {
+                        alert("There is something wrong. Please try again.");
+                    })
+                }
+            });
+
+            $('#destination').change(function (e) {
+                var old = $("#startTest").attr("href", "@Url.Action("EvaluateTest")?testSetId=@ViewContext.RouteData.Values["id"]&destinationId=" + e.target.value);
+            });
+        })
+    </script>
+}
+@functions {
+    public string TimeAgo(DateTime dt)
+    {
+        const int SECOND = 1;
+        const int MINUTE = 60 * SECOND;
+        const int HOUR = 60 * MINUTE;
+        const int DAY = 24 * HOUR;
+        const int MONTH = 30 * DAY;
+
+        var ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
+        double delta = Math.Abs(ts.TotalSeconds);
+
+        if (delta < 1 * MINUTE)
+            return ts.Seconds == 1 ? "1 second ago" : ts.Seconds + " seconds ago";
+
+        if (delta < 2 * MINUTE)
+            return "A minute ago";
+
+        if (delta < 60 * MINUTE)
+            return $"{ts.Minutes} minutes ago";
+
+        if (delta < 120 * MINUTE)
+            return $"{ts.Hours} hour and {ts.Minutes} minutes ago";
+
+        if (delta < 24 * HOUR)
+            return $"{ts.Hours} hours ago";
+
+        if (delta < 36 * HOUR)
+            return "Yesterday at " + dt.ToShortTimeString();
+
+        if (delta < 48 * HOUR)
+            return $"{dt.DayOfWeek} at {dt.ToShortTimeString()}";
+
+        if (delta < 30 * DAY)
+            return $"{ts.Days} days ago on {dt.ToShortDateString()} at {dt.ToShortTimeString()}";
+
+        if (delta < 12 * MONTH)
+        {
+            int months = Convert.ToInt32(Math.Floor((double)ts.Days / 30));
+            return months <= 1 ? $"Last month on {dt.ToShortDateString()} at {dt.ToShortTimeString()}" : $"{Math.Abs(dt.Month - DateTime.Now.Month) - 1} months ago on {dt.ToShortDateString()} at {dt.ToShortTimeString()}";
+        }
+        else
+        {
+            int years = Convert.ToInt32(Math.Floor((double)ts.Days / 365));
+            return years <= 1 ? "one year ago" : years + " years ago";
+        }
+    }
+}
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Last modified</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(name => item.Name)
+                </td>
+                <td>
+                    <p>@TimeAgo(item.DateModified)</p>
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditGuid", "Home", new { @model = (int)ModifierType.File, @id = item.Id, @actionName = "UpdateFile" }, new { @class = "btn btn-primary" })
+                    |@Html.ActionLink("View", "ViewDetailGuid", "Home", new { @detailType = (int)DetailType.File,id = item.Id, @testSet = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-primary" })
+                    | <button type="button" data-id="@item.Id" class="btn btn-danger deleteTest">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+

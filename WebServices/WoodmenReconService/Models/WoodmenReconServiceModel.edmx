@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WOW.WoodmenReconService.DataModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ReconReportDataItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReconReportId" Type="int" Nullable="false" />
+          <Property Name="DataName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DataValue" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ReconReports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hostname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateReceived" Type="datetime" Nullable="false" />
+          <Property Name="DateCreatedUtc" Type="datetime" Nullable="false" />
+          <Property Name="ReportName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_ReconReportDataItems_ReconReports">
+          <End Role="ReconReports" Type="Self.ReconReports" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReconReportDataItems" Type="Self.ReconReportDataItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReconReports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReconReportDataItems">
+              <PropertyRef Name="ReconReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="FetchNonCompliantHosts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LpaVersionNumber" Type="varchar" Mode="In" />
+          <Parameter Name="DeploymentDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="FetchReportsByHostname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Hostname" Type="varchar" Mode="In" />
+          <Parameter Name="DataName" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="WOWWoodmenReconServiceDataModelsStoreContainer">
+          <EntitySet Name="ReconReportDataItems" EntityType="Self.ReconReportDataItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReconReports" EntityType="Self.ReconReports" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ReconReportDataItems_ReconReports" Association="Self.FK_ReconReportDataItems_ReconReports">
+            <End Role="ReconReports" EntitySet="ReconReports" />
+            <End Role="ReconReportDataItems" EntitySet="ReconReportDataItems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WOW.WoodmenReconService.DataModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ReconReportDataItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReconReportId" Type="Int32" Nullable="false" />
+          <Property Name="DataName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataValue" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ReconReport" Relationship="Self.FK_ReconReportDataAssociation" FromRole="ReconReportDataItems" ToRole="ReconReports" />
+        </EntityType>
+        <EntityType Name="ReconReport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hostname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateReceived" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ReconReportDataItems" Relationship="Self.FK_ReconReportDataAssociation" FromRole="ReconReports" ToRole="ReconReportDataItems" />
+          <Property Name="ReportName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreatedUtc" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_ReconReportDataAssociation">
+          <End Role="ReconReports" Type="Self.ReconReport" Multiplicity="1" />
+          <End Role="ReconReportDataItems" Type="Self.ReconReportDataItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReconReports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReconReportDataItems">
+              <PropertyRef Name="ReconReportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WoodmenReconServiceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ReconReportDataItems" EntityType="Self.ReconReportDataItem" />
+          <EntitySet Name="ReconReports" EntityType="Self.ReconReport" />
+          <AssociationSet Name="FK_ReconReportDataAssociation" Association="Self.FK_ReconReportDataAssociation">
+            <End Role="ReconReports" EntitySet="ReconReports" />
+            <End Role="ReconReportDataItems" EntitySet="ReconReportDataItems" />
+          </AssociationSet>
+          <FunctionImport Name="FetchNonCompliantHosts" ReturnType="Collection(WOW.WoodmenReconService.DataModels.FetchNonCompliantHosts_Result)">
+            <Parameter Name="LpaVersionNumber" Mode="In" Type="String" />
+            <Parameter Name="DeploymentDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="FetchReportsByHostname" ReturnType="Collection(WOW.WoodmenReconService.DataModels.FetchReportsByHostname_Result)">
+            <Parameter Name="Hostname" Mode="In" Type="String" />
+            <Parameter Name="DataName" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="FetchNonCompliantHosts_Result">
+          <Property Type="String" Name="Hostname" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="LpaVersion" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="FetchReportsByHostname_Result">
+          <Property Type="String" Name="Hostname" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="DataValue" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="DateReceived" Nullable="false" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WOWWoodmenReconServiceDataModelsStoreContainer" CdmEntityContainer="WoodmenReconServiceEntities">
+          <EntitySetMapping Name="ReconReportDataItems">
+            <EntityTypeMapping TypeName="WOW.WoodmenReconService.DataModels.ReconReportDataItem">
+              <MappingFragment StoreEntitySet="ReconReportDataItems">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReconReportId" ColumnName="ReconReportId" />
+                <ScalarProperty Name="DataName" ColumnName="DataName" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReconReports">
+            <EntityTypeMapping TypeName="WOW.WoodmenReconService.DataModels.ReconReport">
+              <MappingFragment StoreEntitySet="ReconReports">
+                <ScalarProperty Name="DateCreatedUtc" ColumnName="DateCreatedUtc" />
+                <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="FetchNonCompliantHosts" FunctionName="WOW.WoodmenReconService.DataModels.Store.FetchNonCompliantHosts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WOW.WoodmenReconService.DataModels.FetchNonCompliantHosts_Result">
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="LpaVersion" ColumnName="LpaVersion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FetchReportsByHostname" FunctionName="WOW.WoodmenReconService.DataModels.Store.FetchReportsByHostname">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WOW.WoodmenReconService.DataModels.FetchReportsByHostname_Result">
+                <ScalarProperty Name="Hostname" ColumnName="Hostname" />
+                <ScalarProperty Name="DataValue" ColumnName="DataValue" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

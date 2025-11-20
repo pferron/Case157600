@@ -1,0 +1,16 @@
+﻿@model LPA.Dashboard.Web.ViewModels.DisplayIllustrationViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="confirmDialog">
+    <iframe src="@Url.Action("Index", "Images", new { testResultId = Model.TestResultId })" style="height:1000px; width:100%"/>
+</div>
+
+<div style="padding-top: 25px; text-align:center; ">
+    <button class="btn btn-primary btn-sm" onclick="DialogClose()">
+        OK
+    </button>
+</div>
+

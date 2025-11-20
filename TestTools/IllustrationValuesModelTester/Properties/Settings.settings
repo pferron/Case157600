@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WOW.Illustration.TestTools.IllustrationValuesModelTester.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="InputDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\pxappsp1\appdata\Illusfiles\</Value>
+    </Setting>
+    <Setting Name="OutputDirectory" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Temp\Output\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
